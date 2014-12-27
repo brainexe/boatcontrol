@@ -18,7 +18,7 @@
 #ifndef _ps3bt_h_
 #define _ps3bt_h_
 
-#include "BTD.h"
+//include "BTD.h"
 #include "PS3Enums.h"
 
 #define HID_BUFFERSIZE 50 // Size of the buffer for the Playstation Motion Controller
@@ -38,7 +38,7 @@ public:
          * Pass your dongles Bluetooth address into the constructor,
          * This will set BTD#my_bdaddr, so you don't have to plug in the dongle before pairing with your controller.
          */
-        PS3BT(BTD *pBtd, uint8_t btadr5 = 0, uint8_t btadr4 = 0, uint8_t btadr3 = 0, uint8_t btadr2 = 0, uint8_t btadr1 = 0, uint8_t btadr0 = 0);
+        //PS3BT(BTD *pBtd, uint8_t btadr5 = 0, uint8_t btadr4 = 0, uint8_t btadr3 = 0, uint8_t btadr2 = 0, uint8_t btadr1 = 0, uint8_t btadr0 = 0);
 
         /** @name BluetoothService implementation */
         /**
@@ -202,7 +202,7 @@ public:
 
 private:
         /* Mandatory members */
-        BTD *pBtd;
+        //BTD *pBtd;
 
         /**
          * Called when the controller is successfully initialized.
