@@ -6,6 +6,8 @@
 #include <stdint.h>
 #include "PS3Enums.h"
 
+PS3BT PS3();
+
 void setup() {
   Serial.begin(115200);
   
