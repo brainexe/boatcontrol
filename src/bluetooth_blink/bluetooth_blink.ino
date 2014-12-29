@@ -1,10 +1,9 @@
-
 char val;
 char btVal;
 
 int ledpin = 13;
-int enPin  = 5;
-int rxPin  = 15;
+//int enPin  = 5;
+int rxPin  = 64;
 int txPin  = 14;
 
 #include <SoftwareSerial.h>
@@ -18,8 +17,8 @@ void setup() {
   pinMode(txPin, OUTPUT);
   
   // set EN pin
-  pinMode(enPin, OUTPUT);
-  digitalWrite(enPin, HIGH);
+  //pinMode(enPin, OUTPUT);
+  //digitalWrite(enPin, HIGH);
   
   /*
   BTSerial.begin(115200);  // The Bluetooth Mate defaults to 115200bps
@@ -30,7 +29,7 @@ void setup() {
   
   BTSerial.begin(9600);
   
-  Serial.begin(115200);
+  Serial.begin(9600);
 }
  
 void loop() {
@@ -48,11 +47,11 @@ void loop() {
     digitalWrite(ledpin, HIGH);
     delay(400);
     Serial.println("on");
-    BTSerial.println("off");
+    BTSerial.println("on");
   }
   
   
-  if (btVal && btVal >= 0) {
+  if (btVal && btVal > -1) {
     Serial.write("new Value:");
     Serial.println(btVal);
   }
@@ -62,4 +61,3 @@ void loop() {
 
   delay(200);
 }
-
