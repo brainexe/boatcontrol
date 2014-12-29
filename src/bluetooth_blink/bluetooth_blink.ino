@@ -2,9 +2,14 @@ char val;
 char btVal;
 
 int ledpin = 13;
-//int enPin  = 5;
-int rxPin  = 64;
-int txPin  = 14;
+
+int enPin  = 5;
+int rxPin  = 15; // TODO
+int txPin  = 14; // TODO
+
+int resetPin = 5; // TODO
+int PIO11Pin = 8; // TODO
+int RTSPin   = 4; // TODO
 
 #include <SoftwareSerial.h>
 
@@ -16,10 +21,13 @@ void setup() {
   pinMode(rxPin, INPUT);
   pinMode(txPin, OUTPUT);
   
-  // set EN pin
-  //pinMode(enPin, OUTPUT);
-  //digitalWrite(enPin, HIGH);
   
+  pinMode(PIO11Pin, OUTPUT);
+  digitalWrite(PIO11Pin, HIGH);
+  pinMode(resetPin, OUTPUT);
+  digitalWrite(resetPin, LOW);
+  pinMode(RTSPin, INPUT);
+
   /*
   BTSerial.begin(115200);  // The Bluetooth Mate defaults to 115200bps
   BTSerial.print("$");  // Print three times individually
@@ -30,8 +38,11 @@ void setup() {
   BTSerial.begin(9600);
   
   Serial.begin(9600);
+  
+  setupBlueToothConnection();
 }
  
+
 void loop() {
   val   = Serial.read();  
   btVal = BTSerial.read();
@@ -61,3 +72,52 @@ void loop() {
 
   delay(200);
 }
+
+
+void setupBlueToothConnection() {
+  enterATMode();
+  sendATCommand();
+  sentATCommand("UART=9600,0,0");
+  sentATCommand("ROLE=0");
+  enterComMode();
+}
+ 
+void enterATMode() {
+  BTSerial.flush();
+  delay(500);
+  digitalWrite(PIO11Pin, HIGH);
+  resetBT();
+  delay(500);
+  BTSerial.begin(9600);
+} 
+
+void resetBT() {
+  digitalWrite(resetPin, LOW);
+  delay(2000);
+  digitalWrite(resetPin, HIGH);
+}
+
+void sendATCommand() {
+  BTSerial.print("AT\r\n");
+  delay(100);
+}
+
+void sentATCommand(char *command) {
+  BTSerial.print("AT");
+  if(strlen(command) > 1){
+  BTSerial.print("+");
+  BTSerial.print(command);
+  delay(100);
+  }
+  BTSerial.print("\r\n");
+}
+
+void enterComMode() {
+  BTSerial.flush();
+  delay(500);
+  digitalWrite(PIO11Pin, LOW);
+  resetBT();
+  delay(500);
+  BTSerial.begin(9600);
+}
+
