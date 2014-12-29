@@ -1,7 +1,10 @@
+
+#include <SoftwareSerial.h>
+
 char val;
 char btVal;
 
-int ledpin = 13;
+int ledPin = 13;
 
 int enPin  = 5;
 int rxPin  = 15; // TODO
@@ -11,16 +14,14 @@ int resetPin = 5; // TODO
 int PIO11Pin = 8; // TODO
 int RTSPin   = 4; // TODO
 
-#include <SoftwareSerial.h>
 
 SoftwareSerial BTSerial(rxPin, txPin); // RX | TX
 
 void setup() {
-  pinMode(ledpin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
   
   pinMode(rxPin, INPUT);
   pinMode(txPin, OUTPUT);
-  
   
   pinMode(PIO11Pin, OUTPUT);
   digitalWrite(PIO11Pin, HIGH);
@@ -28,41 +29,30 @@ void setup() {
   digitalWrite(resetPin, LOW);
   pinMode(RTSPin, INPUT);
 
-  /*
-  BTSerial.begin(115200);  // The Bluetooth Mate defaults to 115200bps
-  BTSerial.print("$");  // Print three times individually
-  BTSerial.print("$");
-  BTSerial.print("$");  // Enter command mode
-  */
-  
   BTSerial.begin(9600);
-  
   Serial.begin(9600);
   
+  Serial.print("booting...");
   setupBlueToothConnection();
+  Serial.println("done!");
 }
- 
 
 void loop() {
-  val   = Serial.read();  
-  btVal = BTSerial.read();
-  
-  
+  val   = Serial.read();
+  btVal = BTSerial.read(); 
+
   if (val == '0' || btVal == '0') {
-    digitalWrite(ledpin, LOW);
-    delay(400);
+    digitalWrite(ledPin, LOW);
     Serial.println("off");
     BTSerial.println("off");
   }
   if (val == '1' || btVal == '1') { 
-    digitalWrite(ledpin, HIGH);
-    delay(400);
+    digitalWrite(ledPin, HIGH);
     Serial.println("on");
     BTSerial.println("on");
   }
   
-  
-  if (btVal && btVal > -1) {
+  if (btVal && btVal >= 0) {
     Serial.write("new Value:");
     Serial.println(btVal);
   }
@@ -70,15 +60,17 @@ void loop() {
     BTSerial.println(val);
   }
 
-  delay(200);
+  delay(250);
 }
 
 
 void setupBlueToothConnection() {
   enterATMode();
   sendATCommand();
+  sentATCommand("INIT");
   sentATCommand("UART=9600,0,0");
-  sentATCommand("ROLE=0");
+  //sendATCommand("INQM=1,9,48");
+  sentATCommand("ROLE=1");
   enterComMode();
 }
  
@@ -93,7 +85,7 @@ void enterATMode() {
 
 void resetBT() {
   digitalWrite(resetPin, LOW);
-  delay(2000);
+  delay(1000);
   digitalWrite(resetPin, HIGH);
 }
 
@@ -104,20 +96,30 @@ void sendATCommand() {
 
 void sentATCommand(char *command) {
   BTSerial.print("AT");
-  if(strlen(command) > 1){
-  BTSerial.print("+");
-  BTSerial.print(command);
-  delay(100);
+  if (strlen(command) > 1) {
+    BTSerial.print("+");
+    BTSerial.print(command);
+    delay(100);
   }
   BTSerial.print("\r\n");
 }
 
 void enterComMode() {
   BTSerial.flush();
-  delay(500);
+  delay(300);
   digitalWrite(PIO11Pin, LOW);
   resetBT();
-  delay(500);
+  delay(300);
   BTSerial.begin(9600);
 }
+
+String getInput(HardwareSerial serial) {
+  String string = "";
+  
+  while (serial.available() >= 0) {
+   string += serial.read(); 
+  }
+ 
+  return string;
+}  
 
