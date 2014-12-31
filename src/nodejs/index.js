@@ -1,3 +1,4 @@
+
 var config    = require("./config");
 var output    = require("./lib/output");
 var dualShock = require('dualshock-controller');

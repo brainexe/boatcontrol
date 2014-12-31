@@ -1,3 +1,4 @@
+
 module.exports = function(config, controller, output) {
     if (config.debug) {
         console.log('enbling light');

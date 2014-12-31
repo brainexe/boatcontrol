@@ -1,3 +1,4 @@
+
 module.exports = function (config, controller, output) {
     var controllerConfiguration = require('../node_modules/dualshock-controller/controllerConfigurations/' + config.controller);
 
