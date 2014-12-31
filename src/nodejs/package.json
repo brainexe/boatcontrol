@@ -1,0 +1,23 @@
+{
+  "name": "boat-ps3-controller",
+  "version": "0.0.1",
+  "description": "Control your boat with ps3 controller.",
+  "main": "index.js",
+  "dependencies": {
+    "ps3.js": "~0.0.9",
+    "dualshock-controller": "*",
+    "serialport": "1.4.*",
+    "gpio": "0.2.5 ",
+    "socket.io": "1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "keywords": [
+    "ps3",
+    "controller"
+  ],
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}

@@ -6,13 +6,12 @@ char btVal;
 
 int ledPin = 13;
 
-int enPin  = 5;
 int rxPin  = 15; // TODO
 int txPin  = 14; // TODO
 
-int resetPin = 5; // TODO
-int PIO11Pin = 8; // TODO
-int RTSPin   = 4; // TODO
+int resetPin = 1005; // TODO
+int PIO11Pin = 1008; // TODO
+int RTSPin   = 1004; // TODO
 
 
 SoftwareSerial BTSerial(rxPin, txPin); // RX | TX
@@ -106,10 +105,10 @@ void sentATCommand(char *command) {
 
 void enterComMode() {
   BTSerial.flush();
-  delay(300);
+  delay(250);
   digitalWrite(PIO11Pin, LOW);
   resetBT();
-  delay(300);
+  delay(250);
   BTSerial.begin(9600);
 }
 
