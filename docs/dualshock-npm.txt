@@ -1,7 +1,15 @@
 Code: https://github.com/rdepena/node-dualshock-controller
 
-Pairen unter Linux: sudo sixad --start
+Pairen unter Linux: 
+http://wiki.ubuntuusers.de/PS3_Controller
+sudo sixad --start
 
+
+Buttons:
+triangle
+circle
+x
+square
 
 
 right|left:move

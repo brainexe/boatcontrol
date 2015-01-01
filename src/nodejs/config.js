@@ -30,13 +30,13 @@ var config = {
 
     "light": null,
     "sound": "circle",
-
+  
     "water": "x",
     "monitors": "right"
   },
 
   // nur für Arduino nötig
-  "serial_device": "/dev/tty-usbserial1",
+  "serial_device": "/dev/ttyACM0",
   "serial_baud": 57600
 };
 

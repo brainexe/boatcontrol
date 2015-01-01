@@ -27,7 +27,7 @@ Serial.prototype._println = function(line) {
     if (config.debug) {
         console.log('serial', line);
     }
-    this.serialPort.writeln(line);
+    this.serialPort.write(line);
 };
 
 Serial.list = function() {
