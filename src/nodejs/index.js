@@ -22,7 +22,7 @@ if (config.debug) {
 
 require('./control/power')(config, controller, output);
 require('./control/sound_light')(config, controller, output);
-require('./control/monitors')(config, controller, output);
+require('./control/water')(config, controller, output);
 
 console.log('started...');
 controller.connect();

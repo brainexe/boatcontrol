@@ -1,6 +1,6 @@
 var config = {
-  // "debug" (gibt aus welche pins er ansteuern würde), "raspberry" (direkte Ansteuerung der GPIOS) oder "arduino" (benutzt serial Schnittstelle)
-  "device": "debug",
+  // "debug" (gibt aus welche pins er ansteuern würde), "raspberry" (direkte Ansteuerung der GPIOS) oder "serial" (benutzt serial Schnittstelle)
+  "device": "serial",
   // hier ginge auch PS4
   "controller": "dualShock3",
 
@@ -22,13 +22,17 @@ var config = {
 
     // Schnickschnack
     "light": null,
-    "sound": null
+    "sound": 13
   },
 
   "control": {
-    "motor": "forwardBackward",
-    "ruder": "rightLeft"
-    // TODO...
+    "antrieb": "left",
+
+    "light": null,
+    "sound": "circle",
+
+    "water": "x",
+    "monitors": "right"
   },
 
   // nur für Arduino nötig

@@ -1,11 +1,17 @@
+var util = require('../lib/util');
+
 module.exports = function(config, controller, output) {
 
-    controller.on('left:move', function (data) {
-        output.setServo(config.pins.ruder, data);
-    });
+    controller.on(config.control.antrieb + ':move', function (data) {
+        // 255: volle Fahrt vorraus
+        // 128: 0 Schub
+        // 0: Rückwärts
+        var power = util.map(-data.y, -255, 0, 0, 180);
+        output.setServo(config.pins.motor, ~~power, "motor");
 
-    //controller.on('right:move', function (data) {
-    //    output.setServo(config.pins.ruder, -data);
-    //});
+        // todo 0-255 -> richtige Grad Anzahl + Kalibrierung!
+        var grad = util.map(data.x, 0, 255, 0, 180);
+        output.setServo(config.pins.ruder, ~~grad, "ruder");
+    });
 
 };

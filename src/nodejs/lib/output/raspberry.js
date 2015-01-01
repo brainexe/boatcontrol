@@ -8,7 +8,18 @@ var Raspberry = function() {
 
 Raspberry.prototype = new AbstractOutput();
 
-Raspberry._setValue = function(pin, value) {
+Raspberry.prototype._setServo = function(pin, value) {
+    if (!this.output_pins[pin]) {
+        this.output_pins[pin] = gpio.export(pin, {
+            direction: "out"
+        });
+    }
+
+    // todo servo richtig ansteuern!
+    //this.output_pins[pin].set(value);
+};
+
+Raspberry.prototype._setPin = function(pin, value) {
     if (!this.output_pins[pin]) {
         this.output_pins[pin] = gpio.export(pin, {
             direction: "out"

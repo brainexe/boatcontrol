@@ -5,7 +5,10 @@ var Debug = function() {
 
 Debug.prototype = new AbstractOutput();
 
-Debug._setValue = function(pin, value) {
+Debug.prototype._setPin = function(pin, value) {
+};
+
+Debug.prototype._setPin = function(pin, value) {
 };
 
 module.exports = Debug;

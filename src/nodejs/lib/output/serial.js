@@ -1,6 +1,7 @@
 
 var AbstractOutput = require('./abstract_output');
 var SerialPort = require("serialport").SerialPort;
+var config = require("../../config");
 
 var Serial = function(device, baud) {
     this.serialPort = new SerialPort(device, {
@@ -9,8 +10,24 @@ var Serial = function(device, baud) {
 };
 
 Serial.prototype = new AbstractOutput();
-Serial._setValue = function(pin, value) {
-    self.serialPort.write(pin + ":" + value + "\n");
+
+Serial.prototype._setPin = function(pin, value) {
+    var line = "pin:" + pin + ":" + value + "\n";
+
+    this._println(line);
+};
+
+Serial.prototype._setServo = function(pin, value) {
+    var line = "servo:" + pin + ":" + value + "\n";
+
+    this._println(line);
+};
+
+Serial.prototype._println = function(line) {
+    if (config.debug) {
+        console.log('serial', line);
+    }
+    this.serialPort.writeln(line);
 };
 
 Serial.list = function() {

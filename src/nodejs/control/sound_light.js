@@ -1,9 +1,15 @@
 
 module.exports = function(config, controller, output) {
-    if (config.debug) {
-        console.log('enbling light');
-        output.setPin(config.pins.light, 1);
-    }
 
-    //output.setPin(config.pins.sound, 1);
+    // beim Starten Licht anmachen
+    console.log('enbling light');
+    output.setPin(config.pins.light, 1, "light");
+
+    controller.on(config.control.sound + ":press", function () {
+        output.setPin(config.pins.sound, 1, "sound");
+    });
+    controller.on(config.control.sound + ":release", function () {
+        output.setPin(config.pins.sound, 0, "sound");
+    });
+
 };
