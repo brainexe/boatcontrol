@@ -1,34 +1,63 @@
 
 #include <Servo.h> 
+#include<string.h>
+#include<stdio.h>
 
-int servoPort = 37;
-int potiPort  = 15;
-int ledPort   = 13;
-
-Servo myservo;
+int ledPort    = 13;
+char delimiter[] = ":";
 
 void setup() {                
-  pinMode(ledPort, OUTPUT);
-  pinMode(potiPort, INPUT);
-  
-  myservo.attach(servoPort);
-  
-  Serial.begin(115200);
-  Serial.println("hello");
+  Serial.begin(57600);
 }
 
 void loop() {
-  int val;
+  char val[80] = "";
+  char new_char;
+  int i = 0;
+  while (Serial.available() > 0) {
+    new_char = Serial.read();
+    
+    if (new_char == '\n') {
+      break;
+    }
 
-  val = analogRead(potiPort); 
-  val = map(val, 0, 1023, 0, 180);
+    val[i] = new_char;
+
+    delay(0.2);
+    i++;
+  }  
   
-  //Serial.println(degree);
+  if (val == "") {
+    return; 
+  }
+
+  Serial.println(val);
+
+  char * action = strtok(val, delimiter);
+  Serial.println(printf("action %s", value)); 
+
+  char * pin = strtok(val, delimiter);
+  Serial.println(printf("pin %s", value)); 
   
-  myservo.write(val);
+  char * value = strtok(val, delimiter);
+  Serial.println(printf("value %s", value)); 
   
-  digitalWrite(ledPort, HIGH);
-  delay(250);
-  digitalWrite(ledPort, LOW);
-  delay(250);
+  if (action == "pin") {
+    //setPin(pin, value) 
+  }
+  delay(1000);
+}
+
+void setPin(int pin, int value) {
+  // todo only once
+  pinMode(pin, OUTPUT); 
+  digitalWrite(pin, value);
+}  
+
+void setServo(int pin, int value) {
+   Servo servo;
+  
+   // todo store object
+   servo.attach(pin);
+   servo.write(value);
 }

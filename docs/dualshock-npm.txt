@@ -1,0 +1,15 @@
+Code: https://github.com/rdepena/node-dualshock-controller
+
+Pairen unter Linux: sudo sixad --start
+
+
+
+right|left:move
+
+         128|0           
+
+
+0|128   128|128     255|128
+
+
+        128|255
