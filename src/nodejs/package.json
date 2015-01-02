@@ -4,11 +4,11 @@
   "description": "Control your boat with ps3 controller.",
   "main": "index.js",
   "dependencies": {
-    "ps3.js": "~0.0.9",
     "dualshock-controller": "*",
     "serialport": "1.4.*",
     "gpio": "0.2.5 ",
-    "socket.io": "1.1.0"
+    "glob": "4.3.*",
+    "globule": "*"
   },
   "devDependencies": {},
   "scripts": {

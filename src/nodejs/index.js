@@ -16,13 +16,14 @@ controller.on('error', function (data) {
     console.log('controller error:', data);
 });
 
-if (config.debug) {
+if (config.debug.controller) {
     require('./control/debug')(config, controller, output);
 }
 
 require('./control/power')(config, controller, output);
 require('./control/sound_light')(config, controller, output);
 require('./control/water')(config, controller, output);
+require('./control/generic')(config, controller, output);
 
 console.log('started...');
 controller.connect();

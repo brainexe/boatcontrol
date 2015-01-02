@@ -1,17 +1,20 @@
 
 #include <Servo.h> 
 #include<string.h>
-//#include<stdio.h>
 
-int ledPort    = 13;
 char delimiter[] = ":";
+
+Servo servo;
 
 void setup() {                
   Serial.begin(57600);
+  // todo store object
+   servo.attach(37);
 }
 
 void loop() {
-  char val[20] = "";
+  char buffer[50];
+  char val[50] = "";
   
   char new_char;
   int i = 0;
@@ -26,11 +29,9 @@ void loop() {
 
     val[i] = new_char;
 
-    delay(0.2);
+    delay(2);
     i++;
-  }  
-  
-  //char * val = readLine(Serial);
+  }
   
   if (!found) {
     return; 
@@ -38,73 +39,78 @@ void loop() {
 
 Serial.println("value:");
 Serial.println(val);
+  //return;
   
   char * ptr = strtok(val, delimiter);
-  char * action;
-  sscanf(ptr, "%s", &action);
-Serial.println(printf("action %s\n", ptr)); 
+  char action;
+  //strcpy(action, ptr);
+  sscanf(ptr, "%c", &action);
 
   ptr = strtok(NULL, delimiter);
   int pin;
   sscanf(ptr, "%d", &pin);
-Serial.println(printf("pin %d\n", pin)); 
-  
   ptr = strtok(NULL, delimiter);
   int value;
   sscanf(ptr, "%d", &value);
-Serial.println(printf("value %d\n", value)); 
   
-//Serial.println(printf("action: '%s' '%s' '%d', '%d'\n", action, pin, value, HIGH)); 
-setPin(pin, value);
-  
-  if (action == "pin") {
+char buffer1[50];
+sprintf(buffer1, "action '%s' pin '%d' value '%d \n",  action, pin, value);
+Serial.println(buffer1); 
+
+  if (action == 'p') {
+    Serial.println("set pin");
     setPin(pin, value);
-  } else if (action == "servo") {
+  } else if (action == 's') {
+    Serial.println("set servo");
     setServo(pin, value);
+  } else {
+    sprintf(buffer, "unknown action %s", action);
+    Serial.println(buffer); 
   }
   
 }
 
-void setPin(int pin, int value) {
-   Serial.println(printf("1: set pin %s %s\n", pin, value)); 
+void setPin(int pin, int value) {  
+  if (pin <= 0 || pin > 1000) {
+    return;
+  }
    
-   if (pin < 0 || pin > 1000) {
-     return;
-   }
+char buffer[50] = "";  
+sprintf(buffer, "set pin %d %d\n", pin, value);
+Serial.println(buffer); 
    
   // todo only once
   pinMode(pin, OUTPUT); 
   digitalWrite(pin, value);
   
-  Serial.println(printf("2: set pin %s %s\n", pin, value)); 
+//Serial.println(F("2: set pin %s %s\n"), pin, value);
+    
 }  
 
 void setServo(int pin, int value) {
-   Servo servo;
-  
-   // todo store object
-   servo.attach(pin);
-   servo.write(value);
+
+char buffer[50] = "";  
+sprintf(buffer, "set servo %d %d\n", pin, value);
+Serial.println(buffer); 
+    
+  /*
+  Servo servo2;
+  servo2.attach(pin);
+  servo2.write(value);
+  delay(20);
+  servo2.detach();
+  */
+  servo.write(value);
 }
 
 /*
-int in_array(void *array[], int size, void *lookfor, cmpfunc cmp) {
-  int i;
 
-  for (i = 0; i < size; i++) {
-    if (cmp(lookfor, array[i]) == 0) {
-      return 1;
-    }
-  }  
-  return 0;
-}
-
-char *readLine(HardwareSerial *serial) {
+char *readLine() {
   char val[80] = "";
   char new_char;
   int i = 0;
-  while (serial->available() > 0) {
-    new_char = serial->read();
+  while (Serial.available() > 0) {
+    new_char = Serial.read();
     
     if (new_char == '\n') {
       break;
