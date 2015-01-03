@@ -1,15 +1,19 @@
 Vagrant.configure("2") do |config|
   config.vm.provision "puppet"
 
-  config.vm.box_url = "https://downloads.sourceforge.net/project/vagrantdebianboxes/debianwheezy.box?r=&ts=1374688209&use_mirror=heanet" #http://pubwww.office.innogames.de/bfjuwfuhsfabuiwfeahio/wheezy.box"
-
+  config.vm.box_url = "https://downloads.sourceforge.net/project/vagrantdebianboxes/debianwheezy.box?r=&ts=1374688209&use_mirror=heanet" 
   config.vm.box = "raspberry"
 
+  config.vm.synced_folder "../", "/vagrant/BoatControl"
+
+  config.vm.provision :shell, :path => "shell/main.sh"
+
   config.vm.provision :puppet do |puppet|
-    #puppet.options = "--verbose --debug"
-    puppet.module_path   = "modules"
+    puppet.options = "--verbose --debug"
+    puppet.module_path = "modules"
     puppet.facter = {
-        "fqdn" => "raspberry",
+        #"fqdn" => "raspberry",
     }
   end
+
 end
