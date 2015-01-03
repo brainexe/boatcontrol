@@ -1,18 +1,20 @@
 #include <Servo.h>
 
-const char delimiter[] = ":";
-const int HASH_SIZE = 200;
+#define CONFIG "{}"
+#define DEBUG true
+#define BAUD_RATE 57600
+
+#define HASH_SIZE 200
 
 Servo servos[HASH_SIZE];
 int pins[HASH_SIZE];
 
 void setup() {                
-  Serial.begin(57600);
+  Serial.begin(BAUD_RATE);
 }
 
 void loop() {
   bool found;
-  
   char *val = readLine(&found);
   
   if (!found) {
@@ -20,34 +22,32 @@ void loop() {
     return; 
   }
 
-  Serial.println("value:");
-  Serial.println(val);
+  if (DEBUG) {  
+    Serial.println("value:");
+    Serial.println(val);
+  }
   
-  char * ptr = strtok(val, delimiter);
   char action;
-  //strcpy(action, ptr);
-  sscanf(ptr, "%c", &action);
-
-  ptr = strtok(NULL, delimiter);
   int pin;
-  sscanf(ptr, "%d", &pin);
-  
-  ptr = strtok(NULL, delimiter);
   int value;
-  sscanf(ptr, "%d", &value);
   
-  char buffer1[50];
-  sprintf(buffer1, "action '%s' pin '%d' value '%d \n",  action, pin, value);
-  Serial.println(buffer1); 
+  sscanf(val, "%c:%d:%d", &action, &pin, &value);
 
+  if (DEBUG) {
+    char buffer[50] = "";
+    sprintf(buffer, "action '%s' pin '%d' value '%d \n",  action, pin, value);
+    Serial.println(buffer); 
+  }
+  
   switch (action) {
-    case 'p':
-      setPin(pin, value);
-      break;
+    case 'd':
+      // digital
+      return setPin(pin, value);
     case 's':
-      setServo(pin, value);
-      break;
+      // servo
+      return setServo(pin, value);
     // case 'a': todo analog
+    // case 'p': todo pwm
     default:
       Serial.print("unknown action : "); 
       Serial.println(action);
@@ -69,7 +69,10 @@ void setServo(int pin, int value) {
   Servo servo;
   servo = servos[pin];
   
-  servo.attach(pin);
+  if (!servo.attached()) {
+    servo.attach(pin);
+  }
+  
   servo.write(value);
 }
 

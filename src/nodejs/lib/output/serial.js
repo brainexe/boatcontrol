@@ -11,7 +11,7 @@ var Serial = function(device, baud) {
 
     var result = globule.find(device);
     if (!result.length) {
-        throw "no devide found at: " + device;
+        throw "no device found at: " + device;
     }
 
     this.serialPort = new SerialPort(result[0], {
@@ -30,33 +30,21 @@ var Serial = function(device, baud) {
 Serial.prototype = new AbstractOutput();
 
 Serial.prototype._setPin = function(pin, value) {
-    var line = "p:" + pin + ":" + value + "\n";
-
-    this._queue(line);
+    this._queue('p', pin, value);
 };
 
 Serial.prototype._setServo = function(pin, value) {
-    var line = "s:" + pin + ":" + value + "\n";
-
-    this._queue(line);
+    this._queue('s', pin, value);
 };
 
-Serial.prototype._queue = function(line) {
+Serial.prototype._queue = function(action, pin, value) {
+    var line = "s:" + pin + ":" + value + "\n";
+
     if (config.debug.output) {
         console.log('serial', line);
     }
 
     this.queue.push(line);
-};
-
-Serial.list = function() {
-    this.serialPort.list(function (err, ports) {
-        ports.forEach(function(port) {
-            console.log(port.comName);
-            console.log(port.pnpId);
-            console.log(port.manufacturer);
-        });
-    });
 };
 
 module.exports = Serial;
