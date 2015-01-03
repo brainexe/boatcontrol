@@ -7,7 +7,6 @@
     "dualshock-controller": "*",
     "serialport": "1.4.*",
     "gpio": "0.2.5 ",
-    "glob": "4.3.*",
     "globule": "*"
   },
   "devDependencies": {},

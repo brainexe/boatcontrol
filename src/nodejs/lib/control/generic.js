@@ -1,11 +1,10 @@
 
-var util = require('../lib/util');
+var util = require('../util');
 
 var on_off = {};
 
 
 function setup(generic, controller, output) {
-    console.log(generic)
     if (generic.type == 'press') {
         controller.on(generic.button + ":press", function () {
             output.setPin(generic.pin, 1, "generic_" + generic.button + "_" + generic.pin);
@@ -56,7 +55,7 @@ function setup(generic, controller, output) {
 }
 
 module.exports = function (config, controller, output) {
-    config.pins.generic.forEach(function (generic) {
+    config.control.generic.forEach(function (generic) {
         setup(generic, controller, output);
 
     });

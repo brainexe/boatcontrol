@@ -15,6 +15,10 @@ switch (config.device) {
         output = require('./output/serial');
         output = new output(config.serial_device, config.serial_baud);
         break;
+    case 'radio_433':
+        output = require('./output/radio_433');
+        output = new output();
+        break;
     default:
         throw "Invalid output type: " + config.device;
 }

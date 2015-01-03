@@ -5,8 +5,8 @@ var dualShock = require('dualshock-controller');
 
 var controller = dualShock({
     config: config.controller,
-    //smooths the output from the analog sticks (moving averages) defaults to false
-    analogStickSmoothing: false
+    analogStickSmoothing: false,
+    motionInputs: true
 });
 
 controller.on('connected', function () {
@@ -20,10 +20,10 @@ if (config.debug.controller) {
     require('./control/debug')(config, controller, output);
 }
 
-require('./control/power')(config, controller, output);
-require('./control/sound_light')(config, controller, output);
-require('./control/water')(config, controller, output);
-require('./control/generic')(config, controller, output);
+require('./lib/control/power')(config, controller, output);
+require('./lib/control/sound_light')(config, controller, output);
+require('./lib/control/water')(config, controller, output);
+require('./lib/control/generic')(config, controller, output);
 
 console.log('started...');
 controller.connect();

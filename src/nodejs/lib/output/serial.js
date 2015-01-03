@@ -10,7 +10,7 @@ var Serial = function(device, baud) {
     this.queue = [];
 
     var result = globule.find(device);
-    if (!result) {
+    if (!result.length) {
         throw "no devide found at: " + device;
     }
 
@@ -32,16 +32,16 @@ Serial.prototype = new AbstractOutput();
 Serial.prototype._setPin = function(pin, value) {
     var line = "p:" + pin + ":" + value + "\n";
 
-    this._println(line);
+    this._queue(line);
 };
 
 Serial.prototype._setServo = function(pin, value) {
     var line = "s:" + pin + ":" + value + "\n";
 
-    this._println(line);
+    this._queue(line);
 };
 
-Serial.prototype._println = function(line) {
+Serial.prototype._queue = function(line) {
     if (config.debug.output) {
         console.log('serial', line);
     }

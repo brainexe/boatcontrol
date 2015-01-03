@@ -1,6 +1,6 @@
 
 module.exports = function (config, controller, output) {
-    var controllerConfiguration = require('../node_modules/dualshock-controller/controllerConfigurations/' + config.controller);
+    var controllerConfiguration = require('../../node_modules/dualshock-controller/controllerConfigurations/' + config.controller);
 
     controller.on('left:move', function (data) {
         console.log('left Moved');

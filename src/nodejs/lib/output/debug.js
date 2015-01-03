@@ -1,3 +1,4 @@
+
 var AbstractOutput = require('./abstract_output');
 
 var Debug = function() {
