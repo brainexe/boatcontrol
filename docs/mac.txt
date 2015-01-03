@@ -1,2 +1,11 @@
-controller 1:
+Controller Jürgen:
 64:D4:BD:09:2C:EB
+
+Controller Matze Sony:
+04:98:F3:74:4B:F0
+
+Controller Matze bigben:
+c0:14:3d:8e:34:c6
+
+Raspberry Master:
+00:1a:7d:da:71:0f

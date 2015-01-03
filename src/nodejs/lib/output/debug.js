@@ -9,7 +9,7 @@ Debug.prototype = new AbstractOutput();
 Debug.prototype._setPin = function(pin, value) {
 };
 
-Debug.prototype._setPin = function(pin, value) {
+Debug.prototype._setServo = function(pin, value) {
 };
 
 module.exports = Debug;

@@ -1,8 +1,7 @@
 
 var util = require('../util');
 
-var on_off = {};
-
+var pin_state = {};
 
 function setup(generic, controller, output) {
     if (generic.type == 'press') {
@@ -16,28 +15,34 @@ function setup(generic, controller, output) {
     } else if (generic.type == 'onoff') {
         controller.on(generic.button + ":press", function () {
             var id = generic.button + '__' + generic.pin;
-            var value = !on_off[id];
+            var value = !pin_state[id];
 
-            on_off[id] = value;
+            pin_state[id] = value;
             output.setPin(generic.pin, value ? 1 : 0, "generic_" + generic.button + "_" + generic.pin);
         });
     } else if (generic.type == 'blink') {
         function disable() {
             output.setPin(generic.pin, 0, "generic_blink");
-            setTimeout(function() {
+            pin_state[generic.pin] = setTimeout(function() {
                 enablePin();
             }, generic.time_off);
         }
 
         function enablePin() {
             output.setPin(generic.pin, 1, "generic_blink");
-            setTimeout(function() {
+            pin_state[generic.pin] = setTimeout(function() {
                 disable();
             }, generic.time_on)
         }
 
         controller.on(generic.button + ":press", function () {
-            enablePin();
+            if (pin_state[generic.pin]) {
+                clearTimeout(pin_state[generic.pin]);
+                pin_state[generic.pin] = 0;
+            } else {
+                enablePin();
+            }
+
         });
 
     } else if (generic.type == 'timer') {

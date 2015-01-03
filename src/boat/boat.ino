@@ -14,14 +14,31 @@ void setup() {
 }
 
 void loop() {
-  bool found;
-  char *val = readLine(&found);
+  //char *val = readLine();
   
-  if (!found) {
+  char new_char;
+  int i = 0;
+  char val[15] = "";
+  
+  while (Serial.available() > 0) {
+    new_char = Serial.read();
+    
+    if (new_char == '\n') {
+      break;
+    }
+
+    val[i] = new_char;
+    
     delay(1);
+    i++;
+  }
+  
+  // end readLine()
+  
+  if (strlen(val) <= 1) {
     return; 
   }
-
+  
   if (DEBUG) {  
     Serial.println("value:");
     Serial.println(val);
@@ -31,11 +48,14 @@ void loop() {
   int pin;
   int value;
   
-  sscanf(val, "%c:%d:%d", &action, &pin, &value);
+  if (sscanf(val, "%c:%d:%d", &action, &pin, &value) <= 0) {
+    Serial.println("invalid value");
+    delay(100); 
+  }
 
   if (DEBUG) {
     char buffer[50] = "";
-    sprintf(buffer, "action '%s' pin '%d' value '%d \n",  action, pin, value);
+    sprintf(buffer, "action '%c' pin '%d' value '%d' \n",  action, pin, value);
     Serial.println(buffer); 
   }
   
@@ -76,21 +96,20 @@ void setServo(int pin, int value) {
   servo.write(value);
 }
 
-char *readLine(bool *found) {
+char *readLine() {
   char new_char;
   int i = 0;
   char val[15] = "";
   
   while (Serial.available() > 0) {
     new_char = Serial.read();
-    *found = true;
     
     if (new_char == '\n') {
       break;
     }
 
     val[i] = new_char;
-
+    
     delay(1);
     i++;
   }

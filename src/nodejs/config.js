@@ -3,7 +3,7 @@ var config = {
   // "raspberry" (direkte Ansteuerung der GPIOS)
   // "serial" (benutzt serial Schnittstelle)
   // "443" (benutzt 443 frequenz)
-  "device": "debug",
+  "device": "serial",
 
   // hier ginge auch PS4
   "controller": "dualShock3",
@@ -47,10 +47,10 @@ var config = {
     "monitors": "right",
 
     "generic": [
-      {pin: 13, button: 'l2', type: 'press'},
-      {pin: 13, button: 'l1', type: 'onoff'},
-      {pin: 13, button: 'r1', type: 'timer', time: 2000},
-      {pin: 13, button: 'r2', type: 'blink', time_on: 100, time_off: 100},
+      {pin: 2, button: 'l2', type: 'press'},
+      {pin: 3, button: 'l1', type: 'onoff'},
+      {pin: 4, button: 'r1', type: 'timer', time: 2000},
+      {pin: 5, button: 'r2', type: 'blink', time_on: 100, time_off: 100}
     ]
   },
 

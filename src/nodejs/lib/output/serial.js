@@ -30,7 +30,7 @@ var Serial = function(device, baud) {
 Serial.prototype = new AbstractOutput();
 
 Serial.prototype._setPin = function(pin, value) {
-    this._queue('p', pin, value);
+    this._queue('d', pin, value);
 };
 
 Serial.prototype._setServo = function(pin, value) {
@@ -38,7 +38,7 @@ Serial.prototype._setServo = function(pin, value) {
 };
 
 Serial.prototype._queue = function(action, pin, value) {
-    var line = "s:" + pin + ":" + value + "\n";
+    var line = action + ":" + pin + ":" + value + "\n";
 
     if (config.debug.output) {
         console.log('serial', line);
