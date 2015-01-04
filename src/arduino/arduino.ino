@@ -4,7 +4,7 @@
 #define DEBUG true
 #define BAUD_RATE 57600
 
-#define HASH_SIZE 200
+#define HASH_SIZE 150
 
 Servo servos[HASH_SIZE];
 int pins[HASH_SIZE];
@@ -14,6 +14,8 @@ void setup() {
 }
 
 void loop() {
+  
+  // todo use readline again
   //char *val = readLine();
   
   char new_char;
@@ -29,8 +31,7 @@ void loop() {
     }
 
     val[i] = new_char;
-    
-    
+     
     i++;
   }
   
@@ -63,12 +64,16 @@ void loop() {
   switch (action) {
     case 'd':
       // digital
-      return setPin(pin, value);
+      return setDigital(pin, value);
+    
     case 's':
       // servo
       return setServo(pin, value);
-    // case 'a': todo analog
-    // case 'p': todo pwm
+    
+    case 'p':
+    case 'a':
+      return setAnalog(pin, value);
+      
     default:
       Serial.print("unknown action : "); 
       Serial.println(action);
@@ -76,7 +81,7 @@ void loop() {
   
 }
 
-void setPin(int pin, int value) {  
+void setDigital(int pin, int value) {  
   // todo set pin mode only once
   if (pins[pin] == 0) {
     pinMode(pin, OUTPUT);   
@@ -84,6 +89,16 @@ void setPin(int pin, int value) {
   }
   
   digitalWrite(pin, value);
+}
+
+void setAnalog(int pin, int value) {  
+  // todo set pin mode only once
+  if (pins[pin] == 0) {
+    pinMode(pin, OUTPUT);   
+    pins[pin] = 1;
+  }
+  
+  analogWrite(pin, value);
 }  
 
 void setServo(int pin, int value) {

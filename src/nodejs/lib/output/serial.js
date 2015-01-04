@@ -29,11 +29,19 @@ var Serial = function(device, baud) {
 
 Serial.prototype = new AbstractOutput();
 
-Serial.prototype._setPin = function(pin, value) {
+Serial.prototype._setDigital = function(pin, value) {
     this._queue('d', pin, value);
 };
 
 Serial.prototype._setServo = function(pin, value) {
+    this._queue('s', pin, value);
+};
+
+Serial.prototype._setAnalog = function(pin, value) {
+    this._queue('s', pin, value);
+};
+
+Serial.prototype._setPwm = function(pin, value) {
     this._queue('s', pin, value);
 };
 

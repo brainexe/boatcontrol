@@ -11,13 +11,14 @@ var config = {
   // gibt ALLE controller-Werte aus
   "debug": {
     output: true,
-    controller: false
+    controller: true,
+    servo_as_analog: true
   },
 
   "pins": {
     // Antrieb
-    "motor": {pin: 13, min: 5, max: 90, reverse: true},
-    "ruder": {pin: null, min: 5, max: 90, reverse: true},
+    "motor": {pin: 6, min: 5, max: 90, reverse: true},
+    "ruder": {pin: null , min: 5, max: 90, reverse: true},
 
     // Monitore
     "water": {pin: null, min: 5, max: 90},
@@ -50,7 +51,8 @@ var config = {
       {pin: 2, button: 'l2', type: 'press'},
       {pin: 3, button: 'l1', type: 'onoff'},
       {pin: 4, button: 'r1', type: 'timer', time: 2000},
-      {pin: 5, button: 'r2', type: 'blink', time_on: 100, time_off: 100}
+      {pin: 5, button: 'r2', type: 'blink', time_on: 100, time_off: 100},
+      {pin: 5, button: 'x', type: 'analog', time_on: 100},
     ]
   },
 

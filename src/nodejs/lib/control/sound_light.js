@@ -3,7 +3,7 @@ module.exports = function(config, controller, output) {
 
     // beim Starten Licht anmachen
     console.log('enbling light');
-    output.setPin(config.pins.light.pin, 1, "light");
+    output.setDigital(config.pins.light.pin, 1);
 
     // sound: add onoff gen
     // eric pin

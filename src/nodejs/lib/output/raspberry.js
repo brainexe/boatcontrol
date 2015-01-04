@@ -19,7 +19,7 @@ Raspberry.prototype._setServo = function(pin, value) {
     //this.output_pins[pin].set(value);
 };
 
-Raspberry.prototype._setPin = function(pin, value) {
+Raspberry.prototype._setDigital = function(pin, value) {
     if (!this.output_pins[pin]) {
         this.output_pins[pin] = gpio.export(pin, {
             direction: "out"
@@ -27,6 +27,13 @@ Raspberry.prototype._setPin = function(pin, value) {
     }
 
     this.output_pins[pin].set(value);
+};
+
+Raspberry.prototype._setAnalog = function(pin, value) {
+    // TODO
+};
+Raspberry.prototype._setPwm = function(pin, value) {
+    // TODO
 };
 
 module.exports = Raspberry;

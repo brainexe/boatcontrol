@@ -6,10 +6,16 @@ var Debug = function() {
 
 Debug.prototype = new AbstractOutput();
 
-Debug.prototype._setPin = function(pin, value) {
+Debug.prototype._setDigital = function(pin, value) {
 };
 
 Debug.prototype._setServo = function(pin, value) {
+};
+
+Debug.prototype._setAnalog = function(pin, value) {
+};
+
+Debug.prototype._setPwm = function(pin, value) {
 };
 
 module.exports = Debug;

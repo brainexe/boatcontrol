@@ -17,7 +17,7 @@ controller.on('error', function (data) {
 });
 
 if (config.debug.controller) {
-    require('./control/debug')(config, controller, output);
+    require('./lib/control/debug')(config, controller, output);
 }
 
 require('./lib/control/power')(config, controller, output);
