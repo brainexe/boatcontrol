@@ -21,15 +21,16 @@ void loop() {
   char val[15] = "";
   
   while (Serial.available() > 0) {
-    new_char = Serial.read();
+    delay(2);
     
+    new_char = Serial.read();
     if (new_char == '\n') {
       break;
     }
 
     val[i] = new_char;
     
-    delay(1);
+    
     i++;
   }
   
@@ -102,6 +103,8 @@ char *readLine() {
   char val[15] = "";
   
   while (Serial.available() > 0) {
+    delay(1);
+    
     new_char = Serial.read();
     
     if (new_char == '\n') {
@@ -110,7 +113,6 @@ char *readLine() {
 
     val[i] = new_char;
     
-    delay(1);
     i++;
   }
   

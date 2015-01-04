@@ -36,13 +36,15 @@ function setup(generic, controller, output) {
         }
 
         controller.on(generic.button + ":press", function () {
-            if (pin_state[generic.pin]) {
+            if (!pin_state[generic.pin]) {
+                // 1st click: enable and start timer
+                enablePin();
+            } else {
+                // 2nd: stop timer and disable pin
                 clearTimeout(pin_state[generic.pin]);
                 pin_state[generic.pin] = 0;
-            } else {
-                enablePin();
+                output.setPin(generic.pin, 0);
             }
-
         });
 
     } else if (generic.type == 'timer') {
