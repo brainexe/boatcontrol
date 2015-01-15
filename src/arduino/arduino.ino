@@ -1,22 +1,32 @@
+
+#define DEBUG false
+#define RADIO_ENABLED false
+#define CONFIG "{'baud':57600}"
+#define HASH_SIZE 50
+
+#include <ArduinoJson.h>
 #include <Servo.h>
 
-#define CONFIG "{}"
-#define DEBUG true
-#define BAUD_RATE 57600
-
-#define HASH_SIZE 150
+#if RADIO_ENABLED
+  //#include <VirtualWire.h>
+#endif
 
 Servo servos[HASH_SIZE];
-int pins[HASH_SIZE];
+bool pins[HASH_SIZE];
 
-void setup() {                
-  Serial.begin(BAUD_RATE);
+StaticJsonBuffer<100> jsonBuffer;
+JsonObject& config_json = jsonBuffer.parseObject(CONFIG);
+  
+void setup() {
+  const long baud = config_json["baud"];
+  Serial.begin(baud);
+  
+  //const char* debug = config_json["debug"];
 }
 
 void loop() {
-  
   // todo use readline again
-  //char *val = readLine();
+  //String val2 = readLine();
   
   char new_char;
   int i = 0;
@@ -42,22 +52,24 @@ void loop() {
   }
   
   if (DEBUG) {  
-    Serial.println("value:");
+    Serial.print("d:");
     Serial.println(val);
   }
   
   char action;
+  String pin_id;
   int pin;
   int value;
   
-  if (sscanf(val, "%c:%d:%d", &action, &pin, &value) <= 0) {
-    Serial.println("invalid value");
+  if (sscanf(val, "%c:%d:%s:%d", &action, &pin, &pin_id, &value) <= 0) {
+    Serial.print("d:invalid:");
+    Serial.println(val);
     delay(100); 
   }
 
   if (DEBUG) {
     char buffer[50] = "";
-    sprintf(buffer, "action '%c' pin '%d' value '%d' \n",  action, pin, value);
+    sprintf(buffer, "d:action '%c' pin '%d' value '%d'",  action, pin, value);
     Serial.println(buffer); 
   }
   
@@ -75,27 +87,24 @@ void loop() {
       return setAnalog(pin, value);
       
     default:
-      Serial.print("unknown action : "); 
+      Serial.print("d:unknown action: ");
       Serial.println(action);
-  }
-  
+  }  
 }
 
-void setDigital(int pin, int value) {  
-  // todo set pin mode only once
-  if (pins[pin] == 0) {
+void setDigital(int pin, int value) {
+  if (pins[pin] == false) {
     pinMode(pin, OUTPUT);   
-    pins[pin] = 1;
+    pins[pin] = true;
   }
   
   digitalWrite(pin, value);
 }
 
-void setAnalog(int pin, int value) {  
-  // todo set pin mode only once
-  if (pins[pin] == 0) {
+void setAnalog(int pin, int value) {
+  if (pins[pin] == false) {
     pinMode(pin, OUTPUT);   
-    pins[pin] = 1;
+    pins[pin] = true;
   }
   
   analogWrite(pin, value);
@@ -112,10 +121,10 @@ void setServo(int pin, int value) {
   servo.write(value);
 }
 
-char *readLine() {
+String readLine() {
   char new_char;
   int i = 0;
-  char val[15] = "";
+  String val = "";
   
   while (Serial.available() > 0) {
     delay(1);
@@ -126,10 +135,11 @@ char *readLine() {
       break;
     }
 
-    val[i] = new_char;
+    val += new_char;
     
     i++;
   }
   
   return val;
 }
+
