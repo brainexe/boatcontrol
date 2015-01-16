@@ -1,5 +1,5 @@
 
-#define DEBUG false
+#define DEBUG true
 #define RADIO_ENABLED false
 #define CONFIG "{'baud':57600}"
 #define HASH_SIZE 50
@@ -20,8 +20,6 @@ JsonObject& config_json = jsonBuffer.parseObject(CONFIG);
 void setup() {
   const long baud = config_json["baud"];
   Serial.begin(baud);
-  
-  //const char* debug = config_json["debug"];
 }
 
 void loop() {
@@ -57,16 +55,20 @@ void loop() {
   }
   
   char action;
-  String pin_id;
   int pin;
   int value;
   
-  if (sscanf(val, "%c:%d:%s:%d", &action, &pin, &pin_id, &value) <= 0) {
+  if (sscanf(val, "%c:%d:%d", &action, &pin, &value) <= 0) {
+     //char* pin_string;
+    //if (int(pin_id) > 0) {
+    //  Serial.println("int");
+    //}
+  
     Serial.print("d:invalid:");
     Serial.println(val);
     delay(100); 
   }
-
+  
   if (DEBUG) {
     char buffer[50] = "";
     sprintf(buffer, "d:action '%c' pin '%d' value '%d'",  action, pin, value);
