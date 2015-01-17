@@ -7,8 +7,10 @@
 #include <ArduinoJson.h>
 #include <Servo.h>
 
-#if RADIO_ENABLED
+#ifdef RADIO_ENABLED == true
   //#include <VirtualWire.h>
+  //#include <RH_ASK.h>
+  //#include <SPI.h> // Not actualy used but needed to compile
 #endif
 
 Servo servos[HASH_SIZE];
@@ -23,49 +25,30 @@ void setup() {
 }
 
 void loop() {
-  // todo use readline again
-  //String val2 = readLine();
-  
-  char new_char;
-  int i = 0;
-  char val[15] = "";
-  
-  while (Serial.available() > 0) {
-    delay(2);
-    
-    new_char = Serial.read();
-    if (new_char == '\n') {
-      break;
-    }
-
-    val[i] = new_char;
-     
-    i++;
-  }
-  
-  // end readLine()
-  
-  if (strlen(val) <= 1) {
+  char line[15] = "\0";
+  int i = readLine(line);
+ 
+  if (i == 0) {
     return; 
   }
-  
+ 
   if (DEBUG) {  
     Serial.print("d:");
-    Serial.println(val);
+    Serial.println(line);
   }
   
   char action;
   int pin;
   int value;
   
-  if (sscanf(val, "%c:%d:%d", &action, &pin, &value) <= 0) {
-     //char* pin_string;
+  if (sscanf(line, "%c:%d:%d", &action, &pin, &value) <= 0) {
+    //char* pin_string;
     //if (int(pin_id) > 0) {
     //  Serial.println("int");
     //}
   
     Serial.print("d:invalid:");
-    Serial.println(val);
+    Serial.println(line);
     delay(100); 
   }
   
@@ -123,10 +106,9 @@ void setServo(int pin, int value) {
   servo.write(value);
 }
 
-String readLine() {
+int readLine(char line[]) {
   char new_char;
   int i = 0;
-  String val = "";
   
   while (Serial.available() > 0) {
     delay(1);
@@ -137,11 +119,9 @@ String readLine() {
       break;
     }
 
-    val += new_char;
-    
-    i++;
+    line[i++] = new_char;
   }
   
-  return val;
+  return i;
 }
 
