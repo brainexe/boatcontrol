@@ -2,24 +2,29 @@ var fs = require('fs');
 var raw_config = require("./config");
 var i;
 
-var pins = raw_config['pins'];
-if (pins['monitors']) {
+var pins = {};
+var raw_pins = raw_config['pins'];
+if (raw_pins['monitors']) {
     for (i in pins['monitors']) {
-        pins['monitor_' + i + '_v'] = pins['monitors'][i]['vertical'];
-        pins['monitor_' + i + '_r'] = pins['monitors'][i]['rotate'];
+        raw_pins['monitor_' + i + '_v'] = raw_pins['monitors'][i]['vertical'];
+        raw_pins['monitor_' + i + '_r'] = raw_pins['monitors'][i]['rotate'];
     }
 }
 
-for (i in pins) {
-    if (!pins[i].pin) {
-        delete pins[i];
+for (i in raw_pins) {
+    if (raw_pins[i].pin) {
+        var new_pin = raw_pins[i];
+        var pin_id = new_pin['pin'];
+        delete new_pin['pin'];
+
+        pins[pin_id] = new_pin;
     }
 }
 
 var config = {
-    baud:  raw_config['serial_baud'],
+    baud: raw_config['serial_baud'],
     //debug: raw_config['debug'],
-    pins:  pins
+    pins: pins
 };
 
 var json = JSON.stringify(config).replace(/"/g, "'");
@@ -32,10 +37,10 @@ if (process.argv[2]) {
         }
 
         data = data.replace(/#define CONFIG ".*?"/, '#define CONFIG "' + json+ '"');
-        console.log(data);
 
         fs.writeFile(filename, data, function(err) {
             if (err) throw err;
+            console.log('done!');
         });
     });
 }
