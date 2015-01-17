@@ -7,7 +7,6 @@ module.exports = function(config, controller, output) {
         // 128: 0 Schub
         // 0:   Rückwärts
         var servo = config.pins.motor;
-        console.log(data);
 
         var power = util.map(-data.y, -255, 0, servo.min, servo.max);
         output.setServo(servo.pin, ~~power);

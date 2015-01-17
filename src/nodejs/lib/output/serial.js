@@ -18,6 +18,18 @@ var Serial = function(device, baud) {
         baudrate: baud
     });
 
+    this.serialPort.on('data', function(data) {
+        console.log((data + '').yellow);
+        //var value = data.substr(2);
+        //switch (data[0]) {
+        //    case 'd':
+        //        console.log(value);
+        //        break;
+        //    default:
+        //        console.log("undefined response: " + value);
+        //}
+    });
+
     var self = this;
     setInterval(function() {
         var line = self.queue.pop();
@@ -49,7 +61,7 @@ Serial.prototype._queue = function(action, pin, value) {
     var line = action + ":" + pin + ":" + value + "\n";
 
     if (config.debug.output) {
-        console.log('serial', line);
+        console.log('serial ' + line.blue);
     }
 
     this.queue.push(line);

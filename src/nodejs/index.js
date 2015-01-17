@@ -1,7 +1,7 @@
-
 var config    = require("./config");
 var output    = require("./lib/output");
 var dualShock = require('dualshock-controller');
+require('colors');
 
 var controller = dualShock({
     config: config.controller,
@@ -25,5 +25,5 @@ require('./lib/control/sound_light')(config, controller, output);
 require('./lib/control/water')(config, controller, output);
 require('./lib/control/generic')(config, controller, output);
 
-console.log('started...');
+console.log('started...'.green);
 controller.connect();

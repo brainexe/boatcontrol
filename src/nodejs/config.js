@@ -11,7 +11,7 @@ var config = {
   // gibt ALLE controller-Werte aus
   "debug": {
     output: true,
-    controller: true,
+    controller: false,
     servo_as_analog: true
   },
 

@@ -49,7 +49,7 @@ void loop() {
   
     Serial.print("d:invalid:");
     Serial.println(line);
-    delay(100); 
+    delay(10); 
   }
   
   if (DEBUG) {
