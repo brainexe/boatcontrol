@@ -17,14 +17,14 @@ var config = {
 
   "pins": {
     // Antrieb
-    "motor": {pin: 6, min: 5, max: 90, reverse: true},
-    "ruder": {pin: null , min: 5, max: 90, reverse: true},
+    "motor": {pin: 5, min: 0, max: 100, reverse: true},
+    "ruder": {pin: 6 , min: 0, max: 100, reverse: true},
 
     // Monitore
     "water": {pin: null, min: 5, max: 90},
     "monitors": [
       {
-        "rotate": {pin: 36, min: 5, max: 90},
+        "rotate": {pin: null, min: 5, max: 90},
         "vertical": {pin: null, min: 5, max: 90}
       },
       {
@@ -51,13 +51,13 @@ var config = {
       {pin: 2, button: 'l2', type: 'press'},
       {pin: 3, button: 'l1', type: 'onoff'},
       {pin: 4, button: 'r1', type: 'timer', time: 2000},
-      {pin: 5, button: 'r2', type: 'blink', time_on: 100, time_off: 100},
-      {pin: 5, button: 'x', type: 'analog', time_on: 100},
+      {pin: 10, button: 'r2', type: 'blink', time_on: 100, time_off: 100},
+      {pin: 9, button: 'x', type: 'press'}
     ]
   },
 
   // nur für serial/Arduino nötig
-  "serial_device": "/dev/ttyACM*",
+  "serial_device": ["/dev/ttyACM*", "/dev/ttyUSB*"],
   "serial_baud": 57600
 };
 

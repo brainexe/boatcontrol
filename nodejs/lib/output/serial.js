@@ -1,6 +1,6 @@
 
+var SerialPort = require("serialport");
 var AbstractOutput = require('./abstract_output');
-var SerialPort = require("serialport").SerialPort;
 var config = require("../../config");
 var globule = require('globule');
 
@@ -14,20 +14,20 @@ var Serial = function(device, baud) {
         throw "no device found at: " + device;
     }
 
-    this.serialPort = new SerialPort(result[0], {
-        baudrate: baud
+    this.serialPort = new SerialPort.SerialPort(result[0], {
+        baudrate: baud,
+        parser: SerialPort.parsers.readline("\n")
     });
 
     this.serialPort.on('data', function(data) {
-        console.log((data + '').yellow);
-        //var value = data.substr(2);
-        //switch (data[0]) {
-        //    case 'd':
-        //        console.log(value);
-        //        break;
-        //    default:
-        //        console.log("undefined response: " + value);
-        //}
+        var value = data.substr(2);
+        switch (data[0]) {
+            case 'd':
+                console.log(value.yellow);
+                break;
+            default:
+                console.error("undefined response: " + value);
+        }
     });
 
     var self = this;
