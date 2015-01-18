@@ -2,14 +2,18 @@
 
 cd `dirname $0`
 
-sudo sixad --stop
-sudo sixad --start &
+if [ ! -e /dev/input/js0 ] ; then
+  sudo sixad --stop
+  sudo sixad --start &
 
-while [ ! -e /dev/input/js0 ] ;
-do
-      sleep 1
-      echo "wait for controller..."
-done
+  sleep 1
+
+  while [ ! -e /dev/input/js0 ] ;
+  do
+    sleep 1
+    echo ".\c"
+  done
+fi
 
 cd ../nodejs
 sudo node index

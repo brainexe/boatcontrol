@@ -2,10 +2,8 @@
 
 cd `dirname $0`
 
-cd ../nodejs
+./set_config.sh
 
-node create_config.js ../arduino/arduino.ino
-
-# todo compile
-# todo upload
-
+# compile + upload
+cd ../arduino
+arduino arduino.ino --upload --port /dev/ttyUSB*

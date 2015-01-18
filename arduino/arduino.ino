@@ -1,7 +1,7 @@
 
-#define DEBUG true
+#define DEBUG false
 #define RADIO_ENABLED false
-#define CONFIG "{'baud':57600}"
+#define CONFIG "{'baud':57600,'pins':{'5':{'min':5,'max':175,'reverse':false},'6':{'min':5,'max':175,'reverse':true},'13':{}}}"
 #define HASH_SIZE 50
 
 #include <ArduinoJson.h>
@@ -15,7 +15,7 @@
 Servo servos[HASH_SIZE];
 bool pins[HASH_SIZE];
 
-StaticJsonBuffer<200> jsonBuffer;
+StaticJsonBuffer<350> jsonBuffer;
 JsonObject& config_json = jsonBuffer.parseObject(CONFIG);
 
 void setup() {
@@ -28,6 +28,7 @@ void loop() {
   int i = readLine(line);
 
   if (i == 0) {
+    delay(2);
     return;
   }
 
@@ -46,9 +47,9 @@ void loop() {
     //  Serial.println("int");
     //}
 
-    Serial.print("d:invalid:");
+    Serial.print("e:invalid:");
     Serial.println(line);
-    delay(10);
+    delay(50);
   }
 
   if (DEBUG) {
@@ -70,8 +71,10 @@ void loop() {
     case 'a':
       return setAnalog(pin, value);
 
+    // todo i2c commands
+    
     default:
-      Serial.print("d:unknown action: ");
+      Serial.print("e:unknown action: ");
       Serial.println(action);
   }
 }
@@ -101,15 +104,21 @@ void setServo(int pin, int value) {
   if (!servo.attached()) {
     servo.attach(pin);
   }
-
-  /*
-  //JsonObject pin_config = config_json["pin"][pin];
-  long min = config_json["pins"]["5"]["min"];
-  long max = config_json["pins"]["5"]["max"];
-
-  Serial.println(min);
+  
+  JsonObject& pin_config = config_json["pins"]["5"];
+  long min = pin_config["min"];
+  long max = pin_config["max"];x
+  
+  if (pin_config["reverse"]) {
+   value = 180 - value;
+  }
+  
   Serial.println(max);
-  */
+  Serial.println();
+  
+  if (max > 0) {
+    value = map(value, 0, 180, min, max);
+  }
 
   servo.write(value);
 }

@@ -16,19 +16,33 @@ var Serial = function(device, baud) {
 
     this.serialPort = new SerialPort.SerialPort(result[0], {
         baudrate: baud,
-        parser: SerialPort.parsers.readline("\n")
+        parser: SerialPort.parsers.readline("\n"),
+        disconnectedCallback: function() {
+            // todo reconnect
+            console.log('disconnected', arguments)
+        }
+    });
+
+    this.serialPort.on('error', function() {
+        console.log('error', arguments)
     });
 
     this.serialPort.on('data', function(data) {
+        //console.log(data.yellow);
+
         var value = data.substr(2);
         switch (data[0]) {
             case 'd':
                 console.log(value.yellow);
                 break;
+            case 'e':
+                console.error(value.red);
+                break;
             default:
-                console.error("undefined response: " + value);
+                console.error(("undefined response: " + data).red);
         }
     });
+
 
     var self = this;
     setInterval(function() {
@@ -50,7 +64,7 @@ Serial.prototype._setServo = function(pin, value) {
 };
 
 Serial.prototype._setAnalog = function(pin, value) {
-    this._queue('s', pin, value);
+    this._queue('a', pin, value);
 };
 
 Serial.prototype._setPwm = function(pin, value) {

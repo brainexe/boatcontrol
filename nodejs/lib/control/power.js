@@ -8,11 +8,12 @@ module.exports = function(config, controller, output) {
         // 0:   Rückwärts
         var servo = config.pins.motor;
 
-        var power = util.map(-data.y, -255, 0, servo.min, servo.max);
+        var power = util.map(255 - data.y, 0, 255, 0, 180);
+
         output.setServo(servo.pin, ~~power);
 
         servo = config.pins.ruder;
-        var grad = util.map(data.x, 0, 255, servo.min, servo.max);
+        var grad = util.map(data.x, 0, 255, 0, 180);
         output.setServo(servo.pin, ~~grad);
     });
 

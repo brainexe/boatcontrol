@@ -12,7 +12,7 @@ var config = {
   "debug": {
     output: true,
     controller: false,
-    servo_as_analog: true
+    servo_as_analog: false
   },
 
   "pins": {
