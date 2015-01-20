@@ -1,15 +1,16 @@
 
 #define DEBUG false
-#define RADIO_ENABLED false
+#define RADIO_ENABLED true
+#define RADIO_PIN 0
 #define CONFIG "{'baud':57600,'pins':{'5':{'min':5,'max':175,'reverse':false},'6':{'min':5,'max':175,'reverse':true},'13':{}}}"
 #define HASH_SIZE 50
 
 #include <ArduinoJson.h>
 #include <Servo.h>
 
-#ifdef RADIO_ENABLED == true
-  //#include <RH_ASK.h>
-  //#include <SPI.h>
+#if RADIO_ENABLED
+  #include <RCSwitch.h>
+  RCSwitch rc = RCSwitch();
 #endif
 
 Servo servos[HASH_SIZE];
@@ -19,11 +20,26 @@ StaticJsonBuffer<350> jsonBuffer;
 JsonObject& config_json = jsonBuffer.parseObject(CONFIG);
 
 void setup() {
+  #if RADIO_ENABLED
+    rc.enableReceive(RADIO_PIN);
+  #endif
+  
   const long baud = config_json["baud"];
   Serial.begin(baud);
 }
 
 void loop() {
+  #if RADIO_ENABLED
+    if (rc.available()) {
+      Serial.println(rc.getReceivedValue());
+      Serial.println(rc.getReceivedBitlength());
+      Serial.println(rc.getReceivedDelay());
+      //Serial.println(rc.getReceivedRawdata());
+      Serial.println(rc.getReceivedProtocol());
+      rc.resetAvailable();
+    }
+  #endif
+  
   char line[15] = "\0";
   int i = readLine(line);
 
@@ -71,7 +87,9 @@ void loop() {
     case 'a':
       return setAnalog(pin, value);
 
-    // todo i2c commands
+    // todo read analog
+    // todo i2c commands i:*
+    // todo sleep:
     
     default:
       Serial.print("e:unknown action: ");
@@ -105,12 +123,18 @@ void setServo(int pin, int value) {
     servo.attach(pin);
   }
   
-  JsonObject& pin_config = config_json["pins"]["5"];
+  char pin_id[3];
+  itoa(pin, pin_id, 10);
+  
+  Serial.print("itoa");
+  Serial.println(pin_id);
+  
+  JsonObject& pin_config = config_json["pins"]["5"]; // todo pin to string
   long min = pin_config["min"];
-  long max = pin_config["max"];x
+  long max = pin_config["max"];
   
   if (pin_config["reverse"]) {
-   value = 180 - value;
+    value = 180 - value;
   }
   
   Serial.println(max);
