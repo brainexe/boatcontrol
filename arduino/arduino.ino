@@ -31,12 +31,19 @@ void setup() {
 void loop() {
   #if RADIO_ENABLED
     if (rc.available()) {
-      Serial.println(rc.getReceivedValue());
-      Serial.println(rc.getReceivedBitlength());
-      Serial.println(rc.getReceivedDelay());
+      int packed_info = rc.getReceivedValue();
+      
+      Serial.println(packed_info);
+      //Serial.println(rc.getReceivedBitlength());
+      //Serial.println(rc.getReceivedDelay());
       //Serial.println(rc.getReceivedRawdata());
-      Serial.println(rc.getReceivedProtocol());
       rc.resetAvailable();
+      
+      executeAction(
+        (packed_info >> 24) & 0xf,
+        (packed_info >> 16) & 0xf,
+        packed_info & 0xff
+      );
     }
   #endif
   
@@ -73,7 +80,11 @@ void loop() {
     sprintf(buffer, "d:action '%c' pin '%d' value '%d'",  action, pin, value);
     Serial.println(buffer);
   }
+  
+  executeAction(action, pin, value);
+}
 
+void executeAction(char action, int pin, int value) {
   switch (action) {
     case 'd':
       // digital
@@ -87,14 +98,18 @@ void loop() {
     case 'a':
       return setAnalog(pin, value);
 
-    // todo read analog
+    // todo read analog: g:*
     // todo i2c commands i:*
-    // todo sleep:
-    
+    // step motor: k:*
+
+    case 'l':
+      delay(value);
+      return;
+      
     default:
       Serial.print("e:unknown action: ");
       Serial.println(action);
-  }
+  }  
 }
 
 void setDigital(int pin, int value) {
@@ -165,4 +180,5 @@ int readLine(char line[]) {
 
   return i;
 }
+
 
