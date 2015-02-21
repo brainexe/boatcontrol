@@ -2,3 +2,4 @@
 - Verbindungskontrolle -> signal an Arduino wenn nicht in alles in Grundstellung
 - Zusätzliche Pins über GPIO
 - Wassersensor schaltet direkt im Arduino eine Pumpe + Signal-LED
+- Soundmodul siehe "http://www.beier-electronic.de/modellbau/produkte/usm-rc-2/usm-rc-2.php"
