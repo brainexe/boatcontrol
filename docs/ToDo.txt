@@ -1,0 +1,4 @@
+- "Bedienungsanleitung" zum Updaten des Raspi auf deutsch!!!!
+- Verbindungskontrolle -> signal an Arduino wenn nicht in alles in Grundstellung
+- Zusätzliche Pins über GPIO
+- 
