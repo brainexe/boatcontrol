@@ -17,19 +17,19 @@ var config = {
 
   "pins": {
     // Antrieb
-    "motor": {pin: 5, min: 0, max: 100, reverse: true},
-    "ruder": {pin: 6 , min: 0, max: 100, reverse: true},
+    "motor": {pin: 37, min: 0, max: 100, reverse: true},
+    "ruder": {pin: 36 , min: 0, max: 100, reverse: true},
 
     // Monitore
     "water": {pin: null, min: 5, max: 90},
     "monitors": [
       {
-        "rotate": {pin: null, min: 5, max: 90},
-        "vertical": {pin: null, min: 5, max: 90}
+        "rotate": {pin: 35, min: 5, max: 90},		// Bug
+        "vertical": {pin: 34, min: 5, max: 90}		// Bug
       },
       {
-        "rotate": {pin: null, min: 5, max: 90},
-        "vertical": {pin: null, min: 5, max: 90}
+        "rotate": {pin: 33, min: 5, max: 90},		// Heck
+        "vertical": {pin: 32, min: 5, max: 90}		// Heck
       }
     ],
 
