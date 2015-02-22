@@ -1,7 +1,7 @@
 
 var SerialPort = require("serialport");
 var AbstractOutput = require('./abstract_output');
-var config = require("../../config");
+var config  = require("../../config");
 var globule = require('globule');
 
 var QUEUE_INTERVAL = 4;
@@ -14,8 +14,8 @@ var Serial = function(device, baud) {
     var interval = setInterval(function() {
         var result = globule.find(device);
 
-        if (!result.length) {
-            self.connect(result[0]);
+        if (result.length) {
+            self.connect(result[0], baud);
             clearInterval(interval);
         } else {
             console.log("no device found at: " + device)
@@ -23,7 +23,10 @@ var Serial = function(device, baud) {
     }, 2000);
 };
 
-Serial.prototype.connect = function(port) {
+Serial.prototype = new AbstractOutput();
+
+Serial.prototype.connect = function(port, baud) {
+    this.queue = [];
     this.serialPort = new SerialPort.SerialPort(port, {
         baudrate: baud,
         parser: SerialPort.parsers.readline("\n"),
@@ -62,8 +65,6 @@ Serial.prototype.connect = function(port) {
         }
     }, QUEUE_INTERVAL);
 };
-
-Serial.prototype = new AbstractOutput();
 
 Serial.prototype._setDigital = function(pin, value) {
     this._queue('d', pin, value);

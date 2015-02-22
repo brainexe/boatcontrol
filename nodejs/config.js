@@ -21,7 +21,7 @@ var config = {
     "ruder": {pin: 36 , min: 0, max: 100, reverse: true},
 
     // Monitore
-    "water": {pin: null, min: 5, max: 90},
+    "water": {pin: null},
     "monitors": [
       {
         "rotate": {pin: 35, min: 5, max: 90},		// Bug
