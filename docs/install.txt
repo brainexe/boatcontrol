@@ -1,0 +1,18 @@
+
+sudo sed -i 's/wheezy/jessie/' /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
+sudo sed -i 's/#autologin-user=/autologin-user=pi/' /etc/lightdm/lightdm.conf
+sudo reboot
+
+
+
+// http://forum.arduino.cc/index.php?topic=283337.0
+
+sudo apt-get install gcc-avr avr-libc avrdude
+cd /opt
+wget https://github.com/arduino/Arduino/archive/ide-1.5.x.zip
+
+
+
