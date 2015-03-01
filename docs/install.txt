@@ -1,15 +1,49 @@
 
-sudo sed -i 's/wheezy/jessie/' /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
-sudo sed -i 's/#autologin-user=/autologin-user=pi/' /etc/lightdm/lightdm.conf
-sudo reboot
+Schritt 1: Raspbian runterladen und auf Raspberry packen
+ - http://jankarres.de/2012/08/raspberry-pi-raspbian-installieren/
+ - an Bildschirm anschließen
+ - "Expand Filesystem"
+ - "Internationalisation Options" -> Locale / Keyboard Layout auf DE machen, wenn gewünscht
+ - "Advanced Options" -> SSH -> enable
+
+Schritt 2: WLAN aktivieren
+ - Datei /etc/network/interfaces auf SD-Karte packen
+
+Schritt 3: Boatcontrol installieren:
+sudo apt-get install -y git
+sudo mkdir /www/ ; sudo chmod 777 /www
+cd /www
+git clone git@mdoetsch.de:root/boatcontrol.git
+cd boatcontrol/scripts
+sudo sh install.sh
 
 
+- ENDE - den Rest hier ignorieren -
 
+Schritt 4: Pakete installieren
+ $ sudo apt-get install git wget gcc bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev  libbluetooth-dev joystick
+
+Schritt 5: nodejs installieren
+ $ sudo apt-get install nodejs npm node-semver
+ $ cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb  && sudo dpkg -i node_latest_armhf.deb
+
+Schritt 6: BoatControl installieren
+ $ sudo mkdir /www/ ; sudo chmod 777 /www
+ $ cd /www
+ $ git clone git@mdoetsch.de:root/boatcontrol.git
+ $ cd boatcontrol/nodejs
+ $ npm install
+
+TODO
+Bachrc ändern
+
+
+Schritt 7: sixpair installieren
+ http://www.raspians.com/Knowledgebase/ps3-dualshock-controller-install-on-the-raspberry-pi/
+
+
+Schritt 10: arduinoide
 // http://forum.arduino.cc/index.php?topic=283337.0
-
 sudo apt-get install gcc-avr avr-libc avrdude
 cd /opt
 wget https://github.com/arduino/Arduino/archive/ide-1.5.x.zip
