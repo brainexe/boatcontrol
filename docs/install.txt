@@ -28,6 +28,8 @@ Schritt 5: nodejs installieren
  $ cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb  && sudo dpkg -i node_latest_armhf.deb
 
 Schritt 6: BoatControl installieren
+ $ ssh-keygen -t rsa
+ $ cat ~/.ssh/id_rsb.pub
  $ sudo mkdir /www/ ; sudo chmod 777 /www
  $ cd /www
  $ git clone git@mdoetsch.de:root/boatcontrol.git
