@@ -36,13 +36,18 @@ Schritt 6: BoatControl installieren
  $ cd boatcontrol/nodejs
  $ npm install
 
-TODO
-Bachrc ändern
+Schritt 7: Autostart script
+ - Datei "/home/pi/.bashrc" öffnen
+ - Folgende Zeile eintragen (ohne "): ". /www/boatcontrol/scripts/alias.sh"
+
+Schritt 8:
+ - Datei "/etc/cron.d/boatcontrol" anlegen/öffnen
+ - Folgende Zeile eintragen (ohne "): "@reboot cd /www/boatcontrol/scripts/ ; sudo sh ./start.sh"
+ - Wichtig: mindestens eine leere Zeile am Ende der Datei muss vorhanden sein
 
 
-Schritt 7: sixpair installieren
+Schritt 9: sixpair installieren
  http://www.raspians.com/Knowledgebase/ps3-dualshock-controller-install-on-the-raspberry-pi/
-
 
 Schritt 10: arduinoide
 // http://forum.arduino.cc/index.php?topic=283337.0
