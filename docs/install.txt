@@ -9,51 +9,48 @@ Schritt 1: Raspbian runterladen und auf Raspberry packen
 Schritt 2: WLAN aktivieren
  - Datei /etc/network/interfaces auf SD-Karte packen
 
-Schritt 3: Boatcontrol installieren:
-sudo apt-get install -y git
-sudo mkdir /www/ ; sudo chmod 777 /www
-cd /www
-git clone git@mdoetsch.de:root/boatcontrol.git
-cd boatcontrol/scripts
-sudo sh install.sh
-
-
-- ENDE - den Rest hier ignorieren -
-
-Schritt 4: Pakete installieren
- $ sudo apt-get install git wget gcc bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev  libbluetooth-dev joystick
-
-Schritt 5: nodejs installieren
- $ sudo apt-get install nodejs npm node-semver
- $ cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb  && sudo dpkg -i node_latest_armhf.deb
-
-Schritt 6: BoatControl installieren
+SSH Key generieren
  $ ssh-keygen -t rsa
  $ cat ~/.ssh/id_rsb.pub
+ - Auf Gitlab eintragen
+
+Schritt 3: Boatcontrol installieren:
+ $ sudo apt-get install -y git
  $ sudo mkdir /www/ ; sudo chmod 777 /www
  $ cd /www
  $ git clone git@mdoetsch.de:root/boatcontrol.git
- $ cd boatcontrol/nodejs
- $ npm install
+ $ cd boatcontrol/scripts
+ $ sudo sh install.sh
+
+### ignorieren ###
+#            Schritt 4: Pakete installieren
+#             $ sudo apt-get -y install git wget gcc bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev libbluetooth-dev joystick
+#
+#            Schritt 5: nodejs installieren
+#             $ sudo apt-get install nodejs npm node-server -y
+#             $ cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb  && sudo dpkg -i node_latest_armhf.deb
+### ignorieren ende ###
 
 Schritt 7: Autostart script
  - Datei "/home/pi/.bashrc" öffnen
- - Folgende Zeile eintragen (ohne "): ". /www/boatcontrol/scripts/alias.sh"
+ - Folgende Zeile eintragen am Ende (ohne "): ". /www/boatcontrol/scripts/alias.sh"
 
 Schritt 8:
  - Datei "/etc/cron.d/boatcontrol" anlegen/öffnen
  - Folgende Zeile eintragen (ohne "): "@reboot cd /www/boatcontrol/scripts/ ; sudo sh ./start.sh"
  - Wichtig: mindestens eine leere Zeile am Ende der Datei muss vorhanden sein
 
-
-Schritt 9: sixpair installieren
- http://www.raspians.com/Knowledgebase/ps3-dualshock-controller-install-on-the-raspberry-pi/
-
-Schritt 10: arduinoide
-// http://forum.arduino.cc/index.php?topic=283337.0
-sudo apt-get install gcc-avr avr-libc avrdude
-cd /opt
-wget https://github.com/arduino/Arduino/archive/ide-1.5.x.zip
-
+### ignorieren ###
+# Schritt 9: sixpair installieren
+# - http://www.raspians.com/Knowledgebase/ps3-dualshock-controller-install-on-the-raspberry-pi/
+#
+# - ende -
+# Schritt 10: arduinoide
+# // http://forum.arduino.cc/index.php?topic=283337.0
+# sudo apt-get install gcc-avr avr-libc avrdude
+# cd /opt
+# wget https://github.com/arduino/Arduino/archive/ide-1.5.x.zip
+#
+### ignodieren ende
 
 
