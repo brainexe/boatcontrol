@@ -12,13 +12,13 @@ Schritt 2: WLAN aktivieren
 SSH Key generieren
  $ ssh-keygen -t rsa
  $ cat ~/.ssh/id_rsb.pub
- - Auf Gitlab eintragen
+ - Auf Github eintragen
 
 Schritt 3: Boatcontrol installieren:
  $ sudo apt-get install -y git
  $ sudo mkdir /www/ ; sudo chmod 777 /www
  $ cd /www
- $ git clone git@mdoetsch.de:root/boatcontrol.git
+ $ git clone git@github.com:brainexe/boatcontrol.git
  $ cd boatcontrol/scripts
  $ sudo sh install.sh
 

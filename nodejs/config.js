@@ -3,7 +3,7 @@ var config = {
   // "raspberry" (direkte Ansteuerung der GPIOS)
   // "serial" (benutzt serial Schnittstelle)
   // "443" (benutzt 443 frequenz)
-  "device": "serial",
+  "device": "debug",
 
   // hier ginge auch PS4
   "controller": "dualShock3",

@@ -3,8 +3,8 @@
 cd `dirname $0`
 
 if [ ! -e /dev/input/js0 ] ; then
-  sudo /opt/sixpair/QtSixA-1.5.1/sixad/sixad --stop
-  sudo /opt/sixpair/QtSixA-1.5.1/sixad/sixad --start &
+  sudo sixad --stop
+  sudo sixad --start &
 
   sleep 1
 

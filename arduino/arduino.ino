@@ -1,8 +1,8 @@
 
 #define DEBUG false
-#define RADIO_ENABLED true
+#define RADIO_ENABLED false
 #define RADIO_PIN 0
-#define CONFIG "{'baud':57600,'pins':{'5':{'min':5,'max':175,'reverse':false},'6':{'min':5,'max':175,'reverse':true},'13':{}}}"
+#define CONFIG "{'baud':57600,'pins':{}"
 #define HASH_SIZE 50
 
 #include <ArduinoJson.h>

@@ -1,14 +1,14 @@
 {
   "name": "boat-ps3-controller",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Control your boat with ps3 controller.",
   "main": "index.js",
   "dependencies": {
     "dualshock-controller": "*",
-    "serialport": "1.4.*",
-    "gpio": "0.2.5 ",
+    "serialport": "~1.4",
+    "gpio": "~0.2 ",
     "globule": "*",
-    "colors": "1.0.*"
+    "colors": "~1.0"
   },
   "devDependencies": {},
   "scripts": {
