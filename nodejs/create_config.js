@@ -31,15 +31,19 @@ var json = JSON.stringify(config).replace(/"/g, "'");
 
 if (process.argv[2]) {
     var filename = process.argv[2];
+    var targetFilename = filename.replace(/\.ino$/, '_generated.ino');
     fs.readFile(filename, "utf8", function(err, data) {
         if (err) {
             throw err;
         }
 
         data = data.replace(/#define CONFIG ".*?"/, '#define CONFIG "' + json+ '"');
+        data = data.replace(/#define DEBUG (false|true)/i, '#define DEBUG ' + (config.debug ? 'true' : 'false'));
 
-        fs.writeFile(filename, data, function(err) {
-            if (err) throw err;
+        fs.writeFile(targetFilename, data, function(err) {
+            if (err) {
+                throw err;
+            }
             console.log('done!');
         });
     });

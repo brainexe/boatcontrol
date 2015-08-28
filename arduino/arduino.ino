@@ -1,17 +1,10 @@
 
 #define DEBUG false
-#define RADIO_ENABLED false
-#define RADIO_PIN 0
 #define CONFIG "{'baud':57600,'pins':{}"
 #define HASH_SIZE 50
 
 #include <ArduinoJson.h>
 #include <Servo.h>
-
-#if RADIO_ENABLED
-  #include <RCSwitch.h>
-  RCSwitch rc = RCSwitch();
-#endif
 
 Servo servos[HASH_SIZE];
 bool pins[HASH_SIZE];
@@ -20,33 +13,11 @@ StaticJsonBuffer<350> jsonBuffer;
 JsonObject& config_json = jsonBuffer.parseObject(CONFIG);
 
 void setup() {
-  #if RADIO_ENABLED
-    rc.enableReceive(RADIO_PIN);
-  #endif
-  
   const long baud = config_json["baud"];
   Serial.begin(baud);
 }
 
 void loop() {
-  #if RADIO_ENABLED
-    if (rc.available()) {
-      int packed_info = rc.getReceivedValue();
-      
-      Serial.println(packed_info);
-      //Serial.println(rc.getReceivedBitlength());
-      //Serial.println(rc.getReceivedDelay());
-      //Serial.println(rc.getReceivedRawdata());
-      rc.resetAvailable();
-      
-      executeAction(
-        (packed_info >> 24) & 0xf,
-        (packed_info >> 16) & 0xf,
-        packed_info & 0xff
-      );
-    }
-  #endif
-  
   char line[15] = "\0";
   int i = readLine(line);
 
@@ -80,7 +51,7 @@ void loop() {
     sprintf(buffer, "d:action '%c' pin '%d' value '%d'",  action, pin, value);
     Serial.println(buffer);
   }
-  
+
   executeAction(action, pin, value);
 }
 
@@ -105,11 +76,11 @@ void executeAction(char action, int pin, int value) {
     case 'l':
       delay(value);
       return;
-      
+
     default:
       Serial.print("e:unknown action: ");
       Serial.println(action);
-  }  
+  }
 }
 
 void setDigital(int pin, int value) {
@@ -137,24 +108,24 @@ void setServo(int pin, int value) {
   if (!servo.attached()) {
     servo.attach(pin);
   }
-  
+
   char pin_id[3];
   itoa(pin, pin_id, 10);
-  
+
   Serial.print("itoa");
   Serial.println(pin_id);
-  
+
   JsonObject& pin_config = config_json["pins"]["5"]; // todo pin to string
   long min = pin_config["min"];
   long max = pin_config["max"];
-  
+
   if (pin_config["reverse"]) {
     value = 180 - value;
   }
-  
+
   Serial.println(max);
   Serial.println();
-  
+
   if (max > 0) {
     value = map(value, 0, 180, min, max);
   }
@@ -180,5 +151,3 @@ int readLine(char line[]) {
 
   return i;
 }
-
-

@@ -10,4 +10,4 @@ DEVICE=$(ls /dev/ttyUSB*)
 
 # compile + upload
 cd ../arduino
-arduino arduino.ino --upload --port $DEVICE
+arduino arduino_generated.ino --upload --port $DEVICE

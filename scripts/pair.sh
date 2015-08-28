@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo /opt/sixpair/sixpair
+sudo sixpair
