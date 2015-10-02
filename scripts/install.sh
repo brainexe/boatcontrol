@@ -5,7 +5,7 @@ apt-get update -y
 apt-get upgrade -y
 
 echo "install main packages"
-apt-get install -y git wget gcc bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev libbluetooth-dev joystick
+apt-get install -y git wget gcc bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev libbluetooth-dev joystick redis-server
 
 echo "install nodejs"
 apt-get install nodejs npm node-semver -y

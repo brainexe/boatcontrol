@@ -1,6 +1,8 @@
-var fs = require('fs');
-var raw_config = require("./config");
-var i;
+var fs          = require('fs'),
+    path        = require('path'),
+    raw_config  = require("../config"),
+    i;
+require('colors');
 
 var pins = {};
 var raw_pins = raw_config['pins'];
@@ -22,16 +24,16 @@ for (i in raw_pins) {
 }
 
 var config = {
-    baud: raw_config['serial_baud'],
-    //debug: raw_config['debug'],
-    pins: pins
+    baud:  raw_config['serial_baud'],
+    debug: raw_config['debug'],
+    pins:  pins
 };
 
 var json = JSON.stringify(config).replace(/"/g, "'");
 
 if (process.argv[2]) {
     var filename = process.argv[2];
-    var targetFilename = filename.replace(/\.ino$/, '_generated.ino');
+    var targetFilename = path.dirname(filename) + '/tmp/tmp.ino';
     fs.readFile(filename, "utf8", function(err, data) {
         if (err) {
             throw err;
@@ -49,4 +51,4 @@ if (process.argv[2]) {
     });
 }
 
-console.log(json);
+console.log("config:" + json.green);

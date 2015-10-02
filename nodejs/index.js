@@ -1,3 +1,4 @@
+var config;
 try {
     config = require("./config");
 } catch (e) {
@@ -9,7 +10,6 @@ try {
 
 var output    = require("./lib/output");
 var dualShock = require('dualshock-controller');
-var config;
 require('colors');
 
 var controller = dualShock({
@@ -25,14 +25,7 @@ controller.on('error', function (data) {
     console.log('controller error:', data);
 });
 
-if (config.debug.controller) {
-    require('./lib/control/debug')(config, controller, output);
-}
-
-require('./lib/control/power')(config, controller, output);
-require('./lib/control/sound_light')(config, controller, output);
-require('./lib/control/water')(config, controller, output);
-require('./lib/control/generic')(config, controller, output);
+require('./lib/control/all')(config, controller, output);
 
 console.log('started...'.green);
 controller.connect();

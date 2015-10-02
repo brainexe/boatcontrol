@@ -5,8 +5,11 @@ var Multi = function() {
     this.outputs = [];
 };
 
-
 Multi.prototype = new AbstractOutput();
+
+Multi.prototype.addOutput = function(output) {
+    this.outputs.push(output);
+};
 
 Multi.prototype._setServo = function(pin, value) {
     this.outputs.forEach(function(output) {

@@ -4,7 +4,7 @@ var AbstractOutput = require('./abstract_output');
 var config  = require("../../config");
 var globule = require('globule');
 
-var QUEUE_INTERVAL = 4;
+const QUEUE_INTERVAL = 4;
 
 var Serial = function(device, baud) {
     this.queue = [];

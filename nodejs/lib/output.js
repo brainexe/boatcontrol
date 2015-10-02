@@ -1,5 +1,7 @@
 
-var config = require("../config");
+var
+    config  = require("../config"),
+    util    = require('util');
 
 function getOutput(type) {
     var output;
@@ -24,13 +26,29 @@ function getOutput(type) {
             output = require('./output/browser');
             output = new output();
             break;
+        case 'redis':
+            output = require('./output/redis');
+            output = new output();
+            break;
+        case 'metawear':
+            output = require('./output/metawear');
+            output = new output();
+            break;
         default:
             throw "Invalid output type: " + type;
     }
     return output;
 }
 
-// todo multiple outputs
-var output = getOutput(config.device);
+var output;
+if (util.isArray(config.device)) {
+    output = require('./output/multiple');
+    output = new output();
+    config.device.forEach(function(type) {
+        output.addOutput(getOutput(type));
+    });
+} else {
+    output = getOutput(config.device);
+}
 
 module.exports = output;

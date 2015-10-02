@@ -4,10 +4,8 @@ sh ./set_config.sh
 
 cd `dirname $0`
 
-./set_config.sh
-
 DEVICE=$(ls /dev/ttyUSB*)
 
 # compile + upload
-cd ../arduino
-arduino arduino_generated.ino --upload --port $DEVICE
+cd ../arduino/tmp
+~/Downloads/arduino-1.6.5-r5/arduino tmp.ino --upload --port $DEVICE
