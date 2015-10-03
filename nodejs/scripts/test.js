@@ -1,13 +1,10 @@
-var config  = require("../lib/config");
-var output  = require("../lib/output");
-var Emitter = require('events').EventEmitter;
+var Emitter = require('events').EventEmitter,
+    config  = require("../lib/config"),
+    output  = require("../lib/output");
 
-require('colors');
+var emitter = require('../lib/input')();
+var control = require('../lib/control');
 
-var controller = new Emitter();
+control.loadAll(emitter, output);
 
-require('./lib/control/all')(config, controller, output);
-
-console.log('started...'.green);
-
-controller.emit('left:move', {x: 12, y:31});
+emitter.emit('left:move', {x: 12, y:31});

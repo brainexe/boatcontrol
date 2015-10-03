@@ -2,7 +2,6 @@
 
 DIR=`realpath "$(dirname $0)/.."`
 
-echo $DIR
 alias boat="cd $DIR"
 alias pair="cd $DIR; cd scripts; ./pair.sh"
 alias updateBoatControl="cd $DIR; cd scripts; ./update.sh"

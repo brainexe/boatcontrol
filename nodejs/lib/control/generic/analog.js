@@ -1,7 +1,7 @@
 
-module.exports = function(generic, input, output) {
+module.exports = function(pin, input, output) {
     input.on(generic.button + ":press", function () {
         // TODO
-        output.setAnalog(generic.pin, ~~(Math.random() * 255));
+        output.setAnalog(pin.pin, ~~(Math.random() * 255));
     });
 };
