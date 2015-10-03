@@ -4,6 +4,7 @@ var http    = require('http'),
     config  = require('../lib/config'),
     input   = require('../lib/input/redis'),
     output  = require('../lib/output/redis'),
+    redis   = require('../lib/redis'),
     index   = fs.readFileSync(__dirname + '/../../browser/index.html');
 
 var port = config.server.port;

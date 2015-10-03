@@ -9,5 +9,4 @@ module.exports = function(config, input, output) {
     config.control.generic.push(
         {pin: config.pins.sound.pin, button: config.control.sound, type: 'onoff'}
     );
-
 };

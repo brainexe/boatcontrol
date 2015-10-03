@@ -2,13 +2,13 @@ var config = {
   // "debug" (output all commands to stdout)
   // "raspberry" (direct control via GPIOS)
   // "serial" (send serial command e.g. to arduino)
-  // "443" (tbd)
+  // "debug" (print all output to stdout)
   // "redis" (push commands to all redis slaves)
   "output": ["debug", "redis", "serial"],
 
   // available input devices:
-  // dualShock3 / dualShock4
-  // browser
+  // "dualShock3" or "dualShock4"
+  // "browser"
   // "redis"
   "input": ["dualShock3", "browser", "redis"],
 
@@ -18,46 +18,34 @@ var config = {
     servo_as_analog: false
   },
 
-  "pins": {
-    // Antrieb
-    "motor": {pin: 37,  min: 0, max: 100, reverse: true},
-    "ruder": {pin: 36 , min: 0, max: 100, reverse: true},
+  "pins": [
+    // engine
+    {pin: 37, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'left'},
+    {pin: 36, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'left'},
 
-    // Monitore
-    "water": {pin: null},
-    "monitors": [
-      {
-        "rotate":   {pin: 35, min: 5, max: 90},		// Bug
-        "vertical": {pin: 34, min: 5, max: 90}		// Bug
-      },
-      {
-        "rotate":   {pin: 33, min: 5, max: 90},		// Heck
-        "vertical": {pin: 32, min: 5, max: 90}		// Heck
-      }
-    ],
+    // water monitors
+    {pin: null, type: 'monitor', subtype: 'rotate',   joystick: 'right'},
+    {pin: null, type: 'monitor', subtype: 'vertical', joystick: 'right'},
+    {pin: null, type: 'monitor', subtype: 'rotate',   joystick: 'right'},
+    {pin: null, type: 'monitor', subtype: 'vertical', joystick: 'right'},
 
-    // Schnickschnack
-    "light": {pin: null},
-    "sound": {pin: 13}
-  },
+    // sound
+    {pin: null, type: 'generic', subType: 'onoff', button: 'circle'},
 
-  "control": {
-    "antrieb": "left",
+    // light
+    {pin: 13, type: 'generic', subType: 'onoff', button: 'circle'},
 
-    "light": null,
-    "sound": "circle",
+    // water pump
+    {pin: null, type: 'generic', subType: 'onoff', button: 'x'},
 
-    "water": "x",
-    "monitors": "right",
+    // custom
+    {pin: 2,  type: 'generic', subType: 'press', button: 'l2'},
+    {pin: 3,  type: 'generic', subType: 'onoff', button: 'l1'},
+    {pin: 4,  type: 'generic', subType: 'timer', button: 'r1', time: 2000},
+    {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100}
+  ],
 
-    "generic": [
-      {pin: 2,  button: 'l2', type: 'press'},
-      {pin: 3,  button: 'l1', type: 'onoff'},
-      {pin: 4,  button: 'r1', type: 'timer', time: 2000},
-      {pin: 10, button: 'r2', type: 'blink', time_on: 100, time_off: 100},
-      {pin: 9,  button: 'x',  type: 'press'}
-    ]
-  },
+  "redis": 'redis://localhost',
 
   "server": {
     "port": 3000
