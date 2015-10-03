@@ -1,12 +1,12 @@
 
 var pin_state = {};
 
-module.exports = function(generic, input, output) {
-    input.on(generic.button + ":press", function () {
-        var id = generic.button + '__' + generic.pin;
+module.exports = function(pin, input, output) {
+    input.on(pin.button + ":press", function () {
+        var id = pin.button + '__' + pin.pin;
         var value = !pin_state[id];
 
         pin_state[id] = value;
-        output.setDigital(generic.pin, value ? 1 : 0);
+        output.setDigital(pin.pin, value ? 1 : 0);
     });
 };

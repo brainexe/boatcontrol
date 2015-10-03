@@ -2,10 +2,14 @@ var http    = require('http'),
     colors  = require('colors'),
     fs      = require('fs'),
     config  = require('../lib/config'),
-    input   = require('../lib/input/redis'),
-    output  = require('../lib/output/redis'),
     redis   = require('../lib/redis'),
     index   = fs.readFileSync(__dirname + '/../../browser/index.html');
+
+config.output = ['redis'];
+config.input  = [];
+
+var input   = require('../lib/input/redis'),
+    output  = require('../lib/output/redis');
 
 var port = config.server.port;
 
@@ -25,6 +29,7 @@ setInterval(sendTime, 10000);
 
 io.on('connection', function(socket) {
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
+    socket.emit('config', config);
 });
 
 console.log(colors.green('Start server at http://localhost:'+port));

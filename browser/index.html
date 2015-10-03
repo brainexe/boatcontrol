@@ -16,12 +16,15 @@
         socket.on('output', function(data) {
             addMessage(data);
         });
+        socket.on('config', function(data) {
+            addMessage(data);
+        });
         socket.on('error', console.error.bind(console));
         socket.on('message', console.log.bind(console));
 
         function addMessage(message) {
-            var text = document.createTextNode(message),
-                el = document.createElement('li'),
+            var text     = document.createTextNode(message),
+                el       = document.createElement('li'),
                 messages = document.getElementById('messages');
 
             el.appendChild(text);

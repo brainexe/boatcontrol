@@ -1,8 +1,6 @@
-# light
-# sound
 # motor
 # ruder
-# waterPump
+# debug
 
 # monitor
 ## monitor rotate

@@ -1,17 +1,16 @@
 
 var timers = {};
 
-module.exports = function(generic, input, output) {
-    input.on(generic.button + ":press", function () {
-        output.setDigital(generic.pin, true);
+module.exports = function(pin, input, output) {
+    input.on(pin.button + ":press", function () {
+        output.setDigital(pin.pin, true);
 
-        if (timers[generic.pin]) {
-            clearTimeout(timers[generic.pin]);
+        if (timers[pin.pin]) {
+            clearTimeout(timers[pin.pin]);
         }
-        timers[generic.pin] = setTimeout(function() {
-            delete timers[generic.pin];
-            output.setDigital(generic.pin, false);
-        }, generic.time);
+        timers[pin.pin] = setTimeout(function() {
+            delete timers[pin.pin];
+            output.setDigital(pin.pin, false);
+        }, pin.time);
     });
-
 };

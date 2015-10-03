@@ -24,10 +24,7 @@ var config = {
     {pin: 36, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'left'},
 
     // water monitors
-    {pin: null, type: 'monitor', subtype: 'rotate',   joystick: 'right'},
-    {pin: null, type: 'monitor', subtype: 'vertical', joystick: 'right'},
-    {pin: null, type: 'monitor', subtype: 'rotate',   joystick: 'right'},
-    {pin: null, type: 'monitor', subtype: 'vertical', joystick: 'right'},
+    {pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'right'},
 
     // sound
     {pin: null, type: 'generic', subType: 'onoff', button: 'circle'},
@@ -43,6 +40,9 @@ var config = {
     {pin: 3,  type: 'generic', subType: 'onoff', button: 'l1'},
     {pin: 4,  type: 'generic', subType: 'timer', button: 'r1', time: 2000},
     {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100}
+
+    // debug stuff
+    //{pin: -1, type: 'debug'}
   ],
 
   "redis": 'redis://localhost',
