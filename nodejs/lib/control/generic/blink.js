@@ -1,7 +1,7 @@
 
 var pin_state = {};
 
-module.exports = function(generic, controller, output) {
+module.exports = function(generic, input, output) {
     function disable() {
         output.setDigital(generic.pin, 0);
         pin_state[generic.pin] = setTimeout(function() {
@@ -16,7 +16,7 @@ module.exports = function(generic, controller, output) {
         }, generic.time_on)
     }
 
-    controller.on(generic.button + ":press", function () {
+    input.on(generic.button + ":press", function () {
         if (!pin_state[generic.pin]) {
             // 1st click: enable and start timer
             enablePin();

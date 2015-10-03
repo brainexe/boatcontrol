@@ -1,7 +1,6 @@
 
 var AbstractOutput = require('./abstract_output'),
-    redis  = require("redis"),
-    client = redis.createClient(); // todo config
+    client = require('../redis')();
 
 var Redis = function() {
 };

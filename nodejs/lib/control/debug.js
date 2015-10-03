@@ -51,7 +51,4 @@ module.exports = function (config, controller, output) {
     controller.on('upDown' + ':motion', function (data) {
         motion('upDown', data);
     });
-    //once everything is ready we call connect()
-    controller.connect();
-
 };

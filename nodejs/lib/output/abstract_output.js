@@ -1,11 +1,10 @@
 
-var config = require("../../config");
+var config = require("../config");
 
 var AbstractOutput = function() {
 };
 
 AbstractOutput.prototype.setServo = function(pin, value) {
-    console.log(pin + ": " + value);
     if (!pin) {
         return;
     }
@@ -19,7 +18,6 @@ AbstractOutput.prototype.setServo = function(pin, value) {
 };
 
 AbstractOutput.prototype.setDigital = function(pin, value) {
-    console.log(pin + ": " + value);
     if (!pin) {
         return;
     }
@@ -28,7 +26,6 @@ AbstractOutput.prototype.setDigital = function(pin, value) {
 };
 
 AbstractOutput.prototype.setAnalog = function(pin, value) {
-    console.log(pin + ": " + value);
     if (!pin) {
         return;
     }
@@ -36,7 +33,6 @@ AbstractOutput.prototype.setAnalog = function(pin, value) {
     this._setAnalog(pin, value);
 };
 AbstractOutput.prototype.setPwm = function(pin, value) {
-    console.log(pin + ": " + value);
     if (!pin) {
         return;
     }

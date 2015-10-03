@@ -1,13 +1,13 @@
 
 var util = require('../util');
 
-module.exports = function (config, controller, output) {
+module.exports = function (config, input, output) {
 
     config.control.generic.push(
         {pin: config.pins.water.pin, button: config.control.water, type: 'onoff'}
     );
 
-    controller.on(config.control.monitors + ':move', function (data) {
+    input.on(config.control.monitors + ':move', function (data) {
         config.pins.monitors.forEach(function (monitor, i) {
             var vertical_servo = ~~util.map(data.y, 0, 255, 0, 180);
             var rotate_servo   = ~~util.map(data.x, 0, 255, 0, 180);

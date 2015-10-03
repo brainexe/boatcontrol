@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BoatControl</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on('welcome', function(data) {
+            addMessage(data.message);
+        });
+        socket.on('time', function(data) {
+            addMessage(data.time);
+        });
+        socket.on('output', function(data) {
+            addMessage(data);
+        });
+        socket.on('error', console.error.bind(console));
+        socket.on('message', console.log.bind(console));
+
+        function addMessage(message) {
+            var text = document.createTextNode(message),
+                el = document.createElement('li'),
+                messages = document.getElementById('messages');
+
+            el.appendChild(text);
+            messages.appendChild(el);
+        }
+
+        function submit() {
+            var command = document.getElementById('command').value;
+            socket.emit('input', command);
+        }
+    </script>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <input type="text" id="command" />
+    <input type="submit" value="Submit" onclick="submit()" />
+</body>
+</html>

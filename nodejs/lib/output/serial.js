@@ -1,8 +1,8 @@
 
-var SerialPort = require("serialport");
-var AbstractOutput = require('./abstract_output');
-var config  = require("../../config");
-var globule = require('globule');
+var SerialPort = require("serialport"),
+    globule    = require('globule'),
+    config     = require("../config"),
+    AbstractOutput = require('./abstract_output');
 
 const QUEUE_INTERVAL = 4;
 
@@ -18,7 +18,7 @@ var Serial = function(device, baud) {
             self.connect(result[0], baud);
             clearInterval(interval);
         } else {
-            console.log("no device found at: " + device)
+            console.log("no device found at: ".red + device)
         }
     }, 2000);
 };
@@ -32,7 +32,7 @@ Serial.prototype.connect = function(port, baud) {
         parser: SerialPort.parsers.readline("\n"),
         disconnectedCallback: function() {
             // todo reconnect
-            console.log('disconnected', arguments)
+            console.log('disconnected'.error, arguments)
         }
     });
 
@@ -41,8 +41,6 @@ Serial.prototype.connect = function(port, baud) {
     });
 
     this.serialPort.on('data', function(data) {
-        //console.log(data.yellow);
-
         var value = data.substr(2);
         switch (data[0]) {
             case 'd':
@@ -84,10 +82,6 @@ Serial.prototype._setPwm = function(pin, value) {
 
 Serial.prototype._queue = function(action, pin, value) {
     var line = action + ":" + pin + ":" + value + "\n";
-
-    if (config.debug.output) {
-        console.log('serial ' + line.blue);
-    }
 
     this.queue.push(line);
 };

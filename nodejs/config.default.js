@@ -1,14 +1,17 @@
 var config = {
-  // "debug" (gibt aus welche pins er ansteuern würde)
-  // "raspberry" (direkte Ansteuerung der GPIOS)
-  // "serial" (benutzt serial Schnittstelle)
-  // "443" (benutzt 443 frequenz)
-  "device": ["debug", "redis", "serial"],
+  // "debug" (output all commands to stdout)
+  // "raspberry" (direct control via GPIOS)
+  // "serial" (send serial command e.g. to arduino)
+  // "443" (tbd)
+  // "redis" (push commands to all redis slaves)
+  "output": ["debug", "redis", "serial"],
 
-  // hier ginge auch PS4
-  "controller": "dualShock3",
+  // available input devices:
+  // dualShock3 / dualShock4
+  // browser
+  // "redis"
+  "input": ["dualShock3", "browser", "redis"],
 
-  // gibt ALLE controller-Werte aus
   "debug": {
     output: true,
     controller: false,
@@ -17,18 +20,18 @@ var config = {
 
   "pins": {
     // Antrieb
-    "motor": {pin: 37, min: 0, max: 100, reverse: true},
+    "motor": {pin: 37,  min: 0, max: 100, reverse: true},
     "ruder": {pin: 36 , min: 0, max: 100, reverse: true},
 
     // Monitore
     "water": {pin: null},
     "monitors": [
       {
-        "rotate": {pin: 35, min: 5, max: 90},		// Bug
+        "rotate":   {pin: 35, min: 5, max: 90},		// Bug
         "vertical": {pin: 34, min: 5, max: 90}		// Bug
       },
       {
-        "rotate": {pin: 33, min: 5, max: 90},		// Heck
+        "rotate":   {pin: 33, min: 5, max: 90},		// Heck
         "vertical": {pin: 32, min: 5, max: 90}		// Heck
       }
     ],
@@ -48,12 +51,16 @@ var config = {
     "monitors": "right",
 
     "generic": [
-      {pin: 2, button: 'l2', type: 'press'},
-      {pin: 3, button: 'l1', type: 'onoff'},
-      {pin: 4, button: 'r1', type: 'timer', time: 2000},
+      {pin: 2,  button: 'l2', type: 'press'},
+      {pin: 3,  button: 'l1', type: 'onoff'},
+      {pin: 4,  button: 'r1', type: 'timer', time: 2000},
       {pin: 10, button: 'r2', type: 'blink', time_on: 100, time_off: 100},
-      {pin: 9, button: 'x', type: 'press'}
+      {pin: 9,  button: 'x',  type: 'press'}
     ]
+  },
+
+  "server": {
+    "port": 3000
   },
 
   // nur für serial/Arduino nötig

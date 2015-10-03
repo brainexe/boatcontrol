@@ -1,4 +1,4 @@
-var config  = require("../config");
+var config  = require("../lib/config");
 var output  = require("../lib/output");
 var Emitter = require('events').EventEmitter;
 

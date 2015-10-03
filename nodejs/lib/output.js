@@ -1,7 +1,7 @@
 
 var
-    config  = require("../config"),
-    util    = require('util');
+    config = require("./config"),
+    util   = require('util');
 
 function getOutput(type) {
     var output;
@@ -41,14 +41,14 @@ function getOutput(type) {
 }
 
 var output;
-if (util.isArray(config.device)) {
+if (util.isArray(config.output)) {
     output = require('./output/multiple');
     output = new output();
-    config.device.forEach(function(type) {
+    config.output.forEach(function(type) {
         output.addOutput(getOutput(type));
     });
 } else {
-    output = getOutput(config.device);
+    output = getOutput(config.output);
 }
 
 module.exports = output;

@@ -41,14 +41,14 @@ void loop() {
     //  Serial.println("int");
     //}
 
-    Serial.print("e:invalid:");
+    Serial.print("error:invalid:");
     Serial.println(line);
     delay(50);
   }
 
   if (DEBUG) {
     char buffer[50] = "";
-    sprintf(buffer, "d:action '%c' pin '%d' value '%d'",  action, pin, value);
+    sprintf(buffer, "debug:action '%c' pin '%d' value '%d'",  action, pin, value);
     Serial.println(buffer);
   }
 
@@ -78,7 +78,7 @@ void executeAction(char action, int pin, int value) {
       return;
 
     default:
-      Serial.print("e:unknown action: ");
+      Serial.print("error:unknown action: ");
       Serial.println(action);
   }
 }
@@ -112,8 +112,8 @@ void setServo(int pin, int value) {
   char pin_id[3];
   itoa(pin, pin_id, 10);
 
-  Serial.print("itoa");
-  Serial.println(pin_id);
+  //Serial.print("itoa");
+  //Serial.println(pin_id);
 
   JsonObject& pin_config = config_json["pins"]["5"]; // todo pin to string
   long min = pin_config["min"];
@@ -123,8 +123,8 @@ void setServo(int pin, int value) {
     value = 180 - value;
   }
 
-  Serial.println(max);
-  Serial.println();
+  //Serial.println(max);
+  //Serial.println();
 
   if (max > 0) {
     value = map(value, 0, 180, min, max);

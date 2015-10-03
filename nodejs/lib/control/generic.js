@@ -1,10 +1,10 @@
 
 
-module.exports = function (config, controller, output) {
+module.exports = function (config, input, output) {
     config.control.generic.forEach(function (generic) {
 
         var func = require('./generic/' + generic.type);
 
-        func(generic, controller, output);
+        func(generic, input, output);
     });
 };

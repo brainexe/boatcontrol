@@ -1,8 +1,8 @@
 var util = require('../util');
 
-module.exports = function(config, controller, output) {
+module.exports = function(config, input, output) {
 
-    controller.on(config.control.antrieb + ':move', function (data) {
+    input.on(config.control.antrieb + ':move', function (data) {
         // 255: volle Fahrt vorraus
         // 128: 0 Schub
         // 0:   Rückwärts

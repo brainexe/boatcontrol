@@ -1,8 +1,8 @@
 
 var timers = {};
 
-module.exports = function(generic, controller, output) {
-    controller.on(generic.button + ":press", function () {
+module.exports = function(generic, input, output) {
+    input.on(generic.button + ":press", function () {
         output.setDigital(generic.pin, true);
 
         if (timers[generic.pin]) {

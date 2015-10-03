@@ -4,6 +4,7 @@ var fs          = require('fs'),
     i;
 require('colors');
 
+var max_pin = 1;
 var pins = {};
 var raw_pins = raw_config['pins'];
 if (raw_pins['monitors']) {
@@ -20,12 +21,15 @@ for (i in raw_pins) {
         delete new_pin['pin'];
 
         pins[pin_id] = new_pin;
+
+        if (pin_id > max_pin) {
+            max_pin = pin_id;
+        }
     }
 }
 
 var config = {
     baud:  raw_config['serial_baud'],
-    debug: raw_config['debug'],
     pins:  pins
 };
 
@@ -41,6 +45,7 @@ if (process.argv[2]) {
 
         data = data.replace(/#define CONFIG ".*?"/, '#define CONFIG "' + json+ '"');
         data = data.replace(/#define DEBUG (false|true)/i, '#define DEBUG ' + (config.debug ? 'true' : 'false'));
+        data = data.replace(/#define HASH_SIZE \d+/i, '#define HASH_SIZE ' + max_pin);
 
         fs.writeFile(targetFilename, data, function(err) {
             if (err) {
