@@ -11,7 +11,8 @@ echo "install nodejs"
 apt-get install nodejs npm node-semver -y
 cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb && dpkg -i node_latest_armhf.deb
 
-echo "move /opt directory"
-mv /www/boatcontrol/sdcard/opt/* /opt/ -f
+cd -
+cd nodejs
+npm install
 
-ln -s /opt/sixpair/sixpair /user/bin
+# todo install sixiad / sixpair

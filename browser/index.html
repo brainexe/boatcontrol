@@ -1,45 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="boatControl">
 <head>
     <meta charset="UTF-8">
     <title>BoatControl</title>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script>
-        var socket = io();
 
-        socket.on('welcome', function(data) {
-            addMessage(data.message);
-        });
-        socket.on('time', function(data) {
-            addMessage(data.time);
-        });
-        socket.on('output', function(data) {
-            addMessage(data);
-        });
-        socket.on('config', function(data) {
-            addMessage(data);
-        });
-        socket.on('error', console.error.bind(console));
-        socket.on('message', console.log.bind(console));
+        angular.module('boatControl', []).controller('BoatController', function($scope) {
+            var self = this;
 
-        function addMessage(message) {
-            var text     = document.createTextNode(message),
-                el       = document.createElement('li'),
-                messages = document.getElementById('messages');
+            var socket = io();
 
-            el.appendChild(text);
-            messages.appendChild(el);
-        }
+            function addMessage(message) {
+                var text     = document.createTextNode(message),
+                        el       = document.createElement('li'),
+                        messages = document.getElementById('messages');
 
-        function submit() {
-            var command = document.getElementById('command').value;
-            socket.emit('input', command);
-        }
+                el.appendChild(text);
+                messages.appendChild(el);
+            }
+
+            socket.on('time', function(data) {
+                addMessage(data.time);
+            });
+            socket.on('output', function(data) {
+                addMessage(data);
+            });
+            socket.on('config', function(data) {
+                addMessage(JSON.stringify(data));
+                $scope.config = data;
+                $scope.$apply();
+                console.log(data);
+            });
+            socket.on('error', console.error.bind(console));
+            socket.on('message', console.log.bind(console));
+
+            $scope.submit = function(command) {
+                socket.emit('input', command);
+            };
+        });
     </script>
 </head>
-<body>
+<body ng-controller="BoatController">
     <ul id="messages"></ul>
-    <input type="text" id="command" />
-    <input type="submit" value="Submit" onclick="submit()" />
+
+    <input ng-model="sendCommand" type="text" id="command" />
+    <input type="submit" value="Submit" ng-submit="submit(sendCommand)" />
+    <hr/>
+    <div id="controller">
+        <div>
+            <input ng-repeat="(buttonId, buttonData) in config.controller.buttons" value="{{buttonId}}" type="button">
+        </div>
+        <br/>
+        <div>
+            <input ng-repeat="(joystickId, joystickData) in config.controller.joysticks" value="{{joystickId}}" type="button">
+        </div>
+    </div>
 </body>
 </html>

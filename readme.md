@@ -3,6 +3,6 @@
 # Install
 - create nodejs/config.js out of nodejs/config.default.json
 ```
-npm install
+sh scripts/install.sh
 ```
 

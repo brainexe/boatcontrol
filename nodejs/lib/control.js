@@ -1,6 +1,5 @@
 
-var config = require('../config'),
-    debug  = require('debug')('control');
+var config = require('../config');
 
 var loadPin = function(pin, input, output) {
     var key;

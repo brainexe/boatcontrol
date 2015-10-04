@@ -13,7 +13,9 @@ if [ ! -e /dev/input/js0 ] ; then
     sleep 1
     echo ".\c"
   done
+  echo ""
 fi
+echo "Controller connected!"
 
 cd ../nodejs
 sudo node index

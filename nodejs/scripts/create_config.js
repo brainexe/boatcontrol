@@ -1,7 +1,6 @@
-var fs            = require('fs'),
-    path          = require('path'),
-    loaded_config = require("../lib/config"),
-    raw_config    = require("../config"),
+var fs         = require('fs'),
+    path       = require('path'),
+    raw_config = require("../lib/config"),
     i;
 
 require('colors');
@@ -27,8 +26,6 @@ for (i in raw_pins) {
         delete new_pin['subType'];
         delete new_pin['joystick'];
         delete new_pin['button'];
-
-        console.log(pinIds);
 
         pinIds.forEach(function(pinId) {
             savePin(pinId, new_pin);

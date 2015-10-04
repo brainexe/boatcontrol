@@ -2,8 +2,8 @@
 var config = require("../config");
 
 // todo implement queue here
-// todo skip double entries
 var AbstractOutput = function() {
+    this.states = {};
 };
 
 AbstractOutput.prototype.setServo = function(pin, value) {
@@ -11,7 +11,13 @@ AbstractOutput.prototype.setServo = function(pin, value) {
         return;
     }
 
-    if (config.debug.servo_as_analog) {
+    if (this.states[pin] && this.states[pin] != value) {
+        return;
+    } else {
+        this.states[pin] = value;
+    }
+
+    if (config.servo_as_analog) { // todo needed?
         value *= 2;
         this._setAnalog(pin, Math.min(value, 255));
     } else {
@@ -34,6 +40,7 @@ AbstractOutput.prototype.setAnalog = function(pin, value) {
 
     this._setAnalog(pin, value);
 };
+
 AbstractOutput.prototype.setPwm = function(pin, value) {
     if (!pin) {
         return;

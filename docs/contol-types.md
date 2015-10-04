@@ -5,9 +5,9 @@
 - - monitor rotate
 - - monitor vertical
 - generic
--- generic press
--- generic onoff
--- generic timer
--- generic blink
--- generic press
--- generic autoon
+- - generic press
+- - generic onoff
+- - generic timer
+- - generic blink
+- - generic press
+- - generic autoon

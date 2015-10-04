@@ -4,7 +4,7 @@ sh ./set_config.sh
 
 cd `dirname $0`
 
-DEVICE=$(ls /dev/ttyUSB*)
+DEVICE=$(ls /dev/ttyUSB* /dev/ttyACM*)
 
 # compile + upload
 cd ../arduino/tmp

@@ -12,11 +12,9 @@ var config = {
   // "redis"
   "input": ["dualShock3", "browser", "redis"],
 
-  "debug": {
-    output: true,
-    controller: false,
-    servo_as_analog: false
-  },
+  "plugins": [],
+
+  "debug": true,
 
   "pins": [
     // engine

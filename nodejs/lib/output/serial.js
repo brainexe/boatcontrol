@@ -18,7 +18,7 @@ var Serial = function(device, baud) {
             self.connect(result[0], baud);
             clearInterval(interval);
         } else {
-            console.log("no device found at: ".red + device)
+            console.log("no output device found at: ".red + device)
         }
     }, 2000);
 };
