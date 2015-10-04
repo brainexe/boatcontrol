@@ -1,29 +1,45 @@
-var fs          = require('fs'),
-    path        = require('path'),
-    raw_config  = require("../config"),
+var fs            = require('fs'),
+    path          = require('path'),
+    loaded_config = require("../lib/config"),
+    raw_config    = require("../config"),
     i;
+
 require('colors');
 
 var max_pin = 1;
 var pins = {};
 var raw_pins = raw_config['pins'];
-if (raw_pins['monitors']) {
-    for (i in pins['monitors']) {
-        raw_pins['monitor_' + i + '_v'] = raw_pins['monitors'][i]['vertical'];
-        raw_pins['monitor_' + i + '_r'] = raw_pins['monitors'][i]['rotate'];
-    }
-}
 
 for (i in raw_pins) {
     if (raw_pins[i].pin) {
         var new_pin = raw_pins[i];
-        var pin_id = new_pin['pin'];
+
+        var pinIds = [];
+        ['pin', 'pinRotate', 'pinVertical'].forEach(function(pinType) {
+            if (new_pin[pinType]) {
+                pinIds.push(new_pin[pinType]);
+                delete(new_pin[pinType]);
+            }
+        });
+
         delete new_pin['pin'];
+        delete new_pin['type'];
+        delete new_pin['subType'];
+        delete new_pin['joystick'];
+        delete new_pin['button'];
 
-        pins[pin_id] = new_pin;
+        console.log(pinIds);
 
-        if (pin_id > max_pin) {
-            max_pin = pin_id;
+        pinIds.forEach(function(pinId) {
+            savePin(pinId, new_pin);
+        });
+
+        function savePin(pin_id, pin) {
+            pins[pin_id] = pin;
+
+            if (pin_id > max_pin) {
+                max_pin = pin_id;
+            }
         }
     }
 }

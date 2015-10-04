@@ -1,6 +1,8 @@
 
 var config = require("../config");
 
+// todo implement queue here
+// todo skip double entries
 var AbstractOutput = function() {
 };
 

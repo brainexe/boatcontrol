@@ -1,8 +1,7 @@
 #define rxpin			64	// grau
 #define txpin			14	// lila
-#define enpin			5	// grün (PWM2)
+#define enpin			5	// green (PWM2)
 #define statepin			// blau (A10)
-
 
 
 #define ORIG_X_STEP_PIN         17
@@ -14,14 +13,14 @@
 #define ORIG_Y_STEP_PIN         54
 #define ORIG_Y_DIR_PIN          47
 #define ORIG_Y_ENABLE_PIN       55
-#define ORIG_Y_MIN_PIN          35	// Löschmonitor Bug rotieren
-#define ORIG_Y_MAX_PIN          34	// Löschmonitor Bug vertikal
+#define ORIG_Y_MIN_PIN          35	// Lï¿½schmonitor Bug rotieren
+#define ORIG_Y_MAX_PIN          34	// Lï¿½schmonitor Bug vertikal
 
 #define ORIG_Z_STEP_PIN         57
 #define ORIG_Z_DIR_PIN          56
 #define ORIG_Z_ENABLE_PIN       62
-#define ORIG_Z_MIN_PIN          33	// Löschmonitor Aufbau rotieren
-#define ORIG_Z_MAX_PIN          32	// Löschmonitor Aufbau vertikal
+#define ORIG_Z_MIN_PIN          33	// Lï¿½schmonitor Aufbau rotieren
+#define ORIG_Z_MAX_PIN          32	// Lï¿½schmonitor Aufbau vertikal
 #define ORIG_E0_STEP_PIN        23
 #define ORIG_E0_DIR_PIN         22
 #define ORIG_E0_ENABLE_PIN      24

@@ -1,4 +1,5 @@
 
+// todo not needed. done via redis output
 var AbstractOutput = require('./abstract_output');
 
 var Browser = function() {
