@@ -7,5 +7,5 @@ cd `dirname $0`
 DEVICE=$(ls /dev/ttyUSB* /dev/ttyACM*)
 
 # compile + upload
-cd ../arduino/tmp
-arduino tmp.ino --upload --port $DEVICE
+cd ../nodejs/node_modules/duino/src
+arduino du.ino --upload --port $DEVICE

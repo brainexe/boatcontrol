@@ -17,12 +17,9 @@ AbstractOutput.prototype.setServo = function(pin, value) {
         this.states[pin] = value;
     }
 
-    if (config.servo_as_analog) { // todo needed?
-        value *= 2;
-        this._setAnalog(pin, Math.min(value, 255));
-    } else {
-        this._setServo(pin, value);
-    }
+    // todo reverse/range
+
+    this._setServo(pin, value);
 };
 
 AbstractOutput.prototype.setDigital = function(pin, value) {
