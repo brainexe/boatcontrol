@@ -1,6 +1,6 @@
 {
-  "name": "boat-ps3-controller",
-  "version": "0.0.3",
+  "name": "boatcontrol",
+  "version": "0.0.4",
   "description": "Control your boat with ps3 controller.",
   "main": "index.js",
   "repository": "git@github.com:brainexe/boatcontrol.git",
@@ -10,9 +10,9 @@
     "duino": "0.0.9",
     "globule": "~0.2",
     "gpio": "~0.2",
-    "redis": "~2.2",
+    "redis": "~2.4",
     "serialport": "~2.0",
-    "socket.io": "~1.3"
+    "socket.io": "~1.4"
   },
   "devDependencies": {},
   "scripts": {
