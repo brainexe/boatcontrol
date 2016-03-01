@@ -52,12 +52,15 @@ AbstractOutput.prototype.setPwm = function(pin, value) {
 AbstractOutput.prototype._setServo = function(pin, value) {
     throw "_setServo is not implemented";
 };
+
 AbstractOutput.prototype._setDigital = function(pin, value) {
     throw "_setDigital is not implemented";
 };
+
 AbstractOutput.prototype._setAnalog = function(pin, value) {
     throw "_setAnalog is not implemented";
 };
+
 AbstractOutput.prototype._setPwm = function(pin, value) {
     throw "_setPwm is not implemented";
 };

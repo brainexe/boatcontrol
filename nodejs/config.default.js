@@ -37,10 +37,9 @@ var config = {
     {pin: 2,  type: 'generic', subType: 'press', button: 'l2'},
     {pin: 3,  type: 'generic', subType: 'onoff', button: 'l1'},
     {pin: 4,  type: 'generic', subType: 'timer', button: 'r1', time: 2000},
-    {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100}
+    {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100},
 
-    // debug stuff
-    //{pin: -1, type: 'debug'}
+    {pin: 10, type: 'sound', subType: 'espeak', button: 'r2', text: "Test"}
   ],
 
   "redis": 'redis://localhost',
@@ -51,7 +50,6 @@ var config = {
 
   // nur für serial/Arduino nötig
   "serial_device": ["/dev/ttyACM*", "/dev/ttyUSB*"],
-  "serial_baud": 57600
 };
 
 module.exports = config;

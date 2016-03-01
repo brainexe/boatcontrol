@@ -8,5 +8,7 @@ git stash
 git pull
 git stash pop
 
+bower update --allow-root
+
 cd nodejs
 npm update

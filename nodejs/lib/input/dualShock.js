@@ -1,5 +1,5 @@
-var dualShock = require('dualshock-controller'),
-    config = require('../config');
+
+var dualShock = require('dualshock-controller');
 
 module.exports = function(emitter, controllerType) {
     var controller = dualShock({

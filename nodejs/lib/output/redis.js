@@ -1,14 +1,16 @@
 
 var AbstractOutput = require('./abstract_output'),
-    client = require('../redis')();
+    redis  = require('../redis'),
+    config = require('../config');
 
 var Redis = function() {
+    this.client = redis();
 };
 
 Redis.prototype = new AbstractOutput();
 
 Redis.prototype._sendCommand = function(type, pin, value) {
-    client.publish('output', [type, pin, value].join(':'));
+    this.client.publish('output', [config.instanceId, type, pin, value].join(':'));
 };
 
 Redis.prototype._setServo = function(pin, value) {

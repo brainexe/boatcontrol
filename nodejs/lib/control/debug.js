@@ -33,8 +33,8 @@ module.exports = function (pin, controller, output) {
         controller.on(controllerConfiguration.buttons[i].name + ":release", released);
         controller.on(controllerConfiguration.buttons[i].name + ":analog", analog);
         controller.on(controllerConfiguration.buttons[i].name + ":hold", hold);
-
     }
+
     //subscribe to all the status events:
     if (controllerConfiguration.status && controllerConfiguration.status.length) {
         for (i = 0; i < controllerConfiguration.status.length; i++) {

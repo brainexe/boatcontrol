@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>BoatControl</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
+    <script>
         angular.module('boatControl', []).controller('BoatController', function($scope) {
             var self = this;
 
             var socket = io();
 
             function addMessage(message) {
-                var text     = document.createTextNode(message),
+                var text         = document.createTextNode(message),
                         el       = document.createElement('li'),
                         messages = document.getElementById('messages');
 
@@ -21,12 +22,10 @@
                 messages.appendChild(el);
             }
 
-            socket.on('time', function(data) {
-                addMessage(data.time);
-            });
             socket.on('output', function(data) {
-                addMessage(data);
+                addMessage(data.join(' - '));
             });
+
             socket.on('config', function(data) {
                 addMessage(JSON.stringify(data));
                 $scope.config = data;

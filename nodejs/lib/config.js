@@ -13,4 +13,6 @@ try {
     console.log("Created config.js out of config.default.json".green)
 }
 
+config.instanceId = process.pid;
+
 module.exports = config;
