@@ -16,7 +16,7 @@ function getOutput(type) {
             break;
         case 'serial':
             output = require('./output/serial');
-            output = new output(config.serial_device, config.serial_baud);
+            output = new output();
             break;
         case 'radio_433':
             output = require('./output/radio_433');
