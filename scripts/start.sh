@@ -29,7 +29,6 @@ out "Controller connected. Starting server"
 
 cd ../nodejs
 
-node scripts/start_server.js &
 sudo node index
 
 out "Stopped Server"

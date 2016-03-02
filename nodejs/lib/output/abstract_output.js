@@ -1,7 +1,7 @@
 
 var config = require("../config");
 
-// todo implement queue here
+// todo implement queue here?
 var AbstractOutput = function() {
     this.states = {};
 };
@@ -11,18 +11,13 @@ AbstractOutput.prototype.setServo = function(pin, value) {
         return;
     }
 
-    if (this.states[pin] && this.states[pin] != value) {
+    if (this.states[pin] && this.states[pin] == value) {
         return;
     } else {
         this.states[pin] = value;
     }
 
-    if (config.servo_as_analog) { // todo needed?
-        value *= 2;
-        this._setAnalog(pin, Math.min(value, 255));
-    } else {
-        this._setServo(pin, value);
-    }
+    this._setServo(pin, value);
 };
 
 AbstractOutput.prototype.setDigital = function(pin, value) {

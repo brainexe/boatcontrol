@@ -3,58 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>BoatControl</title>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="/vendor/socket.io-client/socket.io.js"></script>
     <script src="/vendor/angular/angular.min.js"></script>
     <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/app/app.js"></script>
 
-    <script>
-        angular.module('boatControl', []).controller('BoatController', function($scope) {
-            var self = this;
-
-            var socket = io();
-
-            function addMessage(message) {
-                var text         = document.createTextNode(message),
-                        el       = document.createElement('li'),
-                        messages = document.getElementById('messages');
-
-                el.appendChild(text);
-                messages.appendChild(el);
-            }
-
-            socket.on('output', function(data) {
-                addMessage(data.join(' - '));
-            });
-
-            socket.on('config', function(data) {
-                addMessage(JSON.stringify(data));
-                $scope.config = data;
-                $scope.$apply();
-                console.log(data);
-            });
-            socket.on('error', console.error.bind(console));
-            socket.on('message', console.log.bind(console));
-
-            $scope.submit = function(command) {
-                socket.emit('input', command);
-            };
-        });
-    </script>
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/app/app.css" />
 </head>
 <body ng-controller="BoatController">
-    <ul id="messages"></ul>
+    <div class="container">
+        <ul class="logs">
+           <li ng-repeat="message in messages|slice:-10">{{message.time|date:'HH:mm:ss'}} {{message.text}}</li>
+        </ul>
 
-    <input ng-model="sendCommand" type="text" id="command" />
-    <input type="submit" value="Submit" ng-submit="submit(sendCommand)" />
-    <hr/>
-    <div id="controller">
-        <div>
-            <input ng-repeat="(buttonId, buttonData) in config.controller.buttons" value="{{buttonId}}" type="button">
+        <input class="input-control" ng-model="sendCommand" type="text" id="command" />
+        <input class="input-control" type="submit" value="Submit" ng-submit="submit(sendCommand)" />
+        <hr/>
+        <div id="controller">
+            <div>
+                <input ng-repeat="(buttonId, buttonData) in config.controller.buttons"
+                       ng-mousedown="triggerEvent(buttonId + ':press')"
+                       ng-mouseup="triggerEvent(buttonId + ':release')"
+                       value="{{buttonId}}"
+                       type="button"
+                       class="input-control"
+                />
+            </div>
+            <br/>
+            <div>
+                <input
+                        ng-repeat="(joystickId, joystickData) in config.controller.joysticks"
+                        value="{{joystickId}}"
+                        type="button"
+                        class="input-control"
+                />
+            </div>
         </div>
-        <br/>
-        <div>
-            <input ng-repeat="(joystickId, joystickData) in config.controller.joysticks" value="{{joystickId}}" type="button">
-        </div>
+
+        <table class="table table-striped table-border">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Controller</th>
+                    <th>Pin</th>
+                    <th>Akt. Wert</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pin in config.config.pins" title="{{pin}}">
+                    <td>{{pin.type}} {{pin.subType}}</td>
+                    <td>{{pin.button}} {{pin.joystick}}</td>
+                    <td>{{pin.pin}}</td>
+                    <td>{{pins[pin.pin]}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

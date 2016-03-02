@@ -11,3 +11,6 @@
 - - generic blink
 - - generic press
 - - generic autoon
+- sound
+- - sound espeak
+- - sound file

@@ -1,27 +1,25 @@
-var Emitter = require('events').EventEmitter, // todo emitter2 + wildcard
-    config  = require('./config');
-
-var globalEmitter = new Emitter();
+var
+    config  = require('./config'),
+    emitter = require('./emitter');
 
 module.exports = function() {
-    var inputType;
     var input;
 
     config.input.forEach(function(inputType) {
         switch (inputType) {
             case 'redis':
                 input = require('./input/redis');
-                input = input(globalEmitter);
+                input = input(emitter);
                 break;
             case 'dualShock3':
             case 'dualShock4':
                 input = require('./input/dualShock');
-                input = input(globalEmitter, inputType);
+                input = input(emitter, inputType);
                 break;
             default:
                 console.log('unknown input type: ' + input);
         }
     });
 
-    return globalEmitter;
+    return emitter;
 };

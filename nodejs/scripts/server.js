@@ -15,7 +15,8 @@ var input   = require('../lib/input/redis'),
 
 var port = config.server.port;
 
-var redis_client = redis('browser-subscribe');
+var redisPub = redis('pub');
+var redisSub = redis('sub');
 var serve = serveStatic(__dirname + '/../../browser/');
 
 // Send index.html to all requests
@@ -31,8 +32,12 @@ io.on('connection', function(socket) {
         controller: controller
     });
 
-    redis_client.subscribe('output');
-    redis_client.on('message', function(channell, message) {
+    socket.on('input', function(event) {
+        redisPub.publish('input', event);
+    });
+
+    redisSub.subscribe('output');
+    redisSub.on('message', function(channel, message) {
         var parts = message.split(':');
         socket.emit('output', parts);
     });
