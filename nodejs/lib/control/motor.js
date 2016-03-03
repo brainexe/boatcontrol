@@ -7,7 +7,6 @@ module.exports = function(pin, input, output) {
         // 128: 0 Schub
         // 0:   Rückwärts
         var power = util.map(255 - data.y, 0, 255, 0, 180);
-        console.log('set', pin.pin, power, ~~power)
         output.setServo(pin.pin, ~~power);
     });
 };

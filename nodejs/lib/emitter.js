@@ -1,4 +1,6 @@
 
-var Emitter = require('events').EventEmitter; // todo emitter2 + wildcard
+var EventEmitter2 = require('eventemitter2').EventEmitter2;
 
-module.exports = new Emitter();
+module.exports = new EventEmitter2({
+   maxListeners: 50
+});

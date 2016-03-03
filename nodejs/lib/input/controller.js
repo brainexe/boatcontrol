@@ -8,6 +8,10 @@ module.exports = function(emitter, controllerType) {
         motionInputs: true
     });
 
+    controller.on('error', function(error) {
+        console.error(error.red)
+    });
+
     var oldEmitter = controller.emit;
 
     controller.emit = function() {

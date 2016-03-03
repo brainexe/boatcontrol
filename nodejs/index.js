@@ -12,3 +12,4 @@ var plugins = require('./lib/plugins');
 plugins.loadAll(emitter, output);
 
 console.log(colors.green('started...'));
+emitter.emit('debug', 'Started App in instance: ' + config.instanceId);

@@ -8,13 +8,10 @@ var config = {
 
   // available input devices:
   // "dualShock3" or "dualShock4"
-  // "browser"
   // "redis"
-  "input": ["dualShock3", "browser", "redis"],
+  "input": ["dualShock3", "redis"],
 
   "plugins": [],
-
-  "debug": true,
 
   "pins": [
     // engine
@@ -46,10 +43,7 @@ var config = {
 
   "server": {
     "port": 3000
-  },
-
-  // nur für serial/Arduino nötig
-  "serial_device": ["/dev/ttyACM*", "/dev/ttyUSB*"],
+  }
 };
 
 module.exports = config;

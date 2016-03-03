@@ -14,7 +14,7 @@ cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb && dpkg -i n
 cd -
 cd nodejs
 npm install
-npm install -g bower
+npm install -g bower pm2
 
 cd ..
 bower install

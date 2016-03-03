@@ -13,11 +13,11 @@ module.exports = function() {
                 break;
             case 'dualShock3':
             case 'dualShock4':
-                input = require('./input/dualShock');
+                input = require('./input/controller');
                 input = input(emitter, inputType);
                 break;
             default:
-                console.log('unknown input type: ' + input);
+                console.log('unknown input type: ' + inputType);
         }
     });
 

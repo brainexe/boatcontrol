@@ -1,0 +1,22 @@
+{
+  "apps" : [
+    {
+      "name"        : "pair",
+      "script"      : "scripts/pair.sh",
+      "max_restarts" : 2,
+      "merge_logs"  : true
+    },
+    {
+      "name"        : "main",
+      "script"      : "scripts/start.sh",
+      "max_restarts" : 2,
+      "merge_logs"  : true
+    },
+    {
+      "name"        : "server",
+      "script"      : "scripts/server.sh",
+      "max_restarts" : 2,
+      "merge_logs"  : true
+    }
+  ]
+}

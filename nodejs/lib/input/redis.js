@@ -2,11 +2,11 @@
 var redis  = require('../redis');
 var config = require('../config');
 
-// todo rename to redis slave
 module.exports = function(emitter) {
-    var client = redis('input_sub');
+    var sub = redis('sub');
+    var pub = redis('pub');
 
-    client.on('message', function (channel, message) {
+    sub.on('message', function (channel, message) {
         if (channel == 'ouput') {
             var parts = message.split(':');
             if (parts[0] == config.instanceId) {
@@ -19,6 +19,18 @@ module.exports = function(emitter) {
         }
     });
 
-    client.subscribe('output');
-    client.subscribe('input');
+    emitter.onAny(function(event, parameters) {
+        var string = config.instanceId + ':' + event;
+        if (parameters) {
+            string += ':' + JSON.stringify(parameters)
+        }
+        pub.publish('event', string);
+    });
+
+    emitter.on('debug', function(message) {
+        pub.publish('debug', message);
+    });
+
+    sub.subscribe('output');
+    sub.subscribe('input');
 };

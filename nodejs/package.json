@@ -6,8 +6,9 @@
   "repository": "git@github.com:brainexe/boatcontrol.git",
   "dependencies": {
     "colors": "~1.1",
-    "dualshock-controller": "~0.6",
+    "dualshock-controller": "^0.6.9",
     "duino": "0.0.9",
+    "eventemitter2": "^1.0.0",
     "finalhandler": "^0.4.1",
     "globule": "~0.2",
     "gpio": "~0.2",

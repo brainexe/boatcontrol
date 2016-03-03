@@ -18,8 +18,9 @@
            <li ng-repeat="message in messages|slice:-10">{{message.time|date:'HH:mm:ss'}} {{message.text}}</li>
         </ul>
 
-        <input class="input-control" ng-model="sendCommand" type="text" id="command" />
-        <input class="input-control" type="submit" value="Submit" ng-submit="submit(sendCommand)" />
+        <!--<input class="input-control" ng-model="sendCommand" type="text" id="command" />-->
+        <!--<input class="input-control" type="submit" value="Submit" ng-submit="submit(sendCommand)" />-->
+
         <hr/>
         <div id="controller">
             <div>
@@ -31,12 +32,15 @@
                        class="input-control"
                 />
             </div>
-            <br/>
-            <div>
+            <hr />
+            <div ng-repeat="(joystickData, joystickId) in config.controller.joysticks">
+                <h3>{{joystickId}}</h3>
                 <input
-                        ng-repeat="(joystickId, joystickData) in config.controller.joysticks"
-                        value="{{joystickId}}"
-                        type="button"
+                        ng-repeat="direction in ['x', 'y']"
+                        ng-value="joystick[joystickId][direction]"
+                        type="number"
+                        min="255"
+                        max="255"
                         class="input-control"
                 />
             </div>

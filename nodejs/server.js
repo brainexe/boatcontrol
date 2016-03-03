@@ -1,23 +1,24 @@
+
 var http        = require('http'),
     colors      = require('colors'),
     fs          = require('fs'),
-    controller  = require('../lib/controller'),
-    config      = require('../lib/config'),
-    redis       = require('../lib/redis'),
     finalhandler = require('finalhandler'),
-    serveStatic = require('serve-static');
+    serveStatic = require('serve-static'),
+    controller  = require('./lib/controller'),
+    config      = require('./lib/config'),
+    redis       = require('./lib/redis');
 
 config.output = ['redis'];
 config.input  = [];
 
-var input   = require('../lib/input/redis'),
-    output  = require('../lib/output/redis');
+var input   = require('./lib/input/redis'),
+    output  = require('./lib/output/redis');
 
 var port = config.server.port;
 
 var redisPub = redis('pub');
 var redisSub = redis('sub');
-var serve = serveStatic(__dirname + '/../../browser/');
+var serve = serveStatic(__dirname + '/../browser/');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
@@ -37,9 +38,10 @@ io.on('connection', function(socket) {
     });
 
     redisSub.subscribe('output');
+    redisSub.subscribe('event');
+    redisSub.subscribe('debug');
     redisSub.on('message', function(channel, message) {
-        var parts = message.split(':');
-        socket.emit('output', parts);
+        socket.emit(channel, message);
     });
 });
 

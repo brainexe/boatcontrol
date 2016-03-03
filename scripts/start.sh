@@ -8,6 +8,7 @@ out() {
 out "Starting. Please wait."
 
 cd `dirname $0`
+cd ../nodejs
 
 if [ ! -e /dev/input/js0 ] ; then
   sudo sixad --stop
@@ -27,8 +28,6 @@ fi
 
 out "Controller connected. Starting server"
 
-cd ../nodejs
-
-sudo node index
+sudo node index.js
 
 out "Stopped Server"
