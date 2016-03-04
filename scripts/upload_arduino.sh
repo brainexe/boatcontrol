@@ -1,8 +1,7 @@
 #!/bin/sh
 
-sh ./set_config.sh
-
 cd `dirname $0`
+cd ..
 
 DEVICE=$(ls /dev/ttyUSB* /dev/ttyACM*)
 

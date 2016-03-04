@@ -12,11 +12,9 @@ apt-get install nodejs npm node-semver -y
 cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb && dpkg -i node_latest_armhf.deb
 
 cd -
-cd nodejs
 npm install
 npm install -g bower pm2
 
-cd ..
 bower install
 
 # todo install sixiad / sixpair

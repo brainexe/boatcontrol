@@ -5,10 +5,10 @@ out() {
    espeak "$1" -v en -s 120
 }
 
-out "Starting. Please wait."
+out "Starting"
 
 cd `dirname $0`
-cd ../nodejs
+cd ..
 
 if [ ! -e /dev/input/js0 ] ; then
   sudo sixad --stop
@@ -26,7 +26,7 @@ if [ ! -e /dev/input/js0 ] ; then
   echo ""
 fi
 
-out "Controller connected. Starting server"
+out "Controller connected"
 
 sudo node index.js
 

@@ -13,6 +13,8 @@ var config = {
 
   "plugins": [],
 
+  "debug": false,
+
   "pins": [
     // engine
     {pin: 37, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'left'},

@@ -18,7 +18,7 @@ var port = config.server.port;
 
 var redisPub = redis('pub');
 var redisSub = redis('sub');
-var serve = serveStatic(__dirname + '/../browser/');
+var serve = serveStatic(__dirname + '/browser/');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {

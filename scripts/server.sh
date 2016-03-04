@@ -1,5 +1,6 @@
 #!/bin/sh
 
-cd nodejs
+cd `dirname $0`
+cd ..
 
-node scripts/server.js
+node server.js
