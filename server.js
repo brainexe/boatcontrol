@@ -2,7 +2,6 @@
 var http        = require('http'),
     colors      = require('colors'),
     fs          = require('fs'),
-    finalhandler = require('finalhandler'),
     serveStatic = require('serve-static'),
     controller  = require('./lib/controller'),
     config      = require('./lib/config'),
@@ -20,10 +19,8 @@ var redisPub = redis('pub');
 var redisSub = redis('sub');
 var serve = serveStatic(__dirname + '/browser/');
 
-// Send index.html to all requests
 var app = http.createServer(function(req, res) {
-    var done = finalhandler(req, res);
-    serve(req, res, done);
+    serve(req, res);
 });
 
 var io = require('socket.io').listen(app);

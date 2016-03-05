@@ -1,3 +1,7 @@
 #!/bin/sh
 
-sudo sixpair
+# todo https://help.ubuntu.com/community/Sixaxis
+
+cd `dirname $0`
+
+sudo ./sixpair

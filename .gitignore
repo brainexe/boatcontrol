@@ -1,5 +1,5 @@
-.idea
-old
-node_modules
-nodejs/config.js
+/.idea
+/node_modules
+/config.js
 /browser/vendor/
+/scripts/sixpair

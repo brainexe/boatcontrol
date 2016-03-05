@@ -8,13 +8,13 @@
     },
     {
       "name"        : "main",
-      "script"      : "scripts/start.sh",
+      "script"      : "index.js",
       "max_restarts" : 2,
       "merge_logs"  : true
     },
     {
       "name"        : "server",
-      "script"      : "scripts/server.sh",
+      "script"      : "server.js",
       "max_restarts" : 2,
       "merge_logs"  : true
     }
