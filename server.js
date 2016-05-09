@@ -1,17 +1,10 @@
 
 var http        = require('http'),
     colors      = require('colors'),
-    fs          = require('fs'),
     serveStatic = require('serve-static'),
     controller  = require('./lib/controller'),
     config      = require('./lib/config'),
     redis       = require('./lib/redis');
-
-config.output = ['redis'];
-config.input  = [];
-
-var input   = require('./lib/input/redis'),
-    output  = require('./lib/output/redis');
 
 var port = config.server.port;
 

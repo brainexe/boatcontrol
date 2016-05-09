@@ -1,18 +1,24 @@
-#!/bin/sh
+#!/bin/bash
 
 cd `dirname $0`
 cd ..
 
-echo "Update git..."
-git stash
+echo "Updating git..."
+git stash -q
 git pull
-git stash pop
+git stash pop -q
 
 echo "Updating browser dependencies..."
 bower update --allow-root
 
 echo "update nodejs dependencies..."
-npm install -g bower  pm2
-npm update
+npm set progress=false
+NODE_ENV=production npm install -g bower pm2
+NODE_ENV=production npm install
+
+cd scripts
+
+echo "Install sixad"
+gcc -o sixpair sixpair.c -lusb
 
 echo "done!"

@@ -3,19 +3,19 @@
     {
       "name"        : "pair",
       "script"      : "scripts/pair.sh",
-      "max_restarts" : 2,
+      "max_restarts" : 10,
       "merge_logs"  : true
     },
     {
       "name"        : "main",
       "script"      : "index.js",
-      "max_restarts" : 2,
+      "max_restarts" : 10,
       "merge_logs"  : true
     },
     {
       "name"        : "server",
       "script"      : "server.js",
-      "max_restarts" : 2,
+      "max_restarts" : 10,
       "merge_logs"  : true
     }
   ]

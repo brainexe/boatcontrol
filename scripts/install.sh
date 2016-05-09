@@ -2,7 +2,7 @@
 
 cd `dirname $0`
 
-# todo install sixiad / sixpair
+# todo install sixiad
 
 echo "Updating system..."
 sudo apt-get update -y
@@ -14,19 +14,20 @@ apt-get install -y git espeak  libusb-dev libusb-dev libusb-0.1-4 libbluetooth-d
 echo "Install bluez..."
 sudo apt-get install -y bluez-utils bluez-compat bluez-hcidump
 
-echo "Install sixad"
+echo "Install sixad..."
 gcc -o sixpair sixpair.c -lusb
-
-#sudo apt-add-repository ppa:falk-t-j/qtsixa
-#sudo apt-get install -y sixad
 
 echo "Install nodejs..."
 sudo apt-get install nodejs npm node-semver wget  checkinstall
 cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb && dpkg -i node_latest_armhf.deb
 
 cd -
-npm install
-npm install -g bower pm2
+
+echo "Install nodejs dependencies..."
+npm set progress=false
+NODE_ENV=production npm install -g bower pm2
+NODE_ENV=production npm install
+
 
 bower install
 
