@@ -2,7 +2,7 @@
 
 out() {
    echo $1
-   espeak "$1" -v en -s 120
+   espeak "$1" -v en -s 120 2> /dev/null
 }
 
 out "Starting"
@@ -18,8 +18,10 @@ if [ ! -e /dev/input/js0 ] ; then
 
   out "Press PS button."
 
-  while [ ! -e /dev/input/js0 ] ;
+  i=0
+  while [ ! -e /dev/input/js0 ] && [ $i -lt 10 ] ;
   do
+    let i=$i+1
     sleep 1
     echo ".\c"
   done

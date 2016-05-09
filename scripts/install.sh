@@ -28,6 +28,4 @@ npm set progress=false
 NODE_ENV=production npm install -g bower pm2
 NODE_ENV=production npm install
 
-
-bower install
-
+bower install --allow-root --config.directory=browser/vendor
