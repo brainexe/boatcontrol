@@ -1,0 +1,3 @@
+[submodule "sixad"]
+	path = sixad
+	url = https://github.com/RetroPie/sixad.git

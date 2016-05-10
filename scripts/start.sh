@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 out() {
    echo $1
-   espeak "$1" -v en -s 120 2> /dev/null
+   espeak "$1" -v en -s 120 & 2> /dev/null
 }
 
 out "Starting"
@@ -19,16 +19,20 @@ if [ ! -e /dev/input/js0 ] ; then
   out "Press PS button."
 
   i=0
-  while [ ! -e /dev/input/js0 ] && [ $i -lt 10 ] ;
+  while [ ! -e /dev/input/js0 ] && [ $i -lt 20 ] ;
   do
     let i=$i+1
     sleep 1
-    echo ".\c"
+    echo -e ".\c"
   done
   echo ""
 fi
 
-out "Controller connected"
+if [ ! -e /dev/input/js0 ] ; then
+    out "No controller connected"
+else
+    out "Controller connected"
+fi
 
 sudo node index.js
 

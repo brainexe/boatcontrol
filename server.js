@@ -13,7 +13,8 @@ var redisSub = redis('sub');
 var serve = serveStatic(__dirname + '/browser/');
 
 var app = http.createServer(function(req, res) {
-    serve(req, res);
+    serve(req, res, function() {
+    });
 });
 
 var io = require('socket.io').listen(app);
