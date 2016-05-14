@@ -9,6 +9,7 @@ var config = {
   // available input devices:
   // "dualShock3" or "dualShock4"
   // "redis"
+  // "serial"
   "input": ["dualShock3", "redis"],
 
   "plugins": [],
@@ -17,17 +18,20 @@ var config = {
 
   "pins": [
     // engine
-    {pin: 37, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'left'},
-    {pin: 36, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'left'},
+    {pin: 37, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'right'},
+    {pin: 36, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'right'},
 
     // water monitors
-    {pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'right'},
+    {pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'left'},
 
     // sound
     {pin: null, type: 'generic', subType: 'onoff', button: 'circle'},
 
     // light
     {pin: 13, type: 'generic', subType: 'onoff', button: 'circle'},
+
+    // auto-on light
+    {pin: null, type: 'generic', subType: 'autoon', button: 'circle'},
 
     // water pump
     {pin: null, type: 'generic', subType: 'onoff', button: 'x'},
