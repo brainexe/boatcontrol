@@ -18,8 +18,8 @@ var config = {
 
   "pins": [
     // engine
-    {pin: 37, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'right'},
-    {pin: 36, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'right'},
+    {pin: 35, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'right'},
+    {pin: 37, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'right'},
 
     // water monitors
     {pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'left'},
