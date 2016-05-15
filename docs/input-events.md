@@ -4,6 +4,11 @@
  - x
  - square
  - r1 | r2 | l1 | l2
+ - psxButton
+ - select
+ - start
+ - rightanalogbump
+ - leftanalogbump
 
 ## Button Events
  - :hold

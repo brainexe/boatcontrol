@@ -12,14 +12,32 @@ var config = {
   // "serial"
   "input": ["dualShock3", "redis"],
 
-  "plugins": [],
+  "plugins": [
+      // "controller-debug"
+  ],
 
   "debug": false,
 
   "pins": [
     // engine
-    {pin: 35, type: 'motor', min: 0, max: 100, reverse: true, joystick: 'right'},
-    {pin: 37, type: 'ruder', min: 0, max: 100, reverse: true, joystick: 'right'},
+    {
+      type: 'motor',
+      joystick: 'right',
+      pin: 35,
+      min: 0,
+      max: 100,
+      defaultPosition: 0,
+      reverse: true
+    },
+    {
+      type: 'ruder',
+      joystick: 'right',
+      pin: 37,
+      min: 0,
+      max: 100,
+      defaultPosition: 0,
+      reverse: true
+    },
 
     // water monitors
     {pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'left'},
@@ -42,7 +60,9 @@ var config = {
     {pin: 4,  type: 'generic', subType: 'timer', button: 'r1', time: 2000},
     {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100},
 
-    {pin: 10, type: 'sound', subType: 'espeak', button: 'r2', text: "Test"}
+    // sound
+    {type: 'sound', subType: 'espeak', button: 'r2', text: "Test"}
+    // {type: 'sound', subType: 'file', button: 'r1', file: "./sound/engine.mp3"}
   ],
 
   "redis": 'redis://localhost',
