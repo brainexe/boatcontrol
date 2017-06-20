@@ -62,7 +62,7 @@ var config = {
 
     // sound
     {type: 'sound', subType: 'espeak', button: 'r2', text: "Test"},
-    // {type: 'sound', subType: 'file', button: 'r1', file: "./sound/engine.mp3"}
+    {type: 'sound', subType: 'file', button: 'r1', file: "horn.mp3"},
 
     // restart
     {type: 'restart', button: 'psxButton'}
@@ -71,6 +71,7 @@ var config = {
   "redis": 'redis://localhost',
 
   "server": {
+    "host": "localhost",
     "port": 3000
   }
 };

@@ -1,5 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-kill $(ps aux | grep 'sh start.sh' | awk '{print $2}')
-sleep 2
-kill -9 $(ps aux | grep 'sh start.sh' | awk '{print $2}')
+set +ex
+
+cd `dirname $0`
+. _common.sh
+cd ..
+
+./node_modules/pm2/bin/pm2 delete all
+
+cecho g "Stopped"

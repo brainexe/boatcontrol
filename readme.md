@@ -3,6 +3,6 @@
 # Install
 - create config.js out of config.default.json
 ```
-sh scripts/install.sh
+npm start
 ```
 

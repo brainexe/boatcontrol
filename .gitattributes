@@ -1,4 +1,2 @@
-sdcard/ export-ignore
 scripts/ export-ignore
 docs/ export-ignore
-libraries/ export-ignore

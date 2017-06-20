@@ -18,7 +18,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./index.js"
+    "start": "./scripts/start.sh"
   },
   "keywords": [
     "ps3",

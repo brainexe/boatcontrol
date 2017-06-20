@@ -7,6 +7,7 @@ var http        = require('http'),
     redis       = require('./lib/redis');
 
 var port = config.server.port;
+var host = config.server.host;
 
 var redisPub = redis('pub');
 var redisSub = redis('sub');
@@ -36,6 +37,6 @@ io.on('connection', function(socket) {
     });
 });
 
-console.log(colors.green('Start server at http://localhost:'+port));
+console.log(colors.green('Start server at http://' + host + ':' + port));
 
-app.listen(port);
+app.listen(port, host);

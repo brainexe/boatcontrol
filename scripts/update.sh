@@ -32,7 +32,7 @@ gcc -o sixpair sixpair.c -lusb
 
 cecho y "Install sixad..."
 cd ../sixad
-sudo make
+make > /dev/null
 sudo make install
 
 cecho g "done!"
