@@ -1,14 +1,15 @@
 #!/bin/bash
 
+cd `dirname $0`
+
+. _common.sh
+
 out() {
-   echo $1
-   espeak "$1" -v en -s 120 & 2> /dev/null
+   cecho y "$1"
+   espeak "$1" -v en -s 120 2> /dev/null
 }
 
 out "Starting"
-
-cd `dirname $0`
-cd ..
 
 if [ ! -e /dev/input/js0 ] ; then
   sudo sixad --stop
@@ -34,6 +35,5 @@ else
     out "Controller connected"
 fi
 
-sudo node index.js
-
-out "Stopped Server"
+cd ..
+./node_modules/pm2/bin/pm2 start .pm2.json

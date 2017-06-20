@@ -1,18 +1,20 @@
 {
   "name": "boat-ps3-controller",
-  "version": "0.0.3",
   "description": "Control your boat with ps3 controller.",
   "main": "index.js",
   "repository": "git@github.com:brainexe/boatcontrol.git",
   "dependencies": {
-    "colors": "~1.1",
-    "dualshock-controller": "brainexe/node-dualshock-controller",
-    "duino": "brainexe/duino",
-    "eventemitter2": "^1.0.3",
-    "gpio": "~0.2",
-    "redis": "~2.5",
-    "serve-static": "^1.10.2",
-    "socket.io": "~1.4"
+    "bower": "^1.8.0",
+    "bower-check-updates": "^2.2.3-1",
+    "colors": "^1.1.2",
+    "dualshock-controller": "github:brainexe/node-dualshock-controller",
+    "duino": "github:brainexe/duino",
+    "eventemitter2": "^4.1.0",
+    "gpio": "^0.2.7",
+    "pm2": "^2.5.0",
+    "redis": "^2.7.1",
+    "serve-static": "^1.12.3",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {},
   "scripts": {

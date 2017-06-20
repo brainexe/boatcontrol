@@ -61,8 +61,11 @@ var config = {
     {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100},
 
     // sound
-    {type: 'sound', subType: 'espeak', button: 'r2', text: "Test"}
+    {type: 'sound', subType: 'espeak', button: 'r2', text: "Test"},
     // {type: 'sound', subType: 'file', button: 'r1', file: "./sound/engine.mp3"}
+
+    // restart
+    {type: 'restart', button: 'psxButton'}
   ],
 
   "redis": 'redis://localhost',

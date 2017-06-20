@@ -1,11 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-DIR="/www/boatcontrol"
+BOAT_DIR=$(dirname $(dirname $(readlink -e $0)))
 
-alias boat="cd $DIR"
-alias pairController="cd $DIR; cd scripts; ./pair.sh"
-alias updateBoatControl="cd $DIR; cd scripts; ./update.sh"
-alias uploadArduino="cd $DIR; cd scripts; ./upload_arduino.sh"
-alias startController="cd $DIR; cd scripts; ./start.sh"
-alias startServer="cd $DIR; cd scripts; ./server.sh"
-alias stopServer="cd $DIR; cd scripts; ./stop.sh"
+alias boat="cd $BOAT_DIR"
+alias pairController="cd $BOAT_DIR/scripts; ./pair.sh"
+alias updateBoatControl="cd $BOAT_DIR/scripts; ./update.sh"
+alias uploadArduino="cd $BOAT_DIR/scripts; ./upload_arduino.sh"
+alias startController="cd $BOAT_DIR/scripts; ./start.sh"
+alias startServer="cd $BOAT_DIR/scripts; ./server.sh"
+alias stopServer="cd $BOAT_DIR/scripts; ./stop.sh"
+alias pm2="cd $BOAT_DIR; ./node_modules/pm2/bin/pm2"

@@ -1,22 +1,28 @@
 {
   "apps" : [
     {
-      "name"        : "pair",
-      "script"      : "scripts/pair.sh",
-      "max_restarts" : 10,
-      "merge_logs"  : true
+      "name"          : "pair",
+      "script"        : "scripts/pair.sh",
+      "max_restarts"  : 10,
+      "merge_logs"    : true,
+      "out_file"      : "./logs/pair.log",
+      "restart_delay" : 3000
     },
     {
-      "name"        : "main",
-      "script"      : "index.js",
-      "max_restarts" : 10,
-      "merge_logs"  : true
+      "name"          : "main",
+      "script"        : "index.js",
+      "max_restarts"  : 10,
+      "merge_logs"    : true,
+      "out_file"      : "./logs/main.log",
+      "restart_delay" : 3000
     },
     {
-      "name"        : "server",
-      "script"      : "server.js",
-      "max_restarts" : 10,
-      "merge_logs"  : true
+      "name"          : "server",
+      "script"        : "server.js",
+      "max_restarts"  : 10,
+      "merge_logs"    : true,
+      "out_file"      : "./logs/server.log",
+      "restart_delay" : 3000
     }
   ]
 }

@@ -3,28 +3,36 @@
 cd `dirname $0`
 cd ..
 
-echo "Updating git..."
-git stash -q
-git pull
+. ./scripts/_common.sh
+
+UPDATE_GIT=true
+while getopts "d:" opt; do
+    case "$opt" in
+        d)  UPDATE_GIT=false
+        ;;
+    esac
+done
+
+cecho y "Updating git..."
+git pull --autostash
 git submodule update --init
 git submodule add https://github.com/RetroPie/sixad.git sixad
-git stash pop -q
 
-echo "Updating browser dependencies..."
-bower install --allow-root --config.directory=browser/vendor
+cecho y "Updating browser dependencies..."
+./node_modules/bower/bin/bower install --allow-root --config.directory=browser/vendor
 
-echo "Update nodejs dependencies..."
+cecho y "Update nodejs dependencies..."
 npm set progress=false
 NODE_ENV=production npm install -q
 
 cd scripts
 
-echo "Install sixpair..."
+cecho y "Install sixpair..."
 gcc -o sixpair sixpair.c -lusb
 
-echo "Install sixad..."
+cecho y "Install sixad..."
 cd ../sixad
 sudo make
 sudo make install
 
-echo "done!"
+cecho g "done!"
