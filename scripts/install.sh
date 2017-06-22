@@ -4,6 +4,8 @@ cd `dirname $0`
 
 . _common.sh
 
+checkRoot
+
 cecho y "Updating package list..."
 sudo apt-get update -y -q
 
@@ -26,9 +28,5 @@ sudo apt-get install nodejs npm node-semver wget  checkinstall
 cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb && dpkg -i node_latest_armhf.deb
 
 cd -
-
-cecho y "Install nodejs dependencies..."
-npm set progress=false
-NODE_ENV=production npm install
 
 source ./update.sh

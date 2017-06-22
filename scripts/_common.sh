@@ -16,3 +16,10 @@ cecho() {
   [ -z "$text" ] && local text="$color$2${code}0m"
   echo "$text"
 }
+
+checkRoot() {
+    if [ "$(id -u)" != "0" ]; then
+       cecho red "This script must be run as root" 1>&2
+       exit 1
+    fi
+}

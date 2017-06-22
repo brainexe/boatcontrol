@@ -4,6 +4,8 @@ cd `dirname $0`
 
 . _common.sh
 
+checkRoot
+
 out() {
    cecho y "$1"
    espeak "$1" -v en -s 120 2> /dev/null
@@ -12,8 +14,7 @@ out() {
 out "Starting"
 
 if [ ! -e /dev/input/js0 ] ; then
-  sudo sixad --stop
-  sudo sixad --start &
+  sudo ../sixad/sixad --stop --start --boot-yes
 
   sleep 1
 
@@ -36,4 +37,4 @@ else
 fi
 
 cd ..
-./node_modules/pm2/bin/pm2 start .pm2.json
+./node_modules/pm2/bin/pm2 restart .pm2.json

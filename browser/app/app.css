@@ -1,7 +1,46 @@
 .logs {
     margin-top: 10px;
     height: 200px;
+    overflow-y: scroll;
     border: 1px darkgray solid;
     border-radius: 2px;
     background: #9acfea;
+}
+
+.joysticks {
+    width: 100px;
+}
+
+.joystick {
+    float: left;
+    margin-left: 10px;
+
+}
+
+.joystick_circle {
+    position: relative;
+    border: 3px darkgray solid;
+    border-radius: 128px;
+    height: 256px;
+    width: 256px;
+}
+
+.joystick_point {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #0f0f0f;
+}
+
+.pin-d-0 {
+    width: 20px;
+    height: 20px;
+    background-color: #ff0035;
+}
+
+.pin-d-1 {
+    width: 20px;
+    height: 20px;
+    background-color: #1ba622;
 }

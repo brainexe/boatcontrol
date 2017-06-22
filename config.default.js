@@ -40,25 +40,22 @@ var config = {
     },
 
     // water monitors
-    {pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'left'},
-
-    // sound
-    {pin: null, type: 'generic', subType: 'onoff', button: 'circle'},
+    //{pinRotate: null, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'left'},
 
     // light
     {pin: 13, type: 'generic', subType: 'onoff', button: 'circle'},
 
     // auto-on light
-    {pin: null, type: 'generic', subType: 'autoon', button: 'circle'},
+    {pin: 13, type: 'generic', subType: 'autoon', button: 'circle'},
 
     // water pump
-    {pin: null, type: 'generic', subType: 'onoff', button: 'x'},
+    {pin: 14, type: 'generic', subType: 'onoff', button: 'x'},
 
     // custom
     {pin: 2,  type: 'generic', subType: 'press', button: 'l2'},
     {pin: 3,  type: 'generic', subType: 'onoff', button: 'l1'},
     {pin: 4,  type: 'generic', subType: 'timer', button: 'r1', time: 2000},
-    {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 100, time_off: 100},
+    {pin: 10, type: 'generic', subType: 'blink', button: 'r2', time_on: 1000, time_off: 500},
 
     // sound
     {type: 'sound', subType: 'espeak', button: 'r2', text: "Test"},

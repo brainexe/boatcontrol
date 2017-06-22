@@ -4,6 +4,7 @@ var http        = require('http'),
     serveStatic = require('serve-static'),
     controller  = require('./lib/controller'),
     config      = require('./lib/config'),
+    metric      = require('./lib/metric'),
     redis       = require('./lib/redis');
 
 var port = config.server.port;
@@ -18,15 +19,34 @@ var app = http.createServer(function(req, res) {
     });
 });
 
+var ops = metric.counter({
+    name      : 'messages/sec',
+});
+
 var io = require('socket.io').listen(app);
 io.on('connection', function(socket) {
-    socket.emit('config', {
-        config:     config,
-        controller: controller
+    console.log('Browser client connected');
+    redisPub.hgetall('pins', function (error, pins) {
+        for (var pin in pins) {
+            pins[pin] = pins[pin].split('-');
+        }
+        socket.emit('config', {
+            config:     config,
+            controller: controller,
+            pins:       pins
+        });
     });
 
     socket.on('input', function(event) {
         redisPub.publish('input', event);
+    });
+
+    socket.on('timePing', function(time, fn) {
+        fn();
+    });
+
+    socket.on('disconnect', function() {
+        console.log('Browser client disconnected');
     });
 
     redisSub.subscribe('output');
@@ -34,6 +54,7 @@ io.on('connection', function(socket) {
     redisSub.subscribe('debug');
     redisSub.on('message', function(channel, message) {
         socket.emit(channel, message);
+        ops.inc();
     });
 });
 

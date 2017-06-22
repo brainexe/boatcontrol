@@ -8,6 +8,5 @@ cd ..
 
 checkRoot
 
-./node_modules/pm2/bin/pm2 delete all
+./node_modules/pm2/bin/pm2 monit
 
-cecho g "Stopped"

@@ -9,5 +9,8 @@ cd ..
 checkRoot
 
 ./node_modules/pm2/bin/pm2 delete all
+./node_modules/pm2/bin/pm2 restart .pm2.json
 
-cecho g "Stopped"
+sleep 2
+
+./node_modules/pm2/bin/pm2 status
