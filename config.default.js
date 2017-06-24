@@ -8,7 +8,7 @@ var config = {
 
   // available input devices:
   // "dualShock3" or "dualShock4"
-  // "redis"
+  // "redis" (needed to receive commands from browser version)
   // "serial"
   "input": ["dualShock3", "redis"],
 
@@ -16,7 +16,7 @@ var config = {
       // "controller-debug"
   ],
 
-  "debug": false,
+  "debug": true,
 
   "pins": [
     // engine

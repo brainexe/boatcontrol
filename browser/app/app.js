@@ -84,13 +84,21 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         }
         var parts = event.split(':');
 
-        if (parts[2] === 'hold') {
-            return;
+        switch (parts[2]) {
+            case 'hold':
+                return;
+            case 'move':
+                $scope.joystick[parts[1]]['x'] = parameters.x;
+                $scope.joystick[parts[1]]['y'] = parameters.y;
+                break;
+            case 'press':
+            case 'release':
+                if ($scope.config.controller.buttons[parts[1]]) {
+                    $scope.config.controller.buttons[parts[1]].isPressed = parts[2] === 'press';
+                }
+            break;
         }
-        if (parts[2] === 'move') {
-            $scope.joystick[parts[1]]['x'] = parameters.x;
-            $scope.joystick[parts[1]]['y'] = parameters.y;
-        }
+
         addMessage("Event: " + parts.slice(1).join(' - '));
         $scope.$apply();
     });
