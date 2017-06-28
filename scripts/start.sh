@@ -21,7 +21,7 @@ if [ ! -e /dev/input/js0 ] ; then
   out "Press PS button."
 
   i=0
-  while [ ! -e /dev/input/js0 ] && [ $i -lt 20 ] ;
+  while [ ! -e /dev/input/js0 ] && [ $i -lt 10 ] ;
   do
     let i=$i+1
     sleep 1
@@ -37,4 +37,4 @@ else
 fi
 
 cd ..
-./node_modules/pm2/bin/pm2 restart .pm2.json
+./node_modules/pm2/bin/pm2 restart pm2.json

@@ -17,6 +17,7 @@ var config = {
   ],
 
   "debug": true,
+  "motionDetection": false,
 
   "pins": [
     // engine

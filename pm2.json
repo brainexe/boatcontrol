@@ -14,7 +14,8 @@
       "max_restarts"  : 10,
       "merge_logs"    : true,
       "out_file"      : "./logs/main.log",
-      "restart_delay" : 5000
+      "restart_delay" : 5000,
+      "watch"         : true
     },
     {
       "name"          : "server",
@@ -22,7 +23,8 @@
       "max_restarts"  : 10,
       "merge_logs"    : true,
       "out_file"      : "./logs/server.log",
-      "restart_delay" : 5000
+      "restart_delay" : 5000,
+      "watch"         : true
     }
   ]
 }

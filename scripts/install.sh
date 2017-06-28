@@ -9,6 +9,9 @@ checkRoot
 cecho y "Updating package list..."
 sudo apt-get update -y -q
 
+#brew install libusbs
+#brew install libusb-compat
+
 cecho y "Upgrading system..."
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
