@@ -22,6 +22,9 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
             }
         }
 
+        if ($scope.messages.length > 10) {
+            $scope.messages.shift();
+        }
         $scope.messages.push({
             text: message,
             time: Date.now()
@@ -119,11 +122,20 @@ app.directive('pin', function() {
     return {
         restrict: 'E',
         template: '' +
-            '<div ng-if="pin">' +
-                '<div class="pin-{{pin[0]}}-{{pin[1]}}"></div>' +
+            '<div ng-switch="status[0]">' +
+                '<div ng-switch-when="d" class="pin-{{status[0]}}-{{status[1]}}"></div>' +
+                '<div ng-switch-when="s">' +
+                    '<div class="progress">' +
+                        '<div class="progress-bar progress-bar-striped" style="width:{{(status[1] / pin.max)*100}}%">' +
+                        '</div>' +
+                    '</div>' +
+                    '{{status[1]}} / {{pin.max}}' +
+                '</div>' +
+                '<div ng-switch-default>{{status}}</div>' +
             '</div>',
         scope: {
-            pin : "="
+            pin : "=",
+            status : "="
         }
     };
 });

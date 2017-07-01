@@ -20,7 +20,7 @@
     <div class="container">
         <div class="logs">
             <ul>
-                <li ng-repeat="message in messages|slice:-10">{{message.time|date:'HH:mm:ss'}} {{message.text}}</li>
+                <li ng-repeat="message in messages">{{message.time|date:'HH:mm:ss'}} {{message.text}}</li>
             </ul>
             <!--
             <ul>
@@ -81,8 +81,7 @@
                     <td>{{pin.button}} {{pin.joystick}}</td>
                     <td>{{pin.pin}}</td>
                     <td>
-                        {{pins[pin.pin]}}
-                        <pin pin="pins[pin.pin]"></pin>
+                        <pin status="pins[pin.pin]" pin="pin"></pin>
                     </td>
                 </tr>
             </tbody>

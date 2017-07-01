@@ -1,6 +1,6 @@
 .logs {
     margin-top: 10px;
-    height: 200px;
+    height: 225px;
     overflow-y: scroll;
     border: 1px darkgray solid;
     border-radius: 2px;
@@ -48,4 +48,15 @@
 
 .button-pressed {
     background-color: greenyellow !important;
+}
+
+.progress {
+    width: 100px;
+    height:20px;
+}
+
+.progress-bar {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
 }
