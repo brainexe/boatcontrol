@@ -5,19 +5,21 @@
   "repository": "git@github.com:brainexe/boatcontrol.git",
   "dependencies": {
     "bower": "^1.8.0",
-    "bower-check-updates": "^2.2.3-1",
     "colors": "^1.1.2",
-    "dualshock-controller": "github:brainexe/node-dualshock-controller",
+    "dualshock-controller": "^1.1.1",
     "duino": "github:brainexe/duino",
-    "eventemitter2": "^4.1.0",
+    "eventemitter2": "^4.1.2",
     "gpio": "^0.2.7",
     "lodash": "^4.17.4",
-    "pm2": "^2.5.0",
-    "redis": "^2.7.1",
-    "serve-static": "^1.12.3",
-    "socket.io": "^1.4.8"
+    "node-hid": "^0.5.4",
+    "pm2": "^2.6.1",
+    "redis": "^2.8.0",
+    "serve-static": "^1.12.4",
+    "socket.io": "^1.7.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "bower-check-updates": "^2.2.3-1"
+  },
   "scripts": {
     "start": "./scripts/start.sh"
   },

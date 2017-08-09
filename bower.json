@@ -1,5 +1,5 @@
 {
-  "name": "brainexe/boatcontrol",
+  "name": "boatcontrol",
   "dependencies": {
     "bootstrap": "3.3.*",
     "angular": "1.5.*",
