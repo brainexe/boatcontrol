@@ -6,13 +6,14 @@
   "dependencies": {
     "bower": "^1.8.0",
     "colors": "^1.1.2",
-    "dualshock-controller": "^1.1.1",
+    "dualshock-controller": "github:brainexe/node-dualshock-controller",
     "duino": "github:brainexe/duino",
     "eventemitter2": "^4.1.2",
     "gpio": "^0.2.7",
     "lodash": "^4.17.4",
     "node-hid": "^0.5.4",
     "pm2": "^2.6.1",
+    "pmx": "^1.2.0",
     "redis": "^2.8.0",
     "serve-static": "^1.12.4",
     "socket.io": "^1.7.4"

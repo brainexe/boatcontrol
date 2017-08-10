@@ -69,7 +69,7 @@ var config = {
   "redis": 'redis://localhost',
 
   "server": {
-    "host": "localhost",
+    "host": "0.0.0.0",
     "port": 3000
   }
 };

@@ -10,13 +10,13 @@ cd ..
 git submodule update --init
 git submodule add https://github.com/RetroPie/sixad.git sixad
 
-cecho y "Updating browser dependencies..."
-./node_modules/bower/bin/bower install \
-    -q --allow-root --config.directory=browser/vendor
-
 cecho y "Update nodejs dependencies..."
 npm set progress=false
 NODE_ENV=production npm install -q --progress=false
+
+cecho y "Updating browser dependencies..."
+./node_modules/bower/bin/bower install \
+    -q --allow-root --config.directory=browser/vendor
 
 cd scripts
 
