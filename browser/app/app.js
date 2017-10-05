@@ -55,11 +55,7 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         $scope.config = config;
         $scope.pins   = config.pins;
 
-        var newDate = new Date();
-        newDate.setTime(config.config.startedAt);
-        var dateString = newDate.toString();
-
-        addMessage('Config loaded from server. Server was started at ' + dateString);
+        addMessage('Config loaded from server');
         $scope.$apply();
     });
 
@@ -109,8 +105,12 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
     socket.on('error', console.error.bind(console));
     socket.on('message', console.log.bind(console));
 
-    $scope.submit = function(command) {
+    $scope.submitCommand = function(command) {
         socket.emit('output', '-1:' + command);
+    };
+
+    $scope.setValue = function(pin, type, value) {
+        socket.emit('output', '-1:' + pin + ':' + type + ':' + value);
     };
 
     $scope.triggerEvent = function(event) {
@@ -123,7 +123,11 @@ app.directive('pin', function() {
         restrict: 'E',
         template: '' +
             '<div ng-switch="status[0]">' +
-                '<div ng-switch-when="d" class="pin-{{status[0]}}-{{status[1]}}"></div>' +
+                '<div ' +
+                    'ng-switch-when="d" ' +
+                    'ng-click="$scope.$parent.setValue(pin.pin, !!status[1])" ' +
+                    'class="pin-{{status[0]}}-{{status[1]}}">' +
+                '</div>' +
                 '<div ng-switch-when="s">' +
                     '<div class="progress">' +
                         '<div class="progress-bar progress-bar-striped" style="width:{{(status[1] / pin.max)*100}}%">' +
@@ -131,7 +135,9 @@ app.directive('pin', function() {
                     '</div>' +
                     '{{status[1]}} / {{pin.max}}' +
                 '</div>' +
-                '<div ng-switch-default>{{status}}</div>' +
+                '<div ng-switch-default>' +
+                    '{{status}}' +
+                '</div>' +
             '</div>',
         scope: {
             pin : "=",

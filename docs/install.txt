@@ -11,14 +11,12 @@ Schritt 2: Boatcontrol installieren:
  $ sudo mkdir /www/ ; sudo chmod 777 /www
  $ cd /www
  $ git clone git@github.com:brainexe/boatcontrol.git
- $ cd boatcontrol/scripts
- $ sudo sh install.sh
+ $ sudo ./scripts/install.sh
 
 Schritt 3: Aliases laden
  $ echo ". /www/boatcontrol/scripts/alias.sh" >> /home/pi/.bashrc"
 
 Schritt 4:
  - Datei "/etc/cron.d/boatcontrol" anlegen/öffnen
- - Folgende Zeile eintragen (ohne "): "@reboot cd /www/boatcontrol/scripts/ ; sudo sh ./start.sh"
- - Wichtig: mindestens eine leere Zeile am Ende der Datei muss vorhanden sein
+ - Folgende Zeile eintragen (ohne "): "@reboot /www/boatcontrol/scripts/start.sh"
 

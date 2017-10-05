@@ -11,15 +11,14 @@
     "eventemitter2": "^4.1.2",
     "gpio": "^0.2.7",
     "lodash": "^4.17.4",
-    "node-hid": "^0.5.4",
     "pm2": "^2.6.1",
-    "pmx": "^1.2.0",
+    "pmx": "^1.5.1",
     "redis": "^2.8.0",
     "serve-static": "^1.12.4",
     "socket.io": "^1.7.4"
   },
   "devDependencies": {
-    "bower-check-updates": "^2.2.3-1"
+    "node-hid": "^0.5.7"
   },
   "scripts": {
     "start": "./scripts/start.sh"

@@ -3,9 +3,17 @@
     {
       "name"          : "pair",
       "script"        : "scripts/pair.sh",
-      "max_restarts"  : 10,
+      "max_restarts"  : 1000000,
       "merge_logs"    : true,
       "out_file"      : "./logs/pair.log",
+      "restart_delay" : 15000
+    },
+    {
+      "name"          : "sixad",
+      "script"        : "sixad/sixad --stop ; sixad/sixad --start",
+      "max_restarts"  : 10000,
+      "merge_logs"    : true,
+      "out_file"      : "./logs/sixad.log",
       "restart_delay" : 15000
     },
     {
@@ -14,8 +22,7 @@
       "max_restarts"  : 10,
       "merge_logs"    : true,
       "out_file"      : "./logs/main.log",
-      "restart_delay" : 5000,
-      "watch"         : true
+      "restart_delay" : 5000
     },
     {
       "name"          : "server",
@@ -23,8 +30,7 @@
       "max_restarts"  : 10,
       "merge_logs"    : true,
       "out_file"      : "./logs/server.log",
-      "restart_delay" : 5000,
-      "watch"         : true
+      "restart_delay" : 5000
     }
   ]
 }

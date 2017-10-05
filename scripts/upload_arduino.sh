@@ -3,8 +3,7 @@
 cd `dirname $0`
 cd ..
 
-DEVICE=$(ls /dev/ttyUSB* /dev/ttyACM*)
+DEVICE=$(ls /dev/ttyACM*)
 
 # compile + upload
-cd node_modules/duino/src
-arduino du.ino --upload --port $DEVICE -v
+arduino --upload node_modules/duino/src/duinolight/duinolight.ino --port $DEVICE -v
