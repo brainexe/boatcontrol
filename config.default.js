@@ -66,6 +66,7 @@ var config = {
     {type: 'restart', button: 'psxButton'}
   ],
 
+  "soundExecutable": "mplayer",
   "redis": 'redis://localhost',
 
   "server": {
