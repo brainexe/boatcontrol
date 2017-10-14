@@ -63,7 +63,7 @@ var config = {
     {type: 'sound', subType: 'file', button: 'r1', file: "horn.mp3"},
 
     // macro
-    {type: 'macro', macro: 'controller foo#sleep 1#controller 2', button: 'r1'},
+    {type: 'macro', macro: 'output d 1 1#sleep 1#controller 2#output d 1 0', button: 'r1'},
 
     // restart
     {type: 'restart', button: 'psxButton'}

@@ -6,7 +6,7 @@
       "max_restarts"  : 1000000,
       "merge_logs"    : true,
       "out_file"      : "./logs/pair.log",
-      "restart_delay" : 15000
+      "restart_delay" : 5000
     },
     {
       "name"          : "sixad",
@@ -22,14 +22,6 @@
       "max_restarts"  : 10,
       "merge_logs"    : true,
       "out_file"      : "./logs/main.log",
-      "restart_delay" : 5000
-    },
-    {
-      "name"          : "server",
-      "script"        : "server.js",
-      "max_restarts"  : 10,
-      "merge_logs"    : true,
-      "out_file"      : "./logs/server.log",
       "restart_delay" : 5000
     }
   ]
