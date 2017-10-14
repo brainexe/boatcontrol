@@ -41,7 +41,7 @@ var config = {
     },
 
     // water monitors
-    {pinRotate: 5, pinVertical: null, type: 'monitor', min: 0, max: 100, joystick: 'left'},
+    {pin: 5, type: 'monitor', min: 0, max: 100, joystick: 'left'},
 
     // light
     {pin: 13, type: 'generic', subType: 'onoff', button: 'circle'},
