@@ -98,7 +98,7 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
             break;
         }
 
-        addMessage("Event: " + parts.slice(1).join(' - '));
+        addMessage("Event: " + parts.join(' - '));
         $scope.$apply();
     });
 

@@ -8,9 +8,8 @@ var config = {
 
   // available input devices:
   // "dualShock3" or "dualShock4"
-  // "redis" (needed to receive commands from browser version)
   // "serial"
-  "input": ["dualShock3", "redis"],
+  "input": ["dualShock3"],
 
   "plugins": [
       // "controller-debug"
