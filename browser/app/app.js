@@ -38,14 +38,12 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
             $scope.ping = diff;
             $scope.$apply();
         });
-    }, 2000);
+    }, 5000);
 
     socket.on('output', function(data) {
-        var parts = data.split(':');
+        $scope.pins[data.pin] = data;
 
-        $scope.pins[parts[2]] = [parts[1], parts[3]];
-
-        addMessage("Command: " + parts.slice(1).join(' - '));
+        addMessage("Command: " + JSON.stringify(data));
         $scope.$apply();
     });
 
@@ -53,7 +51,7 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         console.log("Config:", config);
 
         $scope.config = config;
-        $scope.pins   = config.pins;
+        $scope.pins   = config.config.pinValues;
 
         addMessage('Config loaded from server');
         $scope.$apply();
@@ -84,6 +82,8 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         var parts = event.split(':');
 
         switch (parts[2]) {
+            case 'output':
+                return;
             case 'hold':
                 return;
             case 'move':
@@ -122,15 +122,15 @@ app.directive('pin', function() {
     return {
         restrict: 'E',
         template: '' +
-            '<div ng-switch="status[0]">' +
+            '<div ng-switch="status.type">' +
                 '<div ' +
-                    'ng-switch-when="d" ' +
-                    'ng-click="$scope.$parent.setValue(pin.pin, !!status[1])" ' +
-                    'class="pin-{{status[0]}}-{{status[1]}}">' +
+                    'ng-switch-when="digital" ' +
+                    'ng-click="$scope.$parent.setValue(pin.pin, !!status.value)" ' +
+                    'class="pin-{{status.type}}-{{status.value}}">' +
                 '</div>' +
-                '<div ng-switch-when="s">' +
+                '<div ng-switch-when="servo">' +
                     '<div class="progress">' +
-                        '<div class="progress-bar progress-bar-striped" style="width:{{(status[1] / pin.max)*100}}%">' +
+                        '<div class="progress-bar progress-bar-striped" style="width:{{(status.value / pin.max)*100}}%">' +
                         '</div>' +
                     '</div>' +
                     '{{status[1]}} / {{pin.max}}' +

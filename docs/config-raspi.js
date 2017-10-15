@@ -3,8 +3,7 @@ var config = {
   // "raspberry" (direct control via GPIOS)
   // "serial" (send serial command e.g. to arduino)
   // "debug" (print all output to stdout)
-  // "redis" (push commands to all redis slaves)
-  "output": ["debug", "redis", "serial"],
+  "output": ["debug", "serial"],
 
   // available input devices:
   // "dualShock3" or "dualShock4"
@@ -67,8 +66,6 @@ var config = {
     // restart
     {type: 'restart', button: 'psxButton'}
   ],
-
-  "redis": 'redis://localhost',
 
   "server": {
     "host": "0.0.0.0",

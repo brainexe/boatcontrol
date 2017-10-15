@@ -33,13 +33,13 @@
     background-color: #0f0f0f;
 }
 
-.pin-d-0 {
+.pin-digital-0 {
     width: 20px;
     height: 20px;
     background-color: #ff0035;
 }
 
-.pin-d-1 {
+.pin-digital-1 {
     width: 20px;
     height: 20px;
     background-color: #1ba622;
