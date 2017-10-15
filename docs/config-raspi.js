@@ -11,6 +11,7 @@ var config = {
   "input": ["dualShock3"],
 
   "plugins": [
+      "dummy-data"
       // "controller-debug"
   ],
 
