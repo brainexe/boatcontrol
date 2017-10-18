@@ -67,6 +67,8 @@ var config = {
         // increasing value when holding
         {
             pin: 15,
+            min: 0,
+            max: 180,
             type: 'generic',
             device: 'serial',
             subType: 'increase',
