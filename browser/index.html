@@ -52,12 +52,18 @@
                             ng-repeat="direction in ['x', 'y']"
                             ng-value="joystick[joystickId][direction]"
                             type="number"
-                            min="255"
+                            min="0"
                             max="255"
                             class="input-control"
                     />
-                    <div class="joystick_circle">
-                        <div class="joystick_point" style="left: {{joystick[joystickId].x}}px; top: {{joystick[joystickId].y}}px"></div>
+                    <div
+                            class="joystick_circle"
+                            ng-mousedown="onJoystickClick(joystickId, $event)"
+                    >
+                        <div
+                                class="joystick_point"
+                                style="left: {{joystick[joystickId].x}}px; top: {{joystick[joystickId].y}}px"
+                        ></div>
                     </div>
                 </div>
             </div>

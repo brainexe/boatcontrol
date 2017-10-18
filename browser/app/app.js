@@ -80,30 +80,31 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
             parameters = JSON.parse('{'+tmp[1]);
         }
         var parts = event.split(':');
-
-        switch (parts[2]) {
+        switch (parts[0]) {
             case 'output':
                 return;
+        }
+        console.log("e:", $scope.joystick[parts[1]], parameters, parts)
+        switch (parts[1]) {
             case 'hold':
                 return;
             case 'move':
-                $scope.joystick[parts[1]]['x'] = parameters.x;
-                $scope.joystick[parts[1]]['y'] = parameters.y;
+                $scope.joystick[parts[0]]['x'] = parameters.x;
+                $scope.joystick[parts[0]]['y'] = parameters.y;
                 break;
             case 'press':
             case 'release':
-                if ($scope.config.controller.buttons[parts[1]]) {
-                    $scope.config.controller.buttons[parts[1]].isPressed = parts[2] === 'press';
+                if ($scope.config.controller.buttons[parts[0]]) {
+                    $scope.config.controller.buttons[parts[0]].isPressed = parts[1] === 'press';
                 }
             break;
         }
 
-        addMessage("Event: " + parts.join(' - '));
+        addMessage("Event: " + event);
         $scope.$apply();
     });
 
     socket.on('error', console.error.bind(console));
-    socket.on('message', console.log.bind(console));
 
     $scope.submitCommand = function(command) {
         socket.emit('output', '-1:' + command);
@@ -115,6 +116,16 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
 
     $scope.triggerEvent = function(event) {
         socket.emit('input', event);
+    };
+
+    $scope.onJoystickClick = function (joystickId, event) {
+        console.log(joystickId, event.offsetX, event.offsetY);
+        var data = {
+            x: event.offsetX,
+            y: event.offsetY
+        };
+
+        socket.emit('input', joystickId + ':move', data);
     };
 });
 

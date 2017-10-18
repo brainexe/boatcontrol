@@ -20,7 +20,7 @@
     "node-hid": "^0.5.7"
   },
   "scripts": {
-    "start": "./scripts/start.sh"
+    "start": "node ./index.js"
   },
   "keywords": [
     "ps3",
