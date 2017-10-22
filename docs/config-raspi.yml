@@ -7,28 +7,27 @@ input:
   - dualShock3
 
 plugins:
-  - dummy-data
+ # - dummy-data
 
 devices:
   serial:
-
     - type: motor
-      joystick: right
-      device: serial
-      pin: 6
-      min: 0
-      max: 180
-      defaultPosition: 0
-      reverse: true
-
-    - type: ruder
       joystick: right
       device: serial
       pin: 9
       min: 0
       max: 180
+      buffer: 0
       defaultPosition: 0
-      reverse: true
+
+    - type: ruder
+      joystick: right
+      device: serial
+      pin: 6
+      min: 0
+      max: 180
+      buffer: 0
+      defaultPosition: 0
 
     # water monitor
     - pin: 5
@@ -36,6 +35,7 @@ devices:
       type: setMovement
       min: 0
       max: 180
+      speed: 30
       joystick: left
 
     # LED 13
@@ -73,7 +73,7 @@ devices:
       time_on: 1000
       time_off: 500
 
-    - pin: 15
+    - pin: 13
       min: 0
       max: 180
       type: increase
@@ -98,10 +98,11 @@ devices:
       macro:
         - output d 13 1
         - sleep 1
-        - controller 2
+        - controller circle:press
         - output d 13 0
       button: r1
 
+soundExecutable: mplayer
 debug: false
 motionDetection: false
 

@@ -104,6 +104,7 @@ devices:
 
 debug: true
 motionDetection: false
+soundExecutable: mplayer
 
 server:
   host: 0.0.0.0
