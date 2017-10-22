@@ -1,17 +1,14 @@
-- motor
-- ruder
-- debug
-- monitor
-- - monitor rotate
-- - monitor vertical
-- generic
-- - generic press
-- - generic onoff
-- - generic timer
-- - generic blink
-- - generic press
-- - generic autoon
-- sound
-- - sound espeak
-- - sound file
-- macro
+autoOn
+blink
+increase
+macro
+motor
+onOff
+press
+restart
+ruder
+setMovement
+soundFile
+soundOnOff
+speakText
+timer

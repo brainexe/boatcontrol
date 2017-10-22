@@ -1,0 +1,110 @@
+output:
+  - debug     # output all commands to stdout
+  - serial    # send serial command e.g. to arduino
+  - raspberry # direct control via GPIOS
+
+input:
+  - dualShock3
+  #- dualShock4
+
+plugins:
+  #- dummy-data
+
+devices:
+  serial:
+    - type: motor
+      joystick: right
+      device: serial
+      pin: 6
+      min: 0
+      max: 180
+      defaultPosition: 0
+      reverse: true
+
+    - type: ruder
+      joystick: right
+      device: serial
+      pin: 9
+      min: 0
+      max: 180
+      defaultPosition: 0
+      reverse: true
+
+    # water monitor
+    - pin: 5
+      device: serial
+      type: setMovement
+      min: 0
+      max: 100
+      joystick: left
+
+    - pin: 13
+      device: serial
+      type: onOff
+      button: circle
+
+    - pin: 13
+      device: serial
+      type: autoOn
+      button: circle
+
+    - pin: 14
+      type: onOff
+      device: serial
+      button: x
+
+    - pin: 2
+      type: press
+      button: l2
+
+    - pin: 3
+      type: onOff
+      button: l1
+
+    - pin: 4
+      type: timer
+      button: r1
+      time: 2000
+
+    - pin: 10
+      type: blink
+      button: r2
+      time_on: 1000
+      time_off: 500
+
+    - pin: 15
+      min: 0
+      max: 180
+      type: increase
+      device: serial
+      button: square
+
+    - type: speakText
+      button: r2
+      text: Test
+
+    - type: soundFile
+      button: r1
+      file: horn.mp3
+
+    - type: macro
+      macro:
+        - output d 1 1
+        - sleep 1
+        - controller 2
+        - output d 1 0
+      button: r1
+
+  raspberry: []
+
+  general:
+    - type: restart
+      button: psxButton
+
+
+debug: true
+motionDetection: false
+
+server:
+  host: 0.0.0.0
+  port: 3000

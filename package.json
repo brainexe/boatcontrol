@@ -11,6 +11,7 @@
     "duino": "github:brainexe/duino",
     "eventemitter2": "^4.1.2",
     "gpio": "^0.2.7",
+    "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
     "pm2": "^2.6.1",
     "serve-static": "^1.12.4",
