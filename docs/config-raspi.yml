@@ -35,9 +35,10 @@ devices:
       device: serial
       type: setMovement
       min: 0
-      max: 100
+      max: 180
       joystick: left
 
+    # LED 13
     - pin: 13
       device: serial
       type: onOff
@@ -79,6 +80,12 @@ devices:
       device: serial
       button: square
 
+  raspberry: []
+
+  general:
+    - type: restart
+      button: psxButton
+
     - type: speakText
       button: r2
       text: Test
@@ -89,20 +96,13 @@ devices:
 
     - type: macro
       macro:
-        - output d 1 1
+        - output d 13 1
         - sleep 1
         - controller 2
-        - output d 1 0
+        - output d 13 0
       button: r1
 
-  raspberry: []
-
-  general:
-    - type: restart
-      button: psxButton
-
-
-debug: true
+debug: false
 motionDetection: false
 
 server:
