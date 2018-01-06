@@ -7,6 +7,7 @@ input:
   - dualShock3
 
 plugins:
+  - sixad
  # - dummy-data
 
 devices:

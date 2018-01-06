@@ -26,7 +26,7 @@ devices:
       device: serial
       pin: 9
       min: 0
-      max: 180
+      max: 200
       defaultPosition: 0
       reverse: true
 
