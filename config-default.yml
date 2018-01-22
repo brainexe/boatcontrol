@@ -9,6 +9,8 @@ input:
 
 plugins:
   #- dummy-data
+  - sixad
+  - startup-sound
 
 devices:
   serial:
@@ -20,6 +22,7 @@ devices:
       max: 180
       defaultPosition: 0
       reverse: true
+      buffer: 10
 
     - type: ruder
       joystick: right

@@ -8,6 +8,7 @@ input:
 
 plugins:
   - sixad
+  - startup-sound
  # - dummy-data
 
 devices:
@@ -18,7 +19,7 @@ devices:
       pin: 9
       min: 0
       max: 180
-      buffer: 0
+      buffer: 10
       defaultPosition: 0
 
     - type: ruder
