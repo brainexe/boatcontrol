@@ -9,6 +9,7 @@ input:
 plugins:
   - sixad
   - startup-sound
+  - auto-pair
  # - dummy-data
 
 devices:
@@ -105,6 +106,7 @@ devices:
       button: r1
 
 soundExecutable: mplayer
+speakExecutable: espeak
 debug: false
 motionDetection: false
 

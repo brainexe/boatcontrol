@@ -37,4 +37,5 @@ else
 fi
 
 cd ..
+
 ./node_modules/pm2/bin/pm2 restart pm2.json

@@ -1,4 +1,4 @@
-var
+const
     control = require('./lib/control'),
     plugins = require('./lib/plugins');
 
