@@ -1,8 +1,9 @@
-const
-    control = require('./lib/control'),
-    plugins = require('./lib/plugins');
+const plugins = require('./lib/plugins');
 
-control.loadAll();
-plugins.loadAll();
+plugins.loadAll().then(() => {
+    const control = require('./lib/control');
+    console.log("[Plugins] Loaded!".green);
+    control.loadAll();
+});
 
 require('./lib/server');

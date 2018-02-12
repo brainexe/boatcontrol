@@ -27,8 +27,8 @@ devices:
       joystick: right
       device: serial
       pin: 6
-      min: 0
-      max: 180
+      min: 20
+      max: 200
       buffer: 0
       defaultPosition: 0
 
@@ -56,7 +56,7 @@ devices:
       type: onOff
       device: serial
       button: x
-
+# wasser?
     - pin: 2
       type: press
       button: l2
@@ -105,7 +105,7 @@ devices:
         - output d 13 0
       button: r1
 
-soundExecutable: mplayer
+soundExecutable: mpg123
 speakExecutable: espeak
 debug: false
 motionDetection: false
