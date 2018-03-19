@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const plugins = require('./lib/plugins');
 
 plugins.loadAll().then(() => {

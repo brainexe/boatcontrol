@@ -5,8 +5,8 @@ cd ..
 
 . ./scripts/_common.sh
 
-#cecho y "Updating git..."
-#git pull --autostash
+cecho y "Updating git..."
+git pull --autostash
 git submodule update --init
 git submodule add https://github.com/RetroPie/sixad.git sixad
 

@@ -16,7 +16,6 @@ devices:
   serial:
     - type: motor
       joystick: right
-      device: serial
       pin: 9
       min: 0
       max: 180
@@ -25,70 +24,62 @@ devices:
 
     - type: ruder
       joystick: right
-      device: serial
       pin: 6
       min: 20
       max: 200
       buffer: 0
       defaultPosition: 0
 
-    # water monitor
+    # Water Monitor
     - pin: 5
-      device: serial
       type: setMovement
       min: 0
       max: 180
       speed: 30
       joystick: left
 
-    # LED 13
-    - pin: 13
-      device: serial
-      type: onOff
-      button: circle
-
-    - pin: 13
-      device: serial
-      type: autoOn
-      button: circle
-
-    - pin: 14
-      type: onOff
-      device: serial
-      button: x
-# wasser?
+    # Wasser Pumpe
     - pin: 2
       type: press
       button: l2
 
+    # LED 13 (dummy)
+    - pin: 13
+      type: onOff
+      button: circle
+
+    # Dummy
+    - pin: 14
+      type: onOff
+      button: x
+
+
+  raspberry:
+    # leer
+    # - pin: 2
+
+    # Radar Motor
+    - pin: 4
+      type: onOff
+      button: triangle
+
+    # Blaulicht
+    - pin: 17
+      button: x
+      type: blink
+      time_on: 350
+      time_off: 700
+
+    # Licht
     - pin: 3
       type: onOff
-      button: l1
-
-    - pin: 4
-      type: timer
-      button: r1
-      time: 2000
-
-    - pin: 10
-      type: blink
-      button: r2
-      time_on: 1000
-      time_off: 500
-
-    - pin: 13
-      min: 0
-      max: 180
-      type: increase
-      device: serial
-      button: square
-
-  raspberry: []
+      button: circle
 
   general:
     - type: restart
       button: psxButton
 
+    # Sound
     - type: speakText
       button: r2
       text: Test
@@ -97,6 +88,7 @@ devices:
       button: r1
       file: horn.mp3
 
+    # Dummy
     - type: macro
       macro:
         - output d 13 1
@@ -112,4 +104,4 @@ motionDetection: false
 
 server:
   host: 0.0.0.0
-  port: 3000
+  port: 80

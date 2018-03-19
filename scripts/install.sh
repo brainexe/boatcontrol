@@ -17,7 +17,7 @@ sudo apt-get autoclean -y
 cecho y "Install main packages..."
 apt-get install -y git espeak \
         libusb-dev libusb-dev libusb-0.1-4 libbluetooth-dev \
-        joystick redis-server \
+        joystick \
         gcc gcc-avr avr-libc avrdude
 
 cecho y "Install bluez..."
