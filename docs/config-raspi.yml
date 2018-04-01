@@ -1,5 +1,4 @@
 output:
-  - debug     # output all commands to stdout
   - serial    # send serial command e.g. to arduino
   - raspberry # direct control via GPIOS
 
@@ -9,8 +8,11 @@ input:
 plugins:
   - sixad
   - startup-sound
-  - auto-pair
- # - dummy-data
+#  - auto-pair
+  - webcam
+  - server:
+    host: 0.0.0.0
+    port: 3000
 
 devices:
   serial:
@@ -32,6 +34,7 @@ devices:
 
     # Water Monitor
     - pin: 5
+      name: Monitor-Rotation
       type: setMovement
       min: 0
       max: 180
@@ -40,18 +43,19 @@ devices:
 
     # Wasser Pumpe
     - pin: 2
+      name: Wasserpumpe
       type: press
       button: l2
 
     # LED 13 (dummy)
-    - pin: 13
-      type: onOff
-      button: circle
+    #- pin: 13
+    #  type: onOff
+    #  button: circle
 
     # Dummy
-    - pin: 14
-      type: onOff
-      button: x
+    #- pin: 14
+    #  type: onOff
+    #  button: x
 
 
   raspberry:
@@ -60,11 +64,13 @@ devices:
 
     # Radar Motor
     - pin: 4
+      name: Radar
       type: onOff
       button: triangle
 
     # Blaulicht
     - pin: 17
+      name: Blaulicht
       button: x
       type: blink
       time_on: 350
@@ -72,36 +78,44 @@ devices:
 
     # Licht
     - pin: 3
+      name: Licht
       type: onOff
       button: circle
+      default: true
+
+    # Dummy
+    #- type: macro
+    #  macro:
+    #    - output d 13 1
+    #    - sleep 1
+    #    - input circle:press
+    #    - output d 13 0
+    #  button: r1
 
   general:
     - type: restart
+      name: Neustart
       button: psxButton
 
-    # Sound
-    - type: speakText
-      button: r2
-      text: Test
+    # disable events when "select" was pressed
+    - type: mute
+      name: Mute
+      button: button
 
+    # Sag "Es brennt"
+    - type: speakText
+      name: Sag "Es brennt"
+      button: r2
+      text: Es brennt
+
+    # play horn.mp3
     - type: soundFile
+      name: Horn-Sound
       button: r1
       file: horn.mp3
 
-    # Dummy
-    - type: macro
-      macro:
-        - output d 13 1
-        - sleep 1
-        - controller circle:press
-        - output d 13 0
-      button: r1
-
 soundExecutable: mpg123
-speakExecutable: espeak
+speakExecutable: espeak -s 80 -vde
 debug: false
 motionDetection: false
 
-server:
-  host: 0.0.0.0
-  port: 80

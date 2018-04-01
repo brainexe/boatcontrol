@@ -3,12 +3,12 @@ FROM node:alpine
 WORKDIR /boat
 COPY . /boat
 
-ENV NODE_ENV production npm install -q --progress=false
+ENV NODE_ENV production
 
-RUN apk --no-cache add --virtual git native-deps \
+RUN apk update && apk --no-cache add --virtual git native-deps \
   g++ gcc libgcc libstdc++ linux-headers make python && \
-  npm install node-gyp -g &&\
+  npm install -g node-gyp && \
   npm install && \
-  apk del native-deps
+  apk del build
 
 RUN node index.js

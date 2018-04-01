@@ -17,25 +17,24 @@
         Ping to server: {{ping}}ms
     </div>
 
+    <a class="btn btn-primary" ng-if="config.plugins.webcam" href="//{{hostName}}:8090/boat.webm">Webcam</a>
+    <a class="btn btn-primary" ng-if="!loggingEnabled" ng-click="enableLog()">Enable Log</a>
+    <a class="btn btn-primary" ng-if="!showController" ng-click="displayController()">Show Controller</a>
+
     <div class="container">
-        <div class="logs">
+        <div class="logs" ng-if="loggingEnabled">
             <ul>
                 <li ng-repeat="message in messages">{{message.time|date:'HH:mm:ss'}} {{message.text}}</li>
             </ul>
-            <!--
-            <ul>
-                <li ng-repeat="filter in logFilters">{{message.time|date:'HH:mm:ss'}} {{message.text}}</li>
-            </ul>
-            -->
         </div>
 
         <!--<input class="input-control" ng-model="sendCommand" type="text" id="command" />-->
         <!--<input class="input-control" type="submit" value="Submit" ng-submit="submit(sendCommand)" />-->
 
-        <hr/>
-        <div id="controller">
+        <div id="controller" ng-if="showController">
+            <hr/>
             <div>
-                <input ng-repeat="(buttonId, buttonData) in config.controller.buttons"
+                <input ng-repeat="(buttonId, buttonData) in controller.buttons"
                        ng-mousedown="triggerEvent(buttonId + ':press')"
                        ng-mouseup="triggerEvent(buttonId + ':release')"
                        value="{{buttonId}}"
@@ -46,7 +45,7 @@
             </div>
             <hr />
             <div>
-                <div class="joystick" ng-repeat="(joystickData, joystickId) in config.controller.joysticks">
+                <div class="joystick" ng-repeat="(joystickData, joystickId) in controller.joysticks">
                     <h3>{{joystickId}}</h3>
                     <input
                             ng-repeat="direction in ['x', 'y']"
@@ -69,29 +68,48 @@
             </div>
         </div>
 
-        <table class="table table-striped table-border">
+        <div ng-repeat="(device, pins) in config.devices">
+            <h2 class="capitalize">{{device}}</h2>
+            <div class="table-responsive">
+            <table class="table table-striped table-border">
             <thead>
                 <tr>
-                    <th>Command</th>
                     <th>Input type</th>
+                    <th>Command</th>
                     <th>Pin</th>
                     <th>Akt. Wert</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="pin in config.config.pins"
+                <tr ng-repeat="pin in pins"
                     title="{{pin}}"
-                    ng-class="{'button-pressed':config.controller.buttons[pin.button].isPressed}"
+                    ng-class="{'button-pressed':controller.buttons[pin.button].isPressed}"
                 >
-                    <td>{{pin.type}} {{pin.subType}}</td>
-                    <td>{{pin.button}} {{pin.joystick}}</td>
+                    <td>
+                        <div ng-if="pin.joystick">
+                            {{pin.button}} {{pin.joystick}}
+                        </div>
+                        <div ng-if="pin.button && !pin.joystick">
+                            <input
+                                   ng-mousedown="triggerEvent(pin.button + ':press')"
+                                   ng-mouseup="triggerEvent(pin.button + ':release')"
+                                   value="{{pin.button}}"
+                                   type="button"
+                                   class="input-control button"
+                            />
+                        </div>
+                    </td>
+                    <td ng-if="pin.name">{{pin.name}} <small>({{pin.type}})</small></td>
+                    <td ng-if="!pin.name">{{pin.type}}</td>
                     <td>{{pin.pin}}</td>
                     <td>
-                        <pin status="pins[pin.pin]" pin="pin"></pin>
+                        <pin pin="pin"></pin>
                     </td>
                 </tr>
             </tbody>
         </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>

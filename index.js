@@ -6,6 +6,5 @@ plugins.loadAll().then(() => {
     const control = require('./lib/control');
     console.log("[Plugins] Loaded!".green);
     control.loadAll();
+    console.log("[Boat] Started!".green);
 });
-
-require('./lib/server');

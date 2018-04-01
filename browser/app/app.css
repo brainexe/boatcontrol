@@ -1,3 +1,13 @@
+/* style.css */
+* {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.container {
+    width: 97%;
+}
+
 .logs {
     margin-top: 10px;
     height: 225px;
@@ -33,13 +43,13 @@
     background-color: #0f0f0f;
 }
 
-.pin-digital-0 {
+.pin-digital-false {
     width: 20px;
     height: 20px;
     background-color: #ff0035;
 }
 
-.pin-digital-1 {
+.pin-digital-true {
     width: 20px;
     height: 20px;
     background-color: #1ba622;
@@ -59,4 +69,8 @@
     -webkit-transition: none;
     -o-transition: none;
     transition: none;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
