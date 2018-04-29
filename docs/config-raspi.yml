@@ -8,8 +8,11 @@ input:
 plugins:
   - sixad
   - startup-sound
-#  - auto-pair
+  - auto-pair
   - webcam
+  # increase volume
+  - command:
+    cli: volu; volu; volu; volu
   - server:
     host: 0.0.0.0
     port: 3000
@@ -38,6 +41,7 @@ devices:
       type: setMovement
       min: 0
       max: 180
+      defaultPosition: 90
       speed: 30
       joystick: left
 
@@ -100,13 +104,13 @@ devices:
     # disable events when "select" was pressed
     - type: mute
       name: Mute
-      button: button
+      button: select
 
     # Sag "Es brennt"
     - type: speakText
-      name: Sag "Es brennt"
+      name: Sag "Hilfe! Es brennt"
       button: r2
-      text: Es brennt
+      text: "Hilfe! Es brennt!"
 
     # play horn.mp3
     - type: soundFile
@@ -115,7 +119,7 @@ devices:
       file: horn.mp3
 
 soundExecutable: mpg123
-speakExecutable: espeak -s 80 -vde
+speakExecutable: espeak -s80 -vde
 debug: false
 motionDetection: false
 
