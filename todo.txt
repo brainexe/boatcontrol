@@ -1,0 +1,17 @@
+pause/mute button
+rückkanal linux ps3 (rubmle/led)
+mehr mp3s
+webview: responsive view verbessern
+raspi: PWM/analog Ausgabe
+wlan/BT: reichweite testen (vs pi zero)
+batteriestand boot
+server pin view: show list of pin properties
+which node/ecmascript version? -> use import
+supervisor config + put stdout/err into logs/boat.log
+http://node.green/
+    plugin: startup command
+firmata instead of "serial"
+multi-press event . z.b. "l1-"
+# controller.on('battery:change', data => console.log(data));
+# controller.on('connection:change', data => console.log(data));
+

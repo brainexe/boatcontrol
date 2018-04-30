@@ -1,5 +1,6 @@
 {
   "name": "boat-control",
+  "version": "1.0.0",
   "description": "Control your boat with ps3/ps4 controller.",
   "main": "index.js",
   "repository": "git@github.com:brainexe/boatcontrol.git",
@@ -9,10 +10,13 @@
     "dualshock-controller": "github:brainexe/node-dualshock-controller",
     "duino": "github:brainexe/duino",
     "eventemitter2": "^5.0.1",
-    "gpio": "^0.2.7",
     "js-yaml": "^3.11.0",
     "serve-static": "^1.13.2",
     "socket.io": "^1.7.4"
+  },
+  "optionalDependencies": {
+    "gpio": "^0.2.7",
+    "raspi-pwm": "^6.0.0"
   },
   "scripts": {
     "start": "./index.js",
