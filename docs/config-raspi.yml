@@ -10,9 +10,6 @@ plugins:
   - startup-sound
   - auto-pair
   - webcam
-  # increase volume
-  - command:
-    cmd: volu; volu; volu; volu
   - server:
     host: 0.0.0.0
     port: 3000
@@ -85,7 +82,7 @@ devices:
       name: Licht
       type: onOff
       button: circle
-      default: true
+      default: 1
 
     # Dummy
     #- type: macro

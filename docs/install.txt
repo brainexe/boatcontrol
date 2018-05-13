@@ -1,9 +1,6 @@
 
 Schritt 1: Raspbian runterladen und auf Raspberry packen
- - http://jankarres.de/2012/08/raspberry-pi-raspbian-installieren/
- - an Bildschirm anschließen
  - "Expand Filesystem"
- - "Internationalisation Options" -> Locale / Keyboard Layout auf DE machen, wenn gewünscht
  - "Advanced Options" -> SSH -> enable
 
 Schritt 2: Boatcontrol installieren:
@@ -15,8 +12,4 @@ Schritt 2: Boatcontrol installieren:
 
 Schritt 3: Aliases laden
  $ echo ". /www/boatcontrol/scripts/alias.sh" >> /home/pi/.bashrc"
-
-Schritt 4:
- - Datei "/etc/cron.d/boatcontrol" anlegen/öffnen
- - Folgende Zeile eintragen (ohne "): "@reboot /www/boatcontrol/scripts/start.sh"
 

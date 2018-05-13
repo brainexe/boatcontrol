@@ -15,6 +15,7 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
     $scope.loggingEnabled = false;
     $scope.showController = false;
     $scope.hostName = window.location.hostname;
+    $scope.speakText = '';
 
     addMessage('Loading data...');
 
@@ -131,8 +132,8 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         socket.emit('output', '-1:' + pin + ':' + type + ':' + value);
     };
 
-    $scope.triggerEvent = function(event) {
-        socket.emit('input', event);
+    $scope.triggerEvent = function() {
+        socket.emit('input', ...arguments);
     };
 
     $scope.onJoystickClick = function (joystickId, event) {
