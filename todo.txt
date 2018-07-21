@@ -8,10 +8,10 @@ supervisord: stdout/err into logs/boat.log
 raspi: increase default volume
 firmata instead of "serial"
 multi-press event . z.b. "l1-x"
+controller disconnect -> stop + beep
 # controller.on('battery:change', data => console.log(data));
 # controller.on('connection:change', data => console.log(data));
-say textfield
 browser: fix on hold event
 failsave position for motor etc
-    node -v: v8.2.1 node.green
 sounds: https://freesound.org/
+lcd display
