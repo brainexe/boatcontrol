@@ -1,8 +1,9 @@
 rückkanal linux ps3 (rubmle/led)
-mehr mp3s
-raspi: PWM/analog Ausgabe welche pins
+mehr mp3s/von Handy streamen?
+raspi: PWM/analog Ausgabe welche pins oder mit pca9685
 wlan/BT: reichweite testen (vs pi zero)
 batteriestand boot
+Batteriestand Controler auslesen -> Warnton
 server pin view: show list of pin properties
 supervisord: stdout/err into logs/boat.log
 raspi: increase default volume
@@ -15,3 +16,8 @@ browser: fix on hold event
 failsave position for motor etc
 sounds: https://freesound.org/
 lcd display
+Temperaturen Motoren, Fahrtenregler messen, bei Bedarf Leistung mindern + Warnmeldung
+Wassermelder
+GPS/Kompas
+Einbundung von ESP8266 über W-Lan
+Grafische Oberfläche von Raspi mit Kamerabild im Hintergrund auf Handy/Videobrille
