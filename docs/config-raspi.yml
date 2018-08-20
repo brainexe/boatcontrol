@@ -23,6 +23,8 @@ devices:
       max: 180
       buffer: 10
       defaultPosition: 0
+      relayPin: 999
+      relayDelay: 3
 
     - type: ruder
       joystick: right
