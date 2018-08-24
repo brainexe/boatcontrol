@@ -5,22 +5,22 @@ Prio  Bezeichnung
 1     raspi: PWM/analog Ausgabe welche pins oder mit pca9685
 1     wlan/BT: reichweite testen (vs pi zero)
 2     batteriestand boot
-2     Batteriestand Controler auslesen -> Warnton
+2     Batteriestand Controller auslesen -> Warnton
 2     server pin view: show list of pin properties
-      supervisord: stdout/err into logs/boat.log
       raspi: increase default volume
-      firmata instead of "serial"
 1     multi-press event . z.b. "l1-x"/Umschalten verschiedener Funktionen für Knüppel (z.B. Löschmonitore, Beiboot, Kran)
 1     controller disconnect -> stop + beep
       # controller.on('battery:change', data => console.log(data));
       # controller.on('connection:change', data => console.log(data));
       browser: fix on hold event
-1      failsave position for motor etc
+1     failsave position for motor etc
       lcd display
 2     Temperaturen Motoren, Fahrtenregler messen, bei Bedarf Leistung mindern + Warnmeldung
 1     Wassermelder
 3     GPS/Kompas
-1     Einbundung von ESP8266 über W-Lan, am besten mehrere gleichzeitig nutzbar (ausbick auf Adolph Bernpol etc)
+1     Einbundung von ESP8266 über W-Lan (am besten mehrere gleichzeitig nutzbar (ausbick auf Adolph Bernpol etc))
+            https://github.com/AlphaLima/ESP32-Serial-Bridge/blob/master/ESP32-Serial-Bridge.ino
 2     Grafische Oberfläche von Raspi mit Kamerabild im Hintergrund auf Handy/Videobrille
-1     Schalter von Fahrtenregler durch Relais ersetzen - Taster "Start" drücken um Fahrtenregler zu starten/nach Störung reseten, 
+1     Schalter von Fahrtenregler durch Relais ersetzen - Taster "Start" drücken um Fahrtenregler zu starten/nach Störung reseten,
       am Anfang automatisch?, "Select" oder Störung zum deaktivieren
+2     Dockerfile

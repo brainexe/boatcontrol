@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  node:
+    build: .
+    image: brainexe/boat-control:latest
+    restart: always
+    volumes:
+    - ./config.yam:/boat/config.yam
+    - ./logs/:/boat/logs/
+    - ./dev/:/dev/
