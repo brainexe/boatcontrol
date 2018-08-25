@@ -8,4 +8,4 @@ services:
     volumes:
     - ./config.yam:/boat/config.yam
     - ./logs/:/boat/logs/
-    - ./dev/:/dev/
+    - /dev/:/dev/
