@@ -18,7 +18,8 @@
   "optionalDependencies": {
     "gpio": "^0.2.7",
     "raspi-pwm": "^6.0.0",
-    "pca9685": "^4.0.3"
+    "pca9685": "^4.0.3",
+    "i2c-bus": "^4.0.1"
   },
   "scripts": {
     "start": "./index.js",
