@@ -6,6 +6,6 @@ services:
     image: brainexe/boat-control:latest
     restart: always
     volumes:
-    - ./config.yam:/boat/config.yam
+    - ./config.yml:/boat/config.yml
     - ./logs/:/boat/logs/
     - /dev/:/dev/

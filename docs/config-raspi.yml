@@ -1,6 +1,11 @@
 output:
-  - serial    # send serial command e.g. to arduino
-  - raspberry # direct control via GPIOS
+  arduino:
+    type: serial # send serial command e.g. to arduino
+  raspberry:
+    type: raspberry # direct control via GPIOs
+  esp1:
+    type: firmata
+    device: 192.168.100.100:3030
 
 input:
   - dualShock3
@@ -16,11 +21,12 @@ plugins:
   - drive-control:
     relayPin:
       pin: 444
-      device: serial
+      device: arduino
     relayDelay: 2
+    restartButton: start
 
 devices:
-  serial:
+  arduino:
     - type: motor
       joystick: right
       pin: 9
@@ -99,6 +105,14 @@ devices:
     #    - input circle:press
     #    - output d 13 0
     #  button: r1
+
+  esp1:
+  - pin: 2
+    name: Test
+    button: x
+    type: blink
+    time_on: 350
+    time_off: 700
 
   general:
     - type: restart
