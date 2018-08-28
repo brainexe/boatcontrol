@@ -1,18 +1,8 @@
-output:
-  arduino:
-    type: serial # send serial command e.g. to arduino
-  raspberry:
-    type: raspberry # direct control via GPIOs
-  esp1:
-    type: firmata
-    device: 192.168.100.100:3030
-
 input:
   - dualShock3
 
 plugins:
   - sixad
-  - startup-sound
   - auto-pair
   - webcam
   - server:
@@ -24,6 +14,16 @@ plugins:
       device: arduino
     relayDelay: 2
     restartButton: start
+  - startup-sound
+
+output:
+  arduino:
+    type: serial # send serial command e.g. to arduino
+  raspberry:
+    type: raspberry # direct control via GPIOs
+  esp1:
+    type: firmata
+    device: 192.168.100.100:3030
 
 devices:
   arduino:
