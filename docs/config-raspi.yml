@@ -1,5 +1,6 @@
 input:
-  - dualShock3
+  - dualShock3:
+      motionDetection: false
 
 plugins:
   - sixad
@@ -169,5 +170,4 @@ devices:
 soundExecutable: mpg123
 speakExecutable: espeak -s80 -vde
 debug: false
-motionDetection: false
 
