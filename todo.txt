@@ -26,3 +26,6 @@ Prio  Bezeichnung
 1     Schalter von Fahrtenregler durch Relais ersetzen - Taster "Start" drücken um Fahrtenregler zu starten/nach Störung reseten,
       am Anfang automatisch?, "Select" oder Störung zum deaktivieren
 2     Dockerfile
+2     Lautstäre über Controller steuern
+2     Regelung der Pumpenleistung/Radargeschwindigkeit über PWM oder "Mini"-Fahrtenregler
+3     Motoren getrennt ansteuern, wenn gelekt wird unterschiedliche Drehzahlen
