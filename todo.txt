@@ -18,6 +18,8 @@ Prio  Bezeichnung
 2     Temperaturen Motoren, Fahrtenregler messen, bei Bedarf Leistung mindern + Warnmeldung
 1     Wassermelder
 3     GPS/Kompas
+3     Radar
+4     autonomes fahren
 1     Einbundung von ESP8266 über W-Lan (am besten mehrere gleichzeitig nutzbar (ausbick auf Adolph Bernpol etc))
             https://github.com/AlphaLima/ESP32-Serial-Bridge/blob/master/ESP32-Serial-Bridge.ino
 2     Grafische Oberfläche von Raspi mit Kamerabild im Hintergrund auf Handy/Videobrille
