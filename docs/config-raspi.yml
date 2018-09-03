@@ -1,124 +1,113 @@
 input:
-  - dualShock3:
-      motionDetection: false
+  dualShock3:
+    motionDetection: false
 
 plugins:
-  - sixad
-  - auto-pair
-  - webcam
-  - server:
+  sixad:
+  auto-pair:
+  webcam:
+  server:
     host: 0.0.0.0
     port: 3000
-  - drive-control:
+  drive-control:
     relayPin:
       pin: 444
       device: arduino
     relayDelay: 2
     restartButton: start
-  - startup-sound
-
-output:
-  arduino:
-    type: serial # send serial command e.g. to arduino
-  raspberry:
-    type: raspberry # direct control via GPIOs
-  esp1: #Aufbau
-    type: firmata
-    device: 192.168.100.100:3030
+  startup-sound:
 
 devices:
   arduino:
-  # raspberry:
-    - type: motor
-      joystick: right
-      pin: 9  # über PCA9685 pin: 1 Motor links
-              # über PCA9685 pin: 2 Motor rechts
-      min: 0
-      max: 180
-      buffer: 10
-      defaultPosition: 0
-      relayPin: 999
-      relayDelay: 3
+    type: serial # send serial command e.g. to arduino
+    actions:
+      - type: motor
+        joystick: right
+        pin: 9
+        min: 0
+        max: 180
+        buffer: 10
+        defaultPosition: 0
+        relayPin: 999
+        relayDelay: 3
 
-    - type: ruder
-      joystick: right
-      pin: 6  # über PCA9685 pin: 3
-      min: 20
-      max: 200
-      buffer: 0
-      defaultPosition: 0
-      
+      - type: ruder
+        joystick: right
+        pin: 6  # über PCA9685 pin: 3
+        min: 20
+        max: 200
+        buffer: 0
+        defaultPosition: 0
+
          # über PCA9685 pin: 4 Bugstrahlruder (nicht vorhanden/Platzhalter)
 
-    # Water Monitor unten schwenken
-    - pin: 5  # über PCA9685 pin: 5
-      name: Monitor-Rotation
-      type: setMovement
-      min: 0
-      max: 180
-      defaultPosition: 90
-      speed: 30
-      joystick: left
-      
+      # Water Monitor unten schwenken
+      - pin: 5  # über PCA9685 pin: 5
+        name: Monitor-Rotation
+        type: setMovement
+        min: 0
+        max: 180
+        defaultPosition: 90
+        speed: 30
+        joystick: left
+
           # über PCA9685 pin: 6 Monitor unten heben/senken (nicht vorhanden/Platzhalter)
 
-    # Wasser Pumpe
-    # in zukunft evtl. über Fahrtenregler dann über PCA9685 pin: 7
+      # Wasser Pumpe
+      # in zukunft evtl. über Fahrtenregler dann über PCA9685 pin: 7
     - pin: 2  # sonst Pin XXX
       name: Wasserpumpe
       type: press
       button: l2
       #speed: 80 (über PWM oder Fahrtenregler)
 
-    # LED 13 (dummy)
-    #- pin: 13
-    #  type: onOff
-    #  button: circle
+      # LED 13 (dummy)
+      #- pin: 13
+      #  type: onOff
+      #  button: circle
 
-    # Dummy
-    #- pin: 14
-    #  type: onOff
-    #  button: x
+      # Dummy
+      #- pin: 14
+      #  type: onOff
+      #  button: x
 
 
   raspberry:
-  # ESP1: # Aufbau:
+    type: raspberry # direct control via GPIOs
+    actions:
+      # ESP1: # Aufbau:
 
-    # Radar Motor
-    - pin: 4  #pin: xxx
-      name: Radar
-      type: onOff
-      button: triangle
+      # Radar Motor
+      - pin: 4  #pin: xxx
+        name: Radar
+        type: onOff
+        button: triangle
       # speed: 80 (über PWM?)
 
-    # Blaulicht
-    - pin: 17 #pin: xxx
-      name: Blaulicht
-      button: x
-      type: blink
-      time_on: 350
-      time_off: 700
+      # Blaulicht
+      - pin: 17 #pin: xxx
+        name: Blaulicht
+        button: x
+        type: blink
+        time_on: 350
+        time_off: 700
 
-    # Licht 
-    - pin: 3  #pin: xxx
-      name: Licht
-      type: onOff
-      button: circle
-      default: 1
-      
-      
+      # Licht
+      - pin: 3  #pin: xxx
+        name: Licht
+        type: onOff
+        button: circle
+        default: 1
+
     # Water Monitor oben1 schwenken
  #   - pin: xxx
 
-    
         # Water Monitor oben2 schwenken
  #   - pin: xxx
 
-    
         # Water Monitor oben1 heben
  #   - pin: xxx
 
-    
         # Water Monitor oben2 heben
  #   - pin: xxx
 
@@ -133,37 +122,41 @@ devices:
     #  button: r1
 
   esp1:
-  - pin: 2
-    name: Test
-    button: x
-    type: blink
-    time_on: 350
-    time_off: 700
+    type: firmata
+    address: 192.168.100.100:3030
+    actions:
+      - pin: 2
+        name: Test
+        button: x
+        type: blink
+        time_on: 350
+        time_off: 700
 
   general:
-    - type: restart
-      name: Neustart
-      button: psxButton
+    actions:
+      - type: restart
+        name: Neustart
+        button: psxButton
 
-    # disable events when "select" was pressed
-    - type: mute
-      name: Mute
-      button: select
+      # disable events when "select" was pressed
+      - type: mute
+        name: Mute
+        button: select
 
-    # Sag "Es brennt"
-    - type: speakText
-      name: Sag "Hilfe! Es brennt"
-      button: r2
-      text: "Hilfe! Es brennt!"
+      # Sag "Es brennt"
+      - type: speakText
+        name: Sag "Hilfe! Es brennt"
+        button: r2
+        text: "Hilfe! Es brennt!"
 
-    # play horn.mp3
-    - type: soundFile
-      name: Horn-Sound
-      button: r1
-      file: horn.mp3
-      
+      # play horn.mp3
+      - type: soundFile
+        name: Horn-Sound
+        button: r1
+        file: horn.mp3
+
      # Lautstärke
-    #-type: Volume
+     #-type: Volume
       # button+: xxx  #lauter
       # button-: xxx  #leiser
 

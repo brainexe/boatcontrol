@@ -14,6 +14,7 @@
     "socket.io": "^1.7.4"
   },
   "optionalDependencies": {
+    "etherport": "^0.2.0",
     "firmata": "^0.19.1",
     "duino": "github:brainexe/duino",
     "gpio": "^0.2.7",

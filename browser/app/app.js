@@ -35,7 +35,7 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         });
     }
 
-    setInterval(function () {
+    setInterval(() => {
         const start = new Date().getTime();
         socket.emit('timePing', 1, function () {
             const diff = new Date().getTime() - start;
@@ -45,18 +45,18 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
     }, 5000);
 
     socket.on('pinChange', function(pin) {
-        var oldPins = $scope.config.devices[pin.device];
+        var oldPins = $scope.config.devices[pin.device].actions;
         for (let idx in oldPins) {
             // todo optimize pin replacement
             let oldPin = oldPins[idx];
             if (oldPin.pin == pin.pin && oldPin.button == pin.button) {
-                $scope.config.devices[pin.device][idx] = pin;
+                $scope.config.devices[pin.device].actions[idx] = pin;
                 break;
             }
         }
 
         addMessage("Command: " + JSON.stringify(pin));
-        console.log($scope.config)
+        console.log($scope.config);
         $scope.$apply();
     });
 
