@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
 
 cd `dirname $0`
 
@@ -16,17 +18,21 @@ sudo apt-get autoclean -y
 
 cecho y "Install main packages..."
 apt-get install -y git espeak \
+        mpg123 espeak \
         libusb-dev libusb-dev libusb-0.1-4 libbluetooth-dev \
         joystick \
         gcc gcc-avr avr-libc avrdude
 
+git config --global user.email "boat@example.com"
+git config --global user.name "boat"
+
+
 cecho y "Install bluez..."
-sudo apt-get install -y bluez-utils bluez-compat bluez-hcidump
+sudo apt-get install -y bluez-utils bluez-hcidump
 
 cecho y "Install nodejs..."
-sudo apt-get install nodejs npm node-semver wget  checkinstall
-cd /opt && wget http://node-arm.herokuapp.com/node_latest_armhf.deb && dpkg -i node_latest_armhf.deb
+sudo apt-get install nodejs npm
 
 cd -
 
-source ./update.sh
+./update.sh

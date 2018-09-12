@@ -7,7 +7,7 @@
   "dependencies": {
     "bower": "^1.8.2",
     "colors": "^1.2.1",
-    "dualshock-controller": "github:brainexe/node-dualshock-controller",
+    "dualshock-controller": "git+https://github.com/brainexe/node-dualshock-controller.git",
     "eventemitter2": "^5.0.1",
     "js-yaml": "^3.11.0",
     "serve-static": "^1.13.2",
@@ -16,7 +16,7 @@
   "optionalDependencies": {
     "etherport": "^0.2.0",
     "firmata": "^0.19.1",
-    "duino": "github:brainexe/duino",
+    "duino": "git+https://github.com/brainexe/duino.git",
     "gpio": "^0.2.7",
     "raspi-pwm": "^6.0.0",
     "pca9685": "^4.0.3",

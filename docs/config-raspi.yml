@@ -53,13 +53,13 @@ devices:
 
           # über PCA9685 pin: 6 Monitor unten heben/senken (nicht vorhanden/Platzhalter)
 
-      # Wasser Pumpe
-      # in zukunft evtl. über Fahrtenregler dann über PCA9685 pin: 7
-    - pin: 2  # sonst Pin XXX
-      name: Wasserpumpe
-      type: press
-      button: l2
-      #speed: 80 (über PWM oder Fahrtenregler)
+        # Wasser Pumpe
+        # in zukunft evtl. über Fahrtenregler dann über PCA9685 pin: 7
+      - pin: 2  # sonst Pin XXX
+        name: Wasserpumpe
+        type: press
+        button: l2
+        #speed: 80 (über PWM oder Fahrtenregler)
 
       # LED 13 (dummy)
       #- pin: 13
