@@ -17,9 +17,9 @@ sudo apt-get dist-upgrade -y
 sudo apt-get autoclean -y
 
 cecho y "Install main packages..."
-apt-get install -y git espeak \
-        mpg123 espeak \
-        libusb-dev libusb-dev libusb-0.1-4 libbluetooth-dev \
+apt-get install -y git golang \
+        mpg123 espeak supervisor \
+        libusb-dev libusb-0.1-4 libusb-1.0-0-dev libbluetooth-dev \
         joystick \
         gcc gcc-avr avr-libc avrdude
 

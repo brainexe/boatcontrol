@@ -1,11 +1,17 @@
 input:
   dualShock3:
     motionDetection: false
+    modes:
+      dpadRight: sound
+      dpadLeft: licht
+      #dpadUp: up
+      #dpadTop: top
 
 plugins:
   sixad:
   auto-pair:
   webcam:
+  controller-debug:
   server:
     host: 0.0.0.0
     port: 3000
@@ -155,10 +161,23 @@ devices:
         button: r1
         file: horn.mp3
 
-     # Lautstärke
-     #-type: Volume
-      # button+: xxx  #lauter
-      # button-: xxx  #leiser
+
+      # Test for Zweitbelegung
+      - type: speakText
+        name: sound:circle
+        button: sound:circle
+        text: "Kreis"
+
+      - type: speakText
+        name: sound:x
+        button: sound:x
+        text: "X X X X"
+
+     # set volume
+      - type: setVolume
+        name: Lautstärke setzen
+        button+: r1  #lauter
+        button-: l1  #leiser
 
 soundExecutable: mpg123
 speakExecutable: espeak -s80 -vde
