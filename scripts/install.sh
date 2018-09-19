@@ -35,4 +35,10 @@ sudo apt-get install nodejs npm
 
 cd -
 
+cecho y "Setup supervisor..."
+rm -rf /etc/supervisor/conf.d/boat.conf
+ln -s $(pwd)/../docs/supervisord.conf /etc/supervisor/conf.d/boat.conf
+/etc/init.d/supervisor restart
+supervisorctl status
+
 ./update.sh

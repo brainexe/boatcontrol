@@ -9,6 +9,7 @@ Prio  Bezeichnung
 2     server pin view: show list of pin properties
       raspi: increase default volume
 1     multi-press event . z.b. "l1-x"/Umschalten verschiedener Funktionen für Knüppel (z.B. Löschmonitore, Beiboot, Kran)
+           siehe config.yaml->input->modes, dort werden Buttons definiert, um die Belegung zu wechseln
 1     controller disconnect -> stop + beep
       # controller.on('battery:change', data => console.log(data));
       # controller.on('connection:change', data => console.log(data));

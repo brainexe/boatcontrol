@@ -2,16 +2,14 @@ input:
   dualShock3:
     motionDetection: false
     modes:
-      dpadRight: sound
-      dpadLeft: licht
-      #dpadUp: up
-      #dpadTop: top
+      dpadRight:press: sound
+      dpadUp:press: licht
 
 plugins:
   sixad:
   auto-pair:
   webcam:
-  controller-debug:
+  #controller-debug:
   server:
     host: 0.0.0.0
     port: 3000
@@ -107,25 +105,12 @@ devices:
 
     # Water Monitor oben1 schwenken
  #   - pin: xxx
-
         # Water Monitor oben2 schwenken
  #   - pin: xxx
-
         # Water Monitor oben1 heben
  #   - pin: xxx
-
         # Water Monitor oben2 heben
  #   - pin: xxx
-
-
-    # Dummy
-    #- type: macro
-    #  macro:
-    #    - output d 13 1
-    #    - sleep 1
-    #    - input circle:press
-    #    - output d 13 0
-    #  button: r1
 
   esp1:
     type: firmata
