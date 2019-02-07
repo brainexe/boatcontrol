@@ -17,23 +17,31 @@ sudo apt-get dist-upgrade -y
 sudo apt-get autoclean -y
 
 cecho y "Install main packages..."
-apt-get install -y git golang \
-        mpg123 espeak supervisor \
+apt-get install -y git \
+        mpg123 espeak libttspico-utils supervisor \
         libusb-dev libusb-0.1-4 libusb-1.0-0-dev libbluetooth-dev \
         joystick \
         gcc gcc-avr avr-libc avrdude
 
+# install golang
+FileName="go1.11.1.linux-armv6l.tar.gz"
+wget https://dl.google.com/go/$FileName
+sudo tar -C /usr/local -xvf $FileName
+
+cat >> ~/.bashrc << 'EOF'
+export GOPATH=$HOME/go
+export PATH=/usr/local/go/bin:$PATH:$GOPATH/bin
+EOF
+source ~/.bashrc
+
 git config --global user.email "boat@example.com"
 git config --global user.name "boat"
 
-
 cecho y "Install bluez..."
-sudo apt-get install -y bluez-utils bluez-hcidump
+sudo apt-get install -y bluez-tools bluez-hcidump
 
 cecho y "Install nodejs..."
-sudo apt-get install nodejs npm
-
-cd -
+sudo apt-get install -y nodejs npm
 
 cecho y "Setup supervisor..."
 rm -rf /etc/supervisor/conf.d/boat.conf
