@@ -164,6 +164,13 @@ app.directive('pin', function() {
                     '</div>' +
                     '{{pin.value}} / {{pin.max}}' +
                 '</div>' +
+                '<div ng-switch-when="pwm">' +
+                    '<div class="progress">' +
+                        '<div class="progress-bar progress-bar-striped" style="width:{{(pin.value / pin.max)*100}}%">' +
+                        '</div>' +
+                    '</div>' +
+                    '{{pin.value}} / {{pin.max}}' +
+                '</div>' +
                 '<div ng-switch-default>' +
                 '</div>' +
             '</div>',

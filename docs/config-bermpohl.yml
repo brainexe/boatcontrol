@@ -1,0 +1,95 @@
+input:
+  dualShock3:
+    motionDetection: false
+
+plugins:
+  sixad:
+  auto-pair:
+  server:
+    host: 0.0.0.0
+    port: 3000
+  startup-sound:
+
+  #controller-debug:
+
+devices:
+  i2c:
+    type: i2c # send serial command e.g. to arduino
+    actions:
+      - type: motor
+        joystick: right
+        pin: 0
+        min: 0
+        max: 180
+        buffer: 10
+        defaultPosition: 0
+        relayPin: 999
+        relayDelay: 3
+
+      - type: ruder
+        joystick: right
+        pin: 1
+        min: 20
+        max: 200
+        buffer: 0
+        defaultPosition: 0
+
+         # über PCA9685 pin: 4 Bugstrahlruder (nicht vorhanden/Platzhalter)
+
+  raspberry:
+    type: raspberry # direct control via GPIOs
+    actions:
+      # ESP1: # Aufbau:
+
+      # Radar Motor
+      - pin: 40  #pin: xxx
+        name: Radar
+        type: onOff
+        button: triangle
+      # speed: 80 (über PWM?)
+
+  general:
+    actions:
+      - type: restart
+        name: Neustart
+        button: psxButton
+
+      # disable events when "select" was pressed
+      - type: mute
+        name: Mute
+        button: select
+
+      # Sag "Es brennt"
+      - type: speakText
+        name: Sag "Hilfe! Es brennt"
+        button: r2
+        text: "Hilfe! Es brennt!"
+
+      # play horn.mp3
+      - type: soundFile
+        name: Horn-Sound
+        button: r1
+        file: horn.mp3
+
+
+      # Test for Zweitbelegung
+      - type: speakText
+        name: sound:circle
+        button: sound:circle
+        text: "Kreis"
+
+      - type: speakText
+        name: sound:x
+        button: sound:x
+        text: "X X X X"
+
+     # set volume
+      - type: setVolume
+        name: Lautstärke setzen
+        button+: r1  #lauter
+        button-: l1  #leiser
+
+soundExecutable: mpg123
+speakExecutable: espeak -s80 -vde
+debug: true
+

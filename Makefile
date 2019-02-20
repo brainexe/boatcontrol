@@ -1,5 +1,5 @@
 
-all: scripts/speak node_modules bower_components go/boat
+all: go/boat bower_components node_modules scripts/sixpair sixad/sixad
 
 go/boat: go/*.go
 	cd go && go build -o boat *.go ; cd ..
@@ -12,3 +12,6 @@ node_modules: package.json
 
 scripts/sixpair: scripts/sixpair.c
 	gcc -o scripts/sixpair scripts/sixpair.c -lusb
+
+sixad/sixad: sixad/*
+	cd sixad && (make && make install) ; cd ..

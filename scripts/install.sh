@@ -20,7 +20,7 @@ cecho y "Install main packages..."
 apt-get install -y git \
         mpg123 espeak libttspico-utils supervisor \
         libusb-dev libusb-0.1-4 libusb-1.0-0-dev libbluetooth-dev \
-        joystick \
+        joystick dstat i2c-tools \
         gcc gcc-avr avr-libc avrdude
 
 # install golang
