@@ -18,9 +18,9 @@ devices:
     actions:
       - type: motor
         joystick: right
-        pin: 0
-        min: 0
-        max: 180
+        pin: 1
+        min: 50
+        max: 120
         buffer: 10
         defaultPosition: 0
         relayPin: 999
@@ -28,25 +28,11 @@ devices:
 
       - type: ruder
         joystick: right
-        pin: 1
-        min: 20
-        max: 200
+        pin: 2
+        min: 50
+        max: 120
         buffer: 0
         defaultPosition: 0
-
-         # über PCA9685 pin: 4 Bugstrahlruder (nicht vorhanden/Platzhalter)
-
-  raspberry:
-    type: raspberry # direct control via GPIOs
-    actions:
-      # ESP1: # Aufbau:
-
-      # Radar Motor
-      - pin: 40  #pin: xxx
-        name: Radar
-        type: onOff
-        button: triangle
-      # speed: 80 (über PWM?)
 
   general:
     actions:
@@ -70,18 +56,6 @@ devices:
         name: Horn-Sound
         button: r1
         file: horn.mp3
-
-
-      # Test for Zweitbelegung
-      - type: speakText
-        name: sound:circle
-        button: sound:circle
-        text: "Kreis"
-
-      - type: speakText
-        name: sound:x
-        button: sound:x
-        text: "X X X X"
 
      # set volume
       - type: setVolume
