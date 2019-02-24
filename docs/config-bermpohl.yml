@@ -3,36 +3,61 @@ input:
     motionDetection: false
 
 plugins:
-  sixad:
-  auto-pair:
+  #sixad:
+  #auto-pair:
   server:
     host: 0.0.0.0
     port: 3000
   startup-sound:
-
   #controller-debug:
 
 devices:
   i2c:
-    type: i2c # send serial command e.g. to arduino
+    type: i2c
     actions:
-      - type: motor
+      - type: ruder
         joystick: right
         pin: 1
         min: 50
         max: 120
-        buffer: 10
-        defaultPosition: 0
-        relayPin: 999
-        relayDelay: 3
+        reversed: true
 
-      - type: ruder
+      - type: motor
         joystick: right
         pin: 2
         min: 50
         max: 120
-        buffer: 0
-        defaultPosition: 0
+
+      - pin: 3
+        name: Test Servo 1
+        type: setMovement
+        min: 50
+        max: 120
+        speed: 30
+        joystick: left
+
+      - pin: 4
+        name: Test Servo2
+        type: setMovement
+        min: 50
+        max: 120
+        speed: 30
+        joystick: left
+
+      # light
+      - pin: 8
+        name: LED
+        button: x
+        type: blink
+        time_on: 350
+        time_off: 700
+
+      - pin: 8
+        name: LED-2
+        button: circle
+        type: increaseWhenPressed
+        time_on: 350
+        time_off: 700
 
   general:
     actions:

@@ -20,10 +20,8 @@
     "gpio": "^0.2.10",
     "raspi-pwm": "^6.0.0",
     "pca9685": "^4.0.3",
-    "i2c-bus": "^4.0.7"
-  },
-  "scripts": {
-    "start": "./index.js"
+    "i2c-bus": "^4.0.7",
+    "gamepad": "^1.6.0"
   },
   "keywords": [
     "ps3",

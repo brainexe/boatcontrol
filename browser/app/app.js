@@ -136,8 +136,19 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
         socket.emit('input', ...arguments);
     };
 
-    $scope.onJoystickClick = function (joystickId, event) {
-        console.log(joystickId, event.offsetX, event.offsetY);
+    $scope.onJoystickEvent = function (active) {
+        $scope.joystickMovementActive = active;
+    };
+
+    $scope.onJoystickEventMove = function (joystickId, event) {
+        if (!$scope.joystickMovementActive) {
+            return
+        }
+
+        if (event.target.className != "joystick_circle") {
+            return;
+        }
+
         const data = {
             x: event.offsetX,
             y: event.offsetY

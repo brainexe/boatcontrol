@@ -13,5 +13,5 @@ node_modules: package.json
 scripts/sixpair: scripts/sixpair.c
 	gcc -o scripts/sixpair scripts/sixpair.c -lusb
 
-sixad/sixad: sixad/*
+sixad/sixad: sixad/*.cpp
 	cd sixad && (make && make install) ; cd ..

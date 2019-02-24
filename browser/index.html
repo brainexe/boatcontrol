@@ -57,7 +57,9 @@
                 />
                 <div
                         class="joystick_circle"
-                        ng-mousedown="onJoystickClick(joystickId, $event)"
+                        ng-mousedown="onJoystickEvent(true)"
+                        ng-mouseup="onJoystickEvent(false)"
+                        ng-mousemove="onJoystickEventMove(joystickId, $event)"
                 >
                     <div
                             class="joystick_point"

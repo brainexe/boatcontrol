@@ -11,7 +11,7 @@
  - leftanalogbump
 
 ## Button Events
- - :hold
+ - :hold (deprecated)
  - :press
  - :release
 e.g. "circle:press" or "x:hold"
