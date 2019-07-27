@@ -1,32 +1,20 @@
 Prio  Bezeichnung
-2     rückkanal linux ps3 (rubmle/led)
+2     rückkanal linux ps3 (rumble/led)
 2     mehr mp3s/von Handy streamen?
       sounds: https://freesound.org/
-1     raspi: PWM/analog Ausgabe welche pins oder mit pca9685
 1     wlan/BT: reichweite testen (vs pi zero)
-2     batteriestand boot
-2     Batteriestand Controller auslesen -> Warnton
-2     server pin view: show list of pin properties
-      raspi: increase default volume
 1     multi-press event . z.b. "l1-x"/Umschalten verschiedener Funktionen für Knüppel (z.B. Löschmonitore, Beiboot, Kran)
            siehe config.yaml->input->modes, dort werden Buttons definiert, um die Belegung zu wechseln
 1     controller disconnect -> stop + beep
-      # controller.on('battery:change', data => console.log(data));
+1     failsave position for motor etc -> solle klappen -> testen
       # controller.on('connection:change', data => console.log(data));
-      browser: fix on hold event
-1     failsave position for motor etc
-      lcd display
+2     batteriestand boot
+      # controller.on('battery:change', data => console.log(data));
 2     Temperaturen Motoren, Fahrtenregler messen, bei Bedarf Leistung mindern + Warnmeldung
 1     Wassermelder
 3     GPS/Kompas
-3     Radar
-4     autonomes fahren
 1     Einbundung von ESP8266 über W-Lan (am besten mehrere gleichzeitig nutzbar (ausbick auf Adolph Bernpol etc))
             https://github.com/AlphaLima/ESP32-Serial-Bridge/blob/master/ESP32-Serial-Bridge.ino
 2     Grafische Oberfläche von Raspi mit Kamerabild im Hintergrund auf Handy/Videobrille
-1     Schalter von Fahrtenregler durch Relais ersetzen - Taster "Start" drücken um Fahrtenregler zu starten/nach Störung reseten,
-      am Anfang automatisch?, "Select" oder Störung zum deaktivieren
-2     Dockerfile
 2     Lautstäre über Controller steuern
-2     Regelung der Pumpenleistung/Radargeschwindigkeit über PWM oder "Mini"-Fahrtenregler
-3     Motoren getrennt ansteuern, wenn gelekt wird unterschiedliche Drehzahlen
+3     Motoren getrennt ansteuern, wenn gelenkt wird unterschiedliche Drehzahlen

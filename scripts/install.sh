@@ -14,7 +14,6 @@ sudo apt-get update -y -q
 cecho y "Upgrading system..."
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
-sudo apt-get autoclean -y
 
 cecho y "Install main packages..."
 apt-get install -y git \

@@ -1,69 +1,66 @@
 input:
-  dualShock3:
-    motionDetection: false
-    modes:
-      dpadRight:press: sound
-      dpadUp:press: licht
+#  dualShock3:
+#    motionDetection: false
+#    modes:
+#      dpadRight:press: sound
+#      dpadUp:press: licht
 
 plugins:
-  sixad:
+  #sixad:
   auto-pair:
-  webcam:
+  #webcam:
   #controller-debug:
   server:
     host: 0.0.0.0
     port: 3000
-  drive-control:
-    relayPin:
-      pin: 444
-      device: arduino
-    relayDelay: 2
-    restartButton: start
+  #drive-control:
+  #  relayPin:
+  #    pin: 444
+  #    device: arduino
+  #  relayDelay: 2
+  #  restartButton: start
   startup-sound:
 
 devices:
   raspberry:
     type: raspberry # direct control via GPIOs
     actions:
-        # Wasser Pumpe
-        # in zukunft evtl. über Fahrtenregler dann über PCA
       - pin: 2  # sonst Pin XXX
         name: Wasserpumpe
         type: press
         button: l2
-        #speed: 80 (über PWM oder Fahrtenregler)
-        
-   i2c:
-     type: i2c
-     actions:
+
+  PCA-unten:
+    type: i2c
+    # todo address
+    actions:
       # PCA1 - Unten
       - type: ruder
         joystick: right
-        pin: 1
-        min: 20
-        max: 200
+        pin: 0
+        min: 30
+        max: 120
         buffer: 0
         defaultPosition: 0
-        reversed: true
 
       - type: motor #links
         joystick: right
-        pin: 2
-        min: 0
-        max: 180
-        buffer: 10
-        defaultPosition: 0
-        reversed: false
-
-      - type: motor #rechts
-        joystick: right
-        pin: 3
-        min: 0
-        max: 180
-        buffer: 10
-        defaultPosition: 0
+        pin: 1
+        min: 1000
+        max: 2000
+        pwmType: ms
+        #buffer: 10 ???
         reversed: false
         
+      - type: motor #rechts
+        joystick: right
+        pin: 2
+        min: 1000
+        max: 2000
+        pwmType: ms
+        #buffer: 10 ???
+        reversed: false
+
       - type: setMovement
         name: Monitor-Rotation # Water Monitor unten schwenken
         joystick: left
@@ -72,19 +69,21 @@ devices:
         max: 180
         defaultPosition: 90
         speed: 30
-        
-      # über PCA9685 pin: 6 Monitor unten heben/senken (nicht vorhanden/Platzhalter)
 
-      # PCA2 - Aufbau:
+       # todo über PCA9685 pin: 6 Monitor unten heben/senken (nicht vorhanden/Platzhalter)
+
+  PCA-oben:
+    type: i2c
+    # todo address
+    actions:
       # Radar Motor
-      - pin: 1  #pin: xxx
+      - pin: 1
         name: Radar
         type: onOff
         button: triangle
-      # speed: 80 (über PWM?)
 
       # Blaulicht
-      - pin: 2 #pin: xxx
+      - pin: 2
         name: Blaulicht
         button: x
         type: blink
@@ -92,7 +91,7 @@ devices:
         time_off: 700
 
       # Licht
-      - pin: 3  #pin: xxx
+      - pin: 3
         name: Licht
         type: onOff
         button: circle
@@ -105,7 +104,7 @@ devices:
         # Water Monitor oben1 heben
  #   - pin: xxx
         # Water Monitor oben2 heben
- #   - pin: xxx
+  #   - pin: xxx
 
  # esp1:
  #   type: firmata
@@ -141,7 +140,7 @@ devices:
         button: r1
         file: horn.mp3
 
-     # set volume
+      # set volume
       - type: setVolume
         name: Lautstärke setzen
         button+: r1  #lauter
@@ -149,4 +148,4 @@ devices:
 
 soundExecutable: mpg123
 speakExecutable: espeak -s80 -vde
-debug: false
+debug: true
