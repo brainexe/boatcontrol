@@ -17,13 +17,14 @@ sudo apt-get dist-upgrade -y
 
 cecho y "Install main packages..."
 apt-get install -y git \
-        mpg123 espeak libttspico-utils supervisor \
-        libusb-dev libusb-0.1-4 libusb-1.0-0-dev libbluetooth-dev \
-        joystick dstat i2c-tools \
-        gcc gcc-avr avr-libc avrdude
+        mpg123 espeak supervisor \
+        libusb-dev libusb-0.1-4 libusb-1.0-0-dev libbluetooth-dev libudev-dev \
+        joystick dstat i2c-tools
+
+apt install gcc-4.9 g++-4.9 && export CXX=g++-4.9
 
 # install golang
-FileName="go1.11.1.linux-armv6l.tar.gz"
+FileName="go1.12.9.linux-armv6l.tar.gz"
 wget https://dl.google.com/go/$FileName
 sudo tar -C /usr/local -xvf $FileName
 
@@ -39,8 +40,13 @@ git config --global user.name "boat"
 cecho y "Install bluez..."
 sudo apt-get install -y bluez-tools bluez-hcidump
 
+cecho y "Install submodules..."
+git submodule init
+git submodule update
+
 cecho y "Install nodejs..."
 sudo apt-get install -y nodejs npm
+npm config set prefix '~/.npm-global'
 
 cecho y "Setup supervisor..."
 rm -rf /etc/supervisor/conf.d/boat.conf

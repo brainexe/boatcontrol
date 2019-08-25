@@ -5,7 +5,7 @@ go/boat: go/*.go
 	cd go && go build -o boat *.go ; cd ..
 
 bower_components: bower.json
-	./node_modules/bower/bin/bower update
+	./node_modules/bower/bin/bower update --allow-root
 
 node_modules: package.json
 	NODE_ENV=production npm install -q --progress=false
