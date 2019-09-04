@@ -4,6 +4,10 @@
     line-height: 2;
 }
 
+.header-menu {
+    margin: 3px;
+}
+
 .container {
     width: 97%;
 }
@@ -24,7 +28,6 @@
 .joystick {
     float: left;
     margin-left: 10px;
-
 }
 
 .joystick_circle {
@@ -42,6 +45,9 @@
     height: 10px;
     border-radius: 5px;
     background-color: #0f0f0f;
+    margin-top: -5px;
+    margin-left: -5px;
+    pointer-events: none;
 }
 
 .pin-digital-false {
@@ -56,6 +62,9 @@
     background-color: #1ba622;
 }
 
+.input-control {
+    min-width: 60px;
+}
 
 .button-pressed {
     background-color: greenyellow !important;

@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="/app/app.css"/>
 </head>
 <body ng-controller="BoatController">
-<div class="ping" ng-if="ping">
-    Ping to server: {{ping}}ms
-</div>
+<div class="header-menu btn-group">
+    <a class="btn btn-primary" ng-if="config.plugins.webcam" href="//{{hostName}}:8090/boat.webm">Webcam</a>
+    <a class="btn btn-primary" ng-if="!loggingEnabled" ng-click="toggleLog()">Show Logs</a>
+    <a class="btn btn-primary" ng-if="loggingEnabled" ng-click="toggleLog()">Hide Logs</a>
+    <a class="btn btn-primary" ng-if="!showController" ng-click="toggleController()">Show Controller</a>
+    <a class="btn btn-primary" ng-if="showController" ng-click="toggleController()">Hide Controller</a>
 
-<a class="btn btn-primary" ng-if="config.plugins.webcam" href="//{{hostName}}:8090/boat.webm">Webcam</a>
-<a class="btn btn-primary" ng-if="!loggingEnabled" ng-click="enableLog()">Enable Log</a>
-<a class="btn btn-primary" ng-if="!showController" ng-click="displayController()">Show Controller</a>
+    <a class="btn btn-default" disabled ng-if="ping">
+        Ping to server: {{ping}}ms
+    </a>
+</div>
 
 <div class="container">
     <div class="logs" ng-if="loggingEnabled">
@@ -28,18 +32,15 @@
         </ul>
     </div>
 
-    <!--<input class="input-control" ng-model="sendCommand" type="text" id="command" />-->
-    <!--<input class="input-control" type="submit" value="Submit" ng-submit="submit(sendCommand)" />-->
-
     <div id="controller" ng-if="showController">
         <hr/>
-        <div>
+        <div class="btn-group">
             <input ng-repeat="(buttonId, buttonData) in controller.buttons"
                    ng-mousedown="triggerEvent(buttonId + ':press')"
                    ng-mouseup="triggerEvent(buttonId + ':release')"
                    value="{{buttonId}}"
                    type="button"
-                   class="input-control button"
+                   class="btn btn-default"
                    ng-class="{'button-pressed':buttonData.isPressed}"
             />
         </div>
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </div>
+        <div style="clear: both"></div>
         <div class="input-group">
             <input ng-model="speakText" type="text" placeholder="Say text..." class="input-control"/>
             <input type="button" value="Say" ng-click="triggerEvent('say', speakText)" class="input-control"/>
@@ -102,7 +104,7 @@
                                     ng-mouseup="triggerEvent(pin.button + ':release')"
                                     value="{{pin.button}}"
                                     type="button"
-                                    class="input-control button"
+                                    class="input-control btn btn-primary"
                             />
                         </div>
                     </td>

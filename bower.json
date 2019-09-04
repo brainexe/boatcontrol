@@ -1,5 +1,6 @@
 {
   "name": "boatcontrol",
+  "directory": "browser/vendor",
   "dependencies": {
     "bootstrap": "3.3.*",
     "angular": "1.5.*",

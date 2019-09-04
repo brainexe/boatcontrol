@@ -1,25 +1,24 @@
 input:
-#  dualShock3:
-#    motionDetection: false
+  dualShock3:
 #    modes:
 #      dpadRight:press: sound
 #      dpadUp:press: licht
 
 plugins:
-  #sixad:
+  sixad:
   auto-pair:
-  #webcam:
-  #controller-debug:
   server:
     host: 0.0.0.0
     port: 3000
+  startup-sound:
+  #webcam:
+  #controller-debug:
   #drive-control:
   #  relayPin:
   #    pin: 444
   #    device: arduino
   #  relayDelay: 2
   #  restartButton: start
-  startup-sound:
 
 devices:
   raspberry:
@@ -148,4 +147,4 @@ devices:
 
 soundExecutable: mpg123
 speakExecutable: espeak -s80 -vde
-debug: true
+debug: false

@@ -3,7 +3,7 @@ input:
     motionDetection: false
 
 plugins:
-  #sixad:
+  sixad:
   #auto-pair:
   server:
     host: 0.0.0.0
@@ -90,5 +90,4 @@ devices:
 
 soundExecutable: mpg123
 speakExecutable: espeak -s80 -vde
-debug: true
-
+debug: false

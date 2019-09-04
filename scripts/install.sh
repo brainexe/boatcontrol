@@ -24,7 +24,7 @@ apt-get install -y git \
 apt install gcc-4.9 g++-4.9 && export CXX=g++-4.9
 
 # install golang
-FileName="go1.12.9.linux-armv6l.tar.gz"
+FileName="go1.13.0.linux-armv6l.tar.gz"
 wget https://dl.google.com/go/$FileName
 sudo tar -C /usr/local -xvf $FileName
 

@@ -11,5 +11,5 @@ Schritt 2: Boatcontrol installieren:
  sudo ./scripts/install.sh
 
 Schritt 3: Aliases laden
- echo ". /www/boatcontrol/scripts/alias.sh" >> /root/.bashrc
+ echo ". /www/boatcontrol/scripts/alias.sh" >> ~/.bashrc
 

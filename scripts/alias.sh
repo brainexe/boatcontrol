@@ -5,7 +5,7 @@ if [[ ! $BOAT_DIR ]]; then
 fi
 
 alias boat="cd $BOAT_DIR"
-alias pairController="cd $BOAT_DIR/scripts; sudo ./pair.sh"
+alias pairController="sudo $BOAT_DIR/pair.sh"
 alias boatUpdate="cd $BOAT_DIR/scripts; sudo ./update.sh"
 alias boatRepo="cd $BOAT_DIR; git pull --rebase --autostash"
 

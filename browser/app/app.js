@@ -115,17 +115,12 @@ var app = angular.module('boatControl', []).controller('BoatController', functio
 
     socket.on('error', console.error.bind(console));
 
-    $scope.enableLog = function() {
-        $scope.loggingEnabled = true;
+    $scope.toggleLog = function() {
+        $scope.loggingEnabled = !$scope.loggingEnabled;
     };
 
-    $scope.displayController = function() {
-        $scope.showController = true;
-    };
-
-    $scope.submitCommand = function(command) {
-        // todo!?
-        socket.emit('output', '-1:' + command);
+    $scope.toggleController = function() {
+        $scope.showController = !$scope.showController;
     };
 
     $scope.setValue = function(pin, type, value) {
