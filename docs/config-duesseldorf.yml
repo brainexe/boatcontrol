@@ -21,100 +21,83 @@ plugins:
   #  restartButton: start
 
 devices:
-  raspberry:
-    type: raspberry # direct control via GPIOs
-    actions:
-      - pin: 2  # sonst Pin XXX
-        name: Wasserpumpe
-        type: press
-        button: l2
+  #  raspberry:
+  #    type: raspberry # direct control via GPIOs
+  #    actions:
+  #      - pin: 2  # sonst Pin XXX
+  #        name: Wasserpumpe
+  #        type: press
+  #        button: l2
 
   PCA-unten:
     type: i2c
-    # todo address
+    address: 0x40
     actions:
-      # PCA1 - Unten
-      - type: ruder
-        joystick: right
-        pin: 0
-        min: 30
-        max: 120
-        buffer: 0
-        defaultPosition: 0
-
       - type: motor #links
         joystick: right
         pin: 1
         min: 1000
-        max: 2000
+        max: 2200
         pwmType: ms
-        #buffer: 10 ???
-        reversed: false
-        
+
       - type: motor #rechts
         joystick: right
-        pin: 2
+        pin: 0
         min: 1000
-        max: 2000
+        max: 2200
         pwmType: ms
-        #buffer: 10 ???
-        reversed: false
+
+      - type: ruder
+        joystick: right
+        pin: 2
+        min: 30
+        max: 120
+
+      - pin: 4
+        name: Wasserpumpe
+        type: press
+        button: l2
 
       - type: setMovement
-        name: Monitor-Rotation # Water Monitor unten schwenken
+        name: Monitor-Rotation
         joystick: left
         pin: 5
         min: 0
         max: 180
-        defaultPosition: 90
         speed: 30
-
-       # todo über PCA9685 pin: 6 Monitor unten heben/senken (nicht vorhanden/Platzhalter)
 
   PCA-oben:
     type: i2c
-    # todo address
+    address: 0x41
     actions:
-      # Radar Motor
-      - pin: 1
-        name: Radar
-        type: onOff
-        button: triangle
 
       # Blaulicht
-      - pin: 2
+      - pin: 12
         name: Blaulicht
         button: x
         type: blink
         time_on: 350
         time_off: 700
 
-      # Licht
-      - pin: 3
-        name: Licht
+      # Suchscheinwerfer
+      - pin: 13
+        name: Suchscheinwerfer
         type: onOff
         button: circle
         default: 1
 
-    # Water Monitor oben1 schwenken
- #   - pin: xxx
-        # Water Monitor oben2 schwenken
- #   - pin: xxx
-        # Water Monitor oben1 heben
- #   - pin: xxx
-        # Water Monitor oben2 heben
-  #   - pin: xxx
+      # Positionslichter
+      - pin: 14
+        name: Positionslichter
+        type: onOff
+        button: circle
+        default: 1
 
- # esp1:
- #   type: firmata
- #   address: 192.168.100.100:3030
- #   actions:
- #     - pin: 2
- #       name: Test
- #       button: x
- #       type: blink
- #       time_on: 350
- #       time_off: 700
+      # Radar Motor
+      - pin: 15
+        name: Radar
+        type: onOff
+        button: triangle
 
   general:
     actions:
