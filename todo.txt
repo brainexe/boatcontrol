@@ -2,19 +2,27 @@ Prio  Bezeichnung
 2     rückkanal linux ps3 (rumble/led)
 2     mehr mp3s/von Handy streamen?
       sounds: https://freesound.org/
-1     wlan/BT: reichweite testen (vs pi zero)
+1     reichweite und zuverlässigkeit testen von wlan/BT/nRF24:  (Arduino vs pi [zero])
 1     multi-press event . z.b. "l1-x"/Umschalten verschiedener Funktionen für Knüppel (z.B. Löschmonitore, Beiboot, Kran)
            siehe config.yaml->input->modes, dort werden Buttons definiert, um die Belegung zu wechseln
 1     controller disconnect -> stop + beep
-1     failsave position for motor etc -> solle klappen -> testen
+1     failsave position for motor etc -> sollte klappen -> testen
       # controller.on('connection:change', data => console.log(data));
 2     batteriestand boot
       # controller.on('battery:change', data => console.log(data));
 2     Temperaturen Motoren, Fahrtenregler messen, bei Bedarf Leistung mindern + Warnmeldung
 1     Wassermelder
 3     GPS/Kompas
-1     Einbundung von ESP8266 über W-Lan (am besten mehrere gleichzeitig nutzbar (ausbick auf Adolph Bernpol etc))
+1     Einbindung von ESP8266 über W-Lan (am besten mehrere gleichzeitig nutzbar (ausbick auf Adolph Bernpol etc))
             https://github.com/AlphaLima/ESP32-Serial-Bridge/blob/master/ESP32-Serial-Bridge.ino
 2     Grafische Oberfläche von Raspi mit Kamerabild im Hintergrund auf Handy/Videobrille
 2     Lautstäre über Controller steuern
 3     Motoren getrennt ansteuern, wenn gelenkt wird unterschiedliche Drehzahlen
+
+1     Einbinden von nRF24 (An Arduino/ESP/Raspi?)
+1     Erstellen einer Übersicht der CMD-Befehle, für manuelles starten/stoppen (in Read Me oder beim Help-Befehl des Terminals mit anzeigen)
+3     Ansteuerung von "Neopixel"
+1     Failsafe-Positionen in integrieren
+
+Bugs
+Autostart will nicht mehr und mir fällt der Befehl zum manuellen starten nicht ein :(
