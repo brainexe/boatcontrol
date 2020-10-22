@@ -11,7 +11,7 @@ WORKDIR /boat
 COPY . /boat
 
 RUN npm install --no-optional
-RUN ./node_modules/.bin/bower update --allow-root
+RUN npm script webpack
 
 RUN cd scripts && gcc -o sixpair sixpair.c -lusb
 RUN cd sixad && make && make install && make clean

@@ -1,0 +1,12 @@
+
+
+# lenovo master
+34:CF:F6:85:C6:B7
+
+
+# matze controller  515...855
+64:D4:BD:09:2C:EB
+
+
+# esp32
+24:0a:c4:5f:fa:92

@@ -5,19 +5,30 @@
   "main": "index.js",
   "repository": "git@github.com:brainexe/boatcontrol.git",
   "dependencies": {
+    "@serialport/parser-readline": "^9.0.1",
+    "angular": "1.8.*",
+    "angular-ui-bootstrap": "2.5.*",
+    "bootstrap": "4.5.*",
     "bower": "^1.8.8",
     "colors": "^1.4.0",
+    "debug": "^4.2.0",
     "dualshock-controller": "git+https://github.com/brainexe/node-dualshock-controller.git",
     "eventemitter2": "^6.4.3",
     "js-yaml": "^3.14.0",
+    "serialport": "^9.0.1",
     "serve-static": "^1.14.1",
     "socket.io": "^2.3.0",
-    "debug": "^4.1.1"
+    "socket.io-client": "^2.3.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.1.1",
+    "webpack": "^4.44.2"
+  },
+  "scripts": {
+    "webpack": "./node_modules/.bin/webpack"
   },
   "optionalDependencies": {
-    "etherport": "^0.2.0",
     "firmata": "^2.2.0",
-    "duino": "git+https://github.com/brainexe/duino.git",
     "gpio": "^0.2.10",
     "raspi-pwm": "^6.0.0",
     "pca9685": "^4.0.3",
@@ -29,8 +40,9 @@
     "ps4",
     "sixad",
     "controller",
+    "rc control",
     "boat control"
   ],
   "license": "MIT",
-  "readmeFilename": "readme.md"
+  "readmeFilename": "docs/readme.md"
 }
