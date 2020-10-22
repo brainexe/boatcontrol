@@ -11,3 +11,7 @@ struct RadioPacket // Any packet up to 32 bytes can be sent.
     uint8_t Type;
     char Message[30];
 };
+
+if (size(RadioPacket) > 32) {
+    # error
+}

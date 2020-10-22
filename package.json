@@ -15,24 +15,21 @@
     "dualshock-controller": "git+https://github.com/brainexe/node-dualshock-controller.git",
     "eventemitter2": "^6.4.3",
     "js-yaml": "^3.14.0",
-    "serialport": "^9.0.1",
+    "serialport": "^9.0.2",
     "serve-static": "^1.14.1",
     "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.1"
-  },
-  "devDependencies": {
-    "copy-webpack-plugin": "^6.1.1",
-    "webpack": "^4.44.2"
+    "socket.io-client": "^2.3.1",
+    "copy-webpack-plugin": "^6.2.1",
+    "webpack": "^5.2.0"
   },
   "scripts": {
     "webpack": "./node_modules/.bin/webpack"
   },
   "optionalDependencies": {
-    "firmata": "^2.2.0",
     "gpio": "^0.2.10",
     "raspi-pwm": "^6.0.0",
     "pca9685": "^4.0.3",
-    "i2c-bus": "^5.2.0",
+    "i2c-bus": "^5.2.1",
     "gamepad": "^1.6.0"
   },
   "keywords": [
@@ -44,5 +41,8 @@
     "boat control"
   ],
   "license": "MIT",
-  "readmeFilename": "docs/readme.md"
+  "readmeFilename": "docs/readme.md",
+  "devDependencies": {
+    "webpack-cli": "^4.1.0"
+  }
 }

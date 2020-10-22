@@ -1,8 +1,5 @@
 input:
   dualShock3:
-#    modes:
-#      dpadRight:press: sound
-#      dpadUp:press: licht
 
 plugins:
   sixad:
@@ -12,7 +9,14 @@ plugins:
     port: 3000
   startup-sound:
   #webcam:
-  #controller-debug:
+  controller-debug:
+
+  switchMode:
+      modes:
+        dpadRight:press: sound
+        dpadUp:press: licht
+
+
   #drive-control:
   #  relayPin:
   #    pin: 444

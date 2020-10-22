@@ -146,8 +146,8 @@ void notify()
    //--------------- Analog D-pad button events ----------------
    if (ANALOG_BUTTONS) {
        if (abs(Ps3.event.analog_changed.button.up)){
+           Serial.print("Pressing the up button: ");
            Serial.println(Ps3.data.analog.button.up, DEC);
-           send(TYPE_CONTROLLER, "dpadUp:"); // todo
        }
 
        if (abs(Ps3.event.analog_changed.button.right)){
@@ -271,7 +271,6 @@ void send(uint8_t type, String msg) {
 
     msg.toCharArray(_radioData.Message, msg.length() + 1);
 
-    // todo no ack
     if (_radio.send(DESTINATION_RADIO_ID, &_radioData, sizeof(_radioData), REQUIRE_ACK)) {
         Serial.println("TX Failed: " + msg);
     }
