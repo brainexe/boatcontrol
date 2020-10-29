@@ -7,3 +7,5 @@
 /package-lock.json
 /go/boat
 /go/mod.sum
+/go/vendor/
+/browser/assets/

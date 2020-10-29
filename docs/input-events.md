@@ -1,24 +1,36 @@
-# Buttons
+All controller events are handled inside the Emitter, using a type and some events have a special payload
+
+# Button Eents
+List of simple buttons:
  - triangle
  - circle
  - x
  - square
- - r1 | r2 | l1 | l2
+ - r1 | r2 | r3 | l1 | l2 | l3
  - psxButton
  - select
  - start
- - rightanalogbump
- - leftanalogbump
+ - dpad(Up|Right|Down|Left)
+  
+There are 2 events for each button: ":press" and ":release".
+E.g. "x:press" and "x:release" 
+ 
 
-## Button Events
- - :hold (deprecated)
- - :press
- - :release
-e.g. "circle:press" or "x:hold"
-
+## dualshock controller events
+ - connected
+ - disconnected
+ - battery:charging
+ - battery:full
+ - battery:high
+ - battery:low
+ - battery:dying
+ - battery:shutdown
+ - battery:unknown
 
 # Joysticks
-right|left:move
+(right|left):move
+
+In addition, the event payload is a object with x and y:
 
          128|0
 
@@ -27,3 +39,6 @@ right|left:move
 
 
         128|255
+
+
+Example event: "right:move" {"x": 122, "y": 200}

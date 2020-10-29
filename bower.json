@@ -1,9 +1,0 @@
-{
-  "name": "boatcontrol",
-  "dependencies": {
-    "bootstrap": "4.5.*",
-    "angular": "1.5.*",
-    "angular-bootstrap": "0.14.*",
-    "socket.io-client": "^2.2.0"
-  }
-}
